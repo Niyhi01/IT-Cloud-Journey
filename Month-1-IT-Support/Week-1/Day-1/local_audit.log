@@ -1,2 +1,11 @@
-AUDIT_START-TIME: 
+AUDIT_START_TIME: Thu Sep  3 10:13:16 PM WAT 2026
 OPERATING_SYSTEM: Ubuntu Native Host
+--- CPU SPECS ---
+Architecture:                            x86_64
+CPU(s):                                  4
+Model name:                              Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz
+CPU(s) scaling MHz:                      24%
+--- MEMORY SPECS ---
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       5.6Gi       2.9Gi       760Mi       7.6Gi       9.5Gi
+Swap:          4.0Gi       608Ki       4.0Gi
