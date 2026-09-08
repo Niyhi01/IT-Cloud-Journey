@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 1 — IT Support Fundamentals | IT/Cloud Support Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0e1015;--ink2:#2d3142;--ink3:#5a617d;--ink4:#8e96b0;
+  --paper:#f7f6f2;--paper2:#edecea;--paper3:#e4e2dd;--cream:#faf9f5;
+  --green:#0d6e4a;--green-bg:#d6f0e6;
+  --amber:#7a4700;--amber-bg:#fdefd4;
+  --red:#b91c1c;--red-bg:#fee2e2;
+  --purple:#5b21b6;--purple-bg:#ede9fe;
+  --teal:#0e6b70;--teal-bg:#ccfbf1;
+  --blue:#1e40af;--blue-bg:#dbeafe;
+  --ph1:#c2410c;--ph1-bg:#ffedd5;--ph1-light:rgba(194,65,12,.15);
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Fraunces',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.site-header{background:var(--ink);padding:3.5rem 0 3rem}
+.hinner{max-width:900px;margin:0 auto;padding:0 2rem}
+.phase-badge{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ph1);margin-bottom:1rem;display:block}
+.site-header h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.15;letter-spacing:-.02em;margin-bottom:.75rem;color:#e8eaf0}
+.site-header h1 em{font-style:italic;color:#aab0c8}
+.header-desc{font-family:var(--mono);font-size:12px;color:#9ba3b8;max-width:620px;line-height:1.75}
+.header-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.5rem}
+.hbadge{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:3px;border:1px solid rgba(255,255,255,.12);color:#9ba3b8}
+.hbadge.p{border-color:rgba(194,65,12,.4);color:#fdba74}
+.hbadge.g{border-color:rgba(62,207,142,.3);color:#3ecf8e}
+.hbadge.a{border-color:rgba(245,163,71,.3);color:#f0a347}
+
+.toolbar{position:sticky;top:0;z-index:100;background:rgba(14,16,21,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);padding:.5rem 0}
+.tinner{max-width:900px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;gap:0}
+.tinner::-webkit-scrollbar{display:none}
+.tnav{font-family:var(--mono);font-size:10px;padding:8px 12px;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.35);cursor:pointer;background:transparent;white-space:nowrap;transition:all .15s;flex-shrink:0}
+.tnav:hover{color:rgba(255,255,255,.6)}
+.tnav.on{color:#fff;border-bottom-color:var(--ph1)}
+.tsep{width:1px;height:16px;background:rgba(255,255,255,.1);margin:0 6px;flex-shrink:0}
+.print-btn{font-family:var(--mono);font-size:10px;margin-left:auto;padding:5px 12px;border:1px solid rgba(255,255,255,.15);border-radius:3px;color:rgba(255,255,255,.4);background:transparent;cursor:pointer;flex-shrink:0;transition:all .15s;white-space:nowrap}
+.print-btn:hover{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.7)}
+
+.main{max-width:900px;margin:0 auto;padding:0 2rem 5rem}
+.section{display:none;padding:2.5rem 0}
+.section.on{display:block}
+.wh{padding:1.75rem 0 1.25rem;border-bottom:2px solid var(--ink);margin-bottom:1.75rem}
+.weyebrow{font-family:var(--mono);font-size:10px;color:var(--ph1);letter-spacing:.1em;margin-bottom:.4rem}
+.wtitle{font-size:1.6rem;font-weight:600;color:var(--ink);letter-spacing:-.02em;line-height:1.25}
+.wsub{font-size:.95rem;color:var(--ink3);margin-top:.4rem;line-height:1.65;max-width:680px}
+.wtags{display:flex;flex-wrap:wrap;gap:7px;margin-top:.9rem}
+.tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:3px;border:1.5px solid var(--paper3);color:var(--ink3);background:var(--paper2)}
+
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:2rem}
+.ov-card{background:var(--cream);border:1.5px solid var(--paper3);border-radius:8px;padding:1.1rem 1.25rem;cursor:pointer;transition:all .18s}
+.ov-card:hover{border-color:var(--ph1);transform:translateY(-2px);box-shadow:0 4px 20px var(--ph1-light)}
+.ov-week{font-family:var(--mono);font-size:10px;color:var(--ph1);letter-spacing:.08em;margin-bottom:.4rem}
+.ov-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.25rem}
+.ov-sub{font-family:var(--mono);font-size:10px;color:var(--ink3);line-height:1.5}
+.ov-days{font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--paper3)}
+
+.day{background:var(--cream);border:1.5px solid var(--paper3);border-radius:8px;margin-bottom:14px;overflow:hidden}
+.day-header{padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:10px;transition:background .12s}
+.day-header:hover{background:var(--paper2)}
+.dhl{display:flex;align-items:center;gap:10px}
+.dnum{font-family:var(--mono);font-size:10px;color:var(--ph1);width:60px;flex-shrink:0;letter-spacing:.06em}
+.dtitle{font-size:.92rem;font-weight:600;color:var(--ink)}
+.dtopic{font-family:var(--mono);font-size:10px;color:var(--ink4);margin-top:1px}
+.dhr{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.dtag{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:2px}
+.dt-t{background:var(--purple-bg);color:var(--purple)}
+.dt-l{background:var(--green-bg);color:var(--green)}
+.dt-b{background:var(--blue-bg);color:var(--blue)}
+.dt-c{background:var(--amber-bg);color:var(--amber)}
+.dt-d{background:var(--red-bg);color:var(--red)}
+.chev{font-size:10px;color:var(--ink4);transition:transform .18s}
+.day.open .chev{transform:rotate(180deg)}
+.day-body{display:none;border-top:1.5px solid var(--paper3)}
+.day.open .day-body{display:block}
+.db-s{padding:1.25rem 1.5rem;border-bottom:1px solid var(--paper2)}
+.db-s:last-child{border-bottom:none}
+.dbl{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+.dbl::after{content:'';flex:1;height:1px;background:var(--paper3)}
+
+.explain{font-size:.92rem;color:var(--ink2);line-height:1.8;margin-bottom:.8rem}
+.explain:last-child{margin-bottom:0}
+.explain strong{color:var(--ink);font-weight:600}
+.analogy{background:var(--amber-bg);border-left:3px solid var(--amber);border-radius:0 6px 6px 0;padding:.85rem 1rem;margin:.8rem 0;font-size:.88rem;color:var(--amber);line-height:1.65}
+.analogy .albl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;display:block;margin-bottom:.2rem;font-weight:600}
+
+.cb{background:var(--ink);border-radius:6px;overflow:hidden;margin-bottom:.65rem}
+.cb:last-child{margin-bottom:0}
+.cbh{padding:.45rem .85rem;background:rgba(255,255,255,.04);display:flex;align-items:center}
+.cbp{font-family:var(--mono);font-size:9px;color:var(--ph1);letter-spacing:.04em}
+.cbc{padding:.65rem .85rem;font-family:var(--mono);font-size:12px;color:#e0e4f0;line-height:1.8;overflow-x:auto;white-space:pre}
+.cbc .cm{color:#4a5168;font-style:italic}
+.cbc .hl{color:#3ecf8e}
+.cbc .kw{color:#9b7ef5}
+.cbc .st{color:#f0c040}
+.cbc .vr{color:#f57eb6}
+.cbc .fl{color:#f0a347}
+
+.steps{margin:.5rem 0}
+.step{display:flex;gap:12px;margin-bottom:.75rem;font-size:.9rem;color:var(--ink2);line-height:1.6}
+.sn{font-family:var(--mono);font-size:10px;color:var(--ph1);width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(194,65,12,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+
+.chklist{margin:.5rem 0}
+.chk{display:flex;gap:10px;font-size:.9rem;color:var(--ink2);margin-bottom:.55rem;line-height:1.5}
+.chk-box{width:16px;height:16px;border:1.5px solid var(--paper3);border-radius:3px;flex-shrink:0;margin-top:2px}
+
+.alert{border-radius:6px;padding:.85rem 1rem;margin:.8rem 0;font-size:.88rem;line-height:1.65;display:flex;gap:.75rem}
+.ali{font-size:14px;flex-shrink:0;margin-top:2px}
+.al-w{background:var(--amber-bg);border:1.5px solid rgba(122,71,0,.2);color:var(--amber)}
+.al-i{background:var(--blue-bg);border:1.5px solid rgba(30,64,175,.2);color:var(--blue)}
+.al-s{background:var(--green-bg);border:1.5px solid rgba(13,110,74,.2);color:var(--green)}
+.al-n{background:var(--purple-bg);border:1.5px solid rgba(91,33,182,.2);color:var(--purple)}
+.al-p{background:var(--ph1-bg);border:1.5px solid rgba(194,65,12,.25);color:var(--ph1)}
+
+.mistake{background:var(--red-bg);border:1.5px solid rgba(185,28,28,.2);border-radius:6px;padding:.85rem 1rem;margin:.8rem 0;font-size:.87rem;color:var(--red);line-height:1.6}
+.mistake .mlbl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;display:block;margin-bottom:.2rem;font-weight:600}
+
+.cap{background:linear-gradient(135deg,#0e1015 0%,#1e1108 100%);border-radius:10px;padding:1.75rem;margin:1.5rem 0;border:1.5px solid rgba(194,65,12,.4)}
+.capeye{font-family:var(--mono);font-size:10px;color:var(--ph1);letter-spacing:.1em;margin-bottom:.6rem}
+.captitle{font-size:1.15rem;font-weight:600;color:#e8eaf0;margin-bottom:.6rem}
+.capbody{font-size:.88rem;color:#9ba3b8;line-height:1.7;margin-bottom:1rem}
+.capreqs{border-top:1px solid rgba(255,255,255,.07);padding-top:.9rem}
+.capreq{display:flex;gap:8px;font-family:var(--mono);font-size:11px;color:#aab0c8;margin-bottom:.45rem;line-height:1.5}
+.capreq::before{content:'→';color:#fdba74;flex-shrink:0}
+
+.gate{background:var(--green-bg);border:1.5px solid rgba(13,110,74,.2);border-radius:8px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+.gate-title{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.08em;margin-bottom:.75rem}
+.gate-item{display:flex;gap:10px;font-size:.9rem;color:var(--ink2);margin-bottom:.45rem;line-height:1.5}
+.gate-item::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:1.5rem 0}
+.metric{background:var(--paper2);border:1.5px solid var(--paper3);border-radius:7px;padding:1rem 1.1rem}
+.mv{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:var(--ink);line-height:1}
+.ml{font-size:.8rem;color:var(--ink3);margin-top:.3rem;font-family:var(--mono)}
+
+.reftbl{width:100%;border-collapse:collapse;font-size:.85rem;margin:.75rem 0}
+.reftbl th{text-align:left;font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.08em;padding:6px 10px;border-bottom:2px solid var(--paper3)}
+.reftbl td{padding:7px 10px;border-bottom:1px solid var(--paper2);color:var(--ink2);vertical-align:top}
+.reftbl td:first-child{font-family:var(--mono);font-size:11px;color:var(--ph1)}
+
+code{font-family:var(--mono);font-size:.82em;background:var(--paper2);border:1px solid var(--paper3);padding:1px 5px;border-radius:3px;color:var(--ink2)}
+.divider{border:none;border-top:1.5px solid var(--paper3);margin:2rem 0}
+.back-top{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:#e8eaf0;border:none;border-radius:4px;padding:8px 13px;font-family:var(--mono);font-size:11px;cursor:pointer;z-index:200;opacity:.7;transition:all .15s}
+.back-top:hover{opacity:1}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:1rem 0}
+.res-card{background:var(--paper2);border:1.5px solid var(--paper3);border-radius:7px;padding:1rem 1.1rem}
+.res-cat{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.1em;margin-bottom:.7rem}
+.res-item{display:flex;gap:8px;font-size:.85rem;color:var(--ink2);margin-bottom:.5rem;line-height:1.45}
+.res-dot{width:4px;height:4px;border-radius:50%;background:var(--ph1);flex-shrink:0;margin-top:7px}
+
+@media print{
+  .toolbar,.back-top,.print-btn{display:none!important}
+  .section{display:block!important;page-break-before:always}
+  .section:first-child{page-break-before:avoid}
+  .day-body{display:block!important}
+  body{background:#fff;color:#111}
+}
+@media(max-width:640px){
+  .hinner,.tinner,.main{padding-left:1rem;padding-right:1rem}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+<div class="hinner">
+  <span class="phase-badge">it/cloud support roadmap · phase 1 of 4</span>
+  <h1>IT Support<br><em>Fundamentals.</em></h1>
+  <p class="header-desc">Month 1 · Days 1–30. Hardware, networking, operating systems, and security — the domains CompTIA A+ (220-1201/1202) tests, learned the way real Tier 1 support actually works: something is broken in front of you, and you diagnose it before anyone hands you the theory.</p>
+  <div class="header-meta">
+    <span class="hbadge">Month 1 · Days 1–30</span>
+    <span class="hbadge p">CompTIA A+ 220-1201 & 220-1202 aligned</span>
+    <span class="hbadge g">2-VM home lab + osTicket</span>
+    <span class="hbadge a">Capstone: 10 resolved Tier 1 tickets</span>
+  </div>
+</div>
+</header>
+
+<nav class="toolbar">
+<div class="tinner">
+  <button class="tnav on" onclick="go(0)">Overview</button>
+  <div class="tsep"></div>
+  <button class="tnav" onclick="go(1)">Week 1: Hardware</button>
+  <button class="tnav" onclick="go(2)">Week 2: Networking</button>
+  <button class="tnav" onclick="go(3)">Week 3: Operating Systems</button>
+  <button class="tnav" onclick="go(4)">Week 4: Security + Capstone</button>
+  <div class="tsep"></div>
+  <button class="tnav" onclick="go(5)">Resources</button>
+  <button class="print-btn" onclick="window.print()">⬇ Save / Print</button>
+</div>
+</nav>
+
+<main class="main">
+
+<!-- ═══ OVERVIEW ═══ -->
+<div class="section on" id="s0">
+<div class="wh">
+  <div class="weyebrow">PHASE 1 OVERVIEW</div>
+  <div class="wtitle">Why this month is built on a home lab, not a study guide</div>
+  <div class="wsub">CompTIA A+ material rewards people who've actually touched the thing being tested — a ping command that failed, a permission error you had to diagnose, a corrupted DNS config you broke yourself. This month builds that lab first, and pulls in exam material only as it's needed to explain what just happened.</div>
+</div>
+
+<p class="explain">Phase 1 is 30 days across 4 weeks. Week 1 builds your home lab and covers hardware fundamentals. Week 2 is networking — the domain most entry-level candidates are weakest in, fixed here with a real diagnostic sequence practiced against connections you break yourself. Week 3 covers operating systems, Windows and Linux side by side. Week 4 closes with security fundamentals and the capstone: 10 fully resolved, realistically-documented Tier 1 tickets in a real ticketing system.</p>
+
+<div class="alert al-p">
+  <span class="ali">→</span>
+  <span><strong>The single most important habit this month:</strong> every lab task gets logged as a ticket, from day one — not just in Week 4. By the time you reach the capstone, you won't be inventing 10 tickets from memory; you'll be selecting the 10 best ones from a queue that's already 20+ deep.</span>
+</div>
+
+<div class="ov-grid">
+  <div class="ov-card" onclick="go(1)">
+    <div class="ov-week">WEEK 1 · DAYS 1–7</div>
+    <div class="ov-title">Hardware & Home Lab</div>
+    <div class="ov-sub">Motherboard, CPU, RAM, storage, ports — plus your 2-VM lab and osTicket, live</div>
+    <div class="ov-days">Deliverable: hardware audit script (PowerShell + Bash)</div>
+  </div>
+  <div class="ov-card" onclick="go(2)">
+    <div class="ov-week">WEEK 2 · DAYS 8–14</div>
+    <div class="ov-title">Networking</div>
+    <div class="ov-sub">TCP/IP, DNS, subnetting, the diagnostic sequence, break-and-fix labs</div>
+    <div class="ov-days">Deliverable: 3 resolved networking tickets</div>
+  </div>
+  <div class="ov-card" onclick="go(3)">
+    <div class="ov-week">WEEK 3 · DAYS 15–21</div>
+    <div class="ov-title">Operating Systems</div>
+    <div class="ov-sub">Windows user/disk admin, Linux fundamentals, permissions on both platforms</div>
+    <div class="ov-days">Deliverable: 3 resolved OS/permissions tickets</div>
+  </div>
+  <div class="ov-card" onclick="go(4)">
+    <div class="ov-week">WEEK 4 · DAYS 22–30</div>
+    <div class="ov-title">Security + Capstone</div>
+    <div class="ov-sub">Malware, phishing, MFA, the 6-step methodology, capstone ticket queue</div>
+    <div class="ov-days">Capstone: 10 resolved tickets + 2 full SOPs</div>
+  </div>
+</div>
+
+<div class="alert al-i">
+  <span class="ali">i</span>
+  <span><strong>Why hardware comes before networking:</strong> Core 1's own domain weighting puts hardware first because troubleshooting anything else is easier once you understand what's physically happening inside the machine — a network problem that's actually a failing NIC looks identical to a driver issue until you know what to check first.</span>
+</div>
+</div>
+
+<!-- ═══ WEEK 1: HARDWARE ═══ -->
+<div class="section" id="s1">
+<div class="wh">
+  <div class="weyebrow">WEEK 1 · DAYS 1–7</div>
+  <div class="wtitle">Hardware, Devices, and Your Home Lab</div>
+  <div class="wsub">Seven days to build the physical foundation — both the knowledge CompTIA A+ Core 1 tests and the actual home lab every phase after this depends on.</div>
+  <div class="wtags">
+    <span class="tag">Linux CLI foundation</span><span class="tag">Git/GitHub</span>
+    <span class="tag">Motherboard/CPU/RAM/storage</span><span class="tag">Ports & connectors</span>
+    <span class="tag">VirtualBox — 2–3 VMs at once</span><span class="tag">osTicket</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D1–2</span><div><div class="dtitle">Linux command-line foundation — before anything else</div><div class="dtopic">Navigation, files, permissions, processes, services, logs — practiced on your real Ubuntu, not a VM</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this comes before hardware theory, not after</div>
+  <p class="explain">You already live in Ubuntu every day — that's an advantage most learners on this path don't have. The goal these 2 days isn't memorizing commands, it's building the habit of asking <strong>"what problem makes me reach for this command?"</strong> instead of "what does this command do?" That framing is what separates someone who can recite <code>cd</code> from someone who thinks "I need to get into /var/log because I want to inspect why a service failed."</p>
+  <div class="dbl" style="margin-top:1rem">The command set — practice each one against a real task, not a list</div>
+  <table class="reftbl">
+    <thead><tr><th>Category</th><th>Commands</th><th>The real question each answers</th></tr></thead>
+    <tbody>
+      <tr><td>Navigation</td><td>pwd, ls, cd</td><td>Where am I, what's here, how do I get to where I need to be?</td></tr>
+      <tr><td>Files & dirs</td><td>touch, mkdir, cp, mv, rm, rmdir</td><td>How do I create, duplicate, relocate, or clean up what I'm working with?</td></tr>
+      <tr><td>Viewing</td><td>cat, less, head, tail</td><td>What's actually inside this file, and do I need all of it or just the end?</td></tr>
+      <tr><td>Searching</td><td>find, grep</td><td>Where is this file, and which lines in this log actually mention the error?</td></tr>
+      <tr><td>Permissions</td><td>chmod, chown</td><td>Who can read/write/execute this, and who should be able to?</td></tr>
+      <tr><td>Users</td><td>whoami, id, sudo</td><td>Who am I right now, and do I actually need elevated privilege for this?</td></tr>
+      <tr><td>Packages</td><td>apt</td><td>How do I install, update, or remove software cleanly?</td></tr>
+      <tr><td>Processes</td><td>ps, top, kill</td><td>What's running, what's eating resources, what do I need to stop?</td></tr>
+      <tr><td>Services</td><td>systemctl</td><td>Is this service running, and how do I start/stop/restart it?</td></tr>
+      <tr><td>Networking</td><td>ip, ping, ss, curl</td><td>What's my network config, can I reach this host, what's listening on this port?</td></tr>
+      <tr><td>Logs</td><td>journalctl</td><td>What did the system actually log around the time this broke?</td></tr>
+    </tbody>
+  </table>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">a real diagnostic sequence, not a command list — practice this exact flow</span></div>
+    <div class="cbc"><span class="cm"># Scenario: "a service isn't responding" — walk this chain for real, on your own Ubuntu</span>
+systemctl status ssh                    <span class="cm"># is it even running?</span>
+sudo journalctl -u ssh --since <span class="st">"10 min ago"</span>  <span class="cm"># what does the log say happened recently?</span>
+ss -tulpn | grep :22                    <span class="cm"># is anything actually listening on the port?</span>
+ps aux | grep sshd                      <span class="cm"># is the process itself alive?</span>
+sudo systemctl restart ssh              <span class="cm"># restart, then re-check status</span></div>
+  </div>
+  <div class="analogy">
+    <span class="albl">ANALOGY — COMMANDS VS FLUENCY</span>
+    Knowing every command in the table is like knowing every word in a language's dictionary. Fluency is being able to hold a conversation — chaining 3–4 commands together under pressure to answer a real question, the way the sequence above does. Drill the chains, not just the words.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D3</span><div><div class="dtitle">Git & GitHub — your portfolio starts today, not in Month 4</div><div class="dtopic">init, add, commit, push — and the habit of committing every lab as you go</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this matters starting today</div>
+  <p class="explain">If you wait until the portfolio phase to think about GitHub, you'll spend that time reconstructing three months of work from memory instead of just organizing what's already there. Starting today means every script, every SOP, every ticket screenshot has a home from day one — by the time you need a portfolio, you're assembling, not creating.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">create your repo structure — one command block, do it now</span></div>
+    <div class="cbc">mkdir -p ~/it-cloud-roadmap/{linux-foundations,it-support-labs,windows-server-lab,active-directory-lab,linux-server-lab,aws-cloud-lab}
+<span class="kw">cd</span> ~/it-cloud-roadmap
+git init
+<span class="fl">echo</span> <span class="st">"# IT Support, Cloud Support & SysAdmin — Learning Journey"</span> > README.md
+git add README.md
+git commit -m <span class="st">"initial commit — starting the roadmap"</span>
+
+<span class="cm"># create the GitHub repo (via github.com or gh CLI), then:</span>
+git remote add origin https://github.com/YOUR_USERNAME/it-cloud-roadmap.git
+git branch -M main
+git push -u origin main</div>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Learn the core loop: <code>git status</code> → <code>git add</code> → <code>git commit -m "message"</code> → <code>git push</code>. This is 90% of what you'll use daily.</div></div>
+    <div class="step"><div class="sn">2</div><div>Practice <code>git log</code> to see your history, and <code>git branch</code> / <code>git switch</code> if you want to try something risky in a lab without touching your main documentation.</div></div>
+    <div class="step"><div class="sn">3</div><div>Commit today's Linux command-line notes as your first real artifact — a markdown file with 2–3 of the diagnostic chains you practiced, in your own words.</div></div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Writing perfect commit messages and never actually committing, because "it's not done yet." A messy repo with daily commits is far more convincing to an employer than a clean one committed once a month — commit frequency itself is evidence of consistency.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D4</span><div><div class="dtitle">Hardware fundamentals — what's actually inside the box</div><div class="dtopic">Motherboard, CPU, RAM, storage, ports/connectors — audited via command line, not Device Manager clicks</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">What CompTIA A+ Core 1 actually tests here</div>
+  <p class="explain">Motherboard form factors and chipsets, CPU sockets and cooling, RAM types and channels, storage (HDD vs SSD vs NVMe and why the interface changes speed), power supply wattage and connector types, and the full range of ports and cable connectors (USB-C, HDMI, DisplayPort, SATA, PCIe). Laptop-specific components — batteries, displays, docking stations — and mobile device basics (SIM, biometrics, MDM enrollment) round out the domain.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">full hardware audit — command line only, both platforms</span></div>
+    <div class="cbc"><span class="cm"># Your Ubuntu host — the real machine</span>
+sudo lshw -short
+lscpu
+free -h
+lsblk -o NAME,SIZE,TYPE,MOUNTPOINT
+
+<span class="cm"># Windows — inside your client VM, once it's up (Day 6)</span>
+<span class="cm">Get-ComputerInfo | Select-Object CsManufacturer, CsModel, BiosVersion</span>
+<span class="cm">Get-CimInstance Win32_Processor | Select-Object Name, NumberOfCores, MaxClockSpeed</span>
+<span class="cm">Get-CimInstance Win32_PhysicalMemory | Select-Object Capacity, Speed, Manufacturer</span>
+<span class="cm">Get-CimInstance Win32_DiskDrive | Select-Object Model, Size, InterfaceType</span></div>
+  </div>
+  <p class="explain">Write this up as your first real SOP — "How to audit a workstation's hardware from the command line, Windows and Linux" — commit it to your <code>it-support-labs</code> folder today.</p>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Memorizing port names and connector types as flashcards without ever touching one. If you have access to any old PC or laptop — even a dead one — open the case, physically identify the RAM slots, SATA ports, and PCIe slots. Ten minutes with a screwdriver outlasts an hour of flashcards.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D5</span><div><div class="dtitle">Laptops, mobile devices, and peripherals</div><div class="dtopic">Batteries, displays, docking stations, SIM/biometrics/MDM, printers</div></div></div>
+  <div class="dhr"><span class="dtag dt-l">Theory</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Laptop-specific hardware</div>
+  <p class="explain">Battery types (Li-ion) and health degradation, display technologies (LCD, OLED) and common failure symptoms (backlight bleed, dead pixels), and docking station / port replicator setups — increasingly common in remote and hybrid support scenarios. Practice reading your own Ubuntu laptop's battery health.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">check real battery health on Ubuntu</span></div>
+    <div class="cbc">upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E <span class="st">"state|to full|percentage|capacity"</span></div>
+  </div>
+  <div class="dbl" style="margin-top:1rem">Mobile devices and printers — the topics candidates most often skip</div>
+  <p class="explain">SIM card types, biometric authentication (fingerprint, face), and MDM (Mobile Device Management) enrollment — the concept you'll return to with Intune in Month 2. For printers: local vs. network printing, common failure points (paper jam sensors, print spooler issues), and the Windows print spooler service specifically, since "my printer isn't printing" remains one of the most common real Tier 1 tickets in existence.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D6–7</span><div><div class="dtitle">Build the home lab — the environment every phase after this runs on</div><div class="dtopic">VirtualBox, Windows + Ubuntu Server VMs, osTicket, snapshots as your safety net</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Your lab plan — sized for 16GB RAM</div>
+  <p class="explain">With 16GB on your host, you can comfortably run 2–3 VMs simultaneously — no need to shut one down before starting another for most of this roadmap. Allocate deliberately rather than maximally: leave headroom for your host OS and browser.</p>
+  <table class="reftbl">
+    <thead><tr><th>VM</th><th>RAM allocation</th><th>Disk</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Windows 11 client</td><td>4GB</td><td>40GB</td><td>Windows troubleshooting, PowerShell, later domain-joins in Month 2</td></tr>
+      <tr><td>Ubuntu Server 22.04</td><td>2GB</td><td>25GB</td><td>Linux server admin, Samba, later cloud-adjacent tooling</td></tr>
+      <tr><td>osTicket (on Ubuntu Server VM or via XAMPP)</td><td>shares the Ubuntu VM</td><td>—</td><td>Your ticketing system for the whole roadmap</td></tr>
+    </tbody>
+  </table>
+  <p class="explain">That's roughly 6GB allocated to VMs, leaving 10GB for your Ubuntu host — comfortable room to run both VMs at once when Month 2 needs a domain-joined client talking to a domain controller.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Install VirtualBox on your Ubuntu host: <code>sudo apt install virtualbox virtualbox-ext-pack</code>.</div></div>
+    <div class="step"><div class="sn">2</div><div>Download a Windows 11 evaluation ISO (Microsoft provides free evaluation media) and Ubuntu Server 22.04 LTS ISO.</div></div>
+    <div class="step"><div class="sn">3</div><div>Create both VMs with the allocations above. Install each OS fully, then install VirtualBox Guest Additions for better performance and shared clipboard.</div></div>
+    <div class="step"><div class="sn">4</div><div><strong>Take a clean snapshot of each VM immediately after setup</strong>, before installing anything else. Name it clearly: <code>clean-install-baseline</code>.</div></div>
+    <div class="step"><div class="sn">5</div><div>Install osTicket on the Ubuntu Server VM (via LAMP stack: Apache, MySQL, PHP) or via XAMPP if that's faster for you.</div></div>
+  </div>
+  <div class="alert al-w">
+    <span class="ali">⚠</span>
+    <span><strong>If osTicket installation eats more than one full day fighting PHP/MySQL config:</strong> stop. Document tickets in Markdown files in your GitHub repo instead — one file per ticket, following the same 7-step format you'll use everywhere else. The goal is learning to troubleshoot and document, not becoming an osTicket installation specialist. You can always circle back to a real ticketing system later once the fundamentals are solid.</span>
+  </div>
+  <div class="analogy">
+    <span class="albl">ANALOGY — WHY SNAPSHOTS MATTER</span>
+    A snapshot is a save point in a video game. Real Tier 1 techs get comfortable deliberately breaking test systems because they know exactly how to reset to a known-good state. Without that safety net, you'll hesitate to actually break anything — and hesitation is why tutorial-only learners freeze the first time a real system fails in front of them.
+  </div>
+</div>
+<div class="db-s">
+  <div class="dbl">The ticket format — use this exact structure, every time, starting now</div>
+  <p class="explain">Whether you're using osTicket or Markdown files, every ticket follows the same 7-step structure. This format matters more than the tool it lives in.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">ticket-template.md — copy this for every single ticket from here on</span></div>
+    <div class="cbc"><span class="cm">## Problem reported</span>
+[Written from the user's point of view, in their language — not technical]
+
+<span class="cm">## Initial observations</span>
+[What you saw when you first looked — error messages, symptoms, what's NOT wrong]
+
+<span class="cm">## Possible causes considered</span>
+[List 2-3 theories, ranked by likelihood — this is the section most people skip]
+
+<span class="cm">## Tests performed</span>
+[The exact commands/steps you ran to test each theory, and what each one showed]
+
+<span class="cm">## Root cause</span>
+[What was actually wrong, confirmed — not assumed]
+
+<span class="cm">## Fix applied</span>
+[The exact resolution steps]
+
+<span class="cm">## Verification</span>
+[How you confirmed it's actually fixed, not just "looks fixed"]
+
+<span class="cm">## Prevention / lesson learned</span>
+[What would stop this from happening again, or what you'd check first next time]</div>
+  </div>
+  <p class="explain">A ticket that shows a wrong theory ruled out before landing on the right one is more convincing to a hiring manager than one that jumps straight to the answer — it's proof of actual diagnostic thinking, not a lucky guess.</p>
+</div>
+
+<div class="cap">
+  <div class="capeye">WEEK 1 CHECKPOINT</div>
+  <div class="captitle">Foundation live: lab running, GitHub started, first artifacts committed</div>
+  <div class="capbody">By the end of Week 1 you should have a working 2-VM lab with snapshots, a GitHub repo with your first commits, and enough Linux CLI fluency to chain 3–4 commands together to answer a real diagnostic question without looking it up.</div>
+  <div class="capreqs">
+    <div class="capreq">Windows 11 + Ubuntu Server VMs live, snapshotted at clean-install-baseline</div>
+    <div class="capreq">osTicket running, or a Markdown ticket system started in your GitHub repo</div>
+    <div class="capreq">GitHub repo live with at least 3 real commits</div>
+    <div class="capreq">Hardware audit commands run and documented on both your real Ubuntu host and the Windows VM</div>
+    <div class="capreq">ticket-template.md saved and ready to use for every ticket going forward</div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ WEEK 2: NETWORKING ═══ -->
+<div class="section" id="s2">
+<div class="wh">
+  <div class="weyebrow">WEEK 2 · DAYS 8–14</div>
+  <div class="wtitle">Networking — The Domain Most Candidates Are Weakest In</div>
+  <div class="wsub">Twenty to thirty minutes of networking practice daily, every day this week and ideally beyond — this is exactly the kind of material that responds to spaced repetition, not one long cramming session. By the end of this week you diagnose broken connections by habit, not by looking up the sequence.</div>
+  <div class="wtags">
+    <span class="tag">TCP/IP · DNS · DHCP</span><span class="tag">Subnetting</span><span class="tag">The diagnostic sequence</span>
+    <span class="tag">Wireless · VPN · NAT</span><span class="tag">Ports & protocols</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D8</span><div><div class="dtitle">Must-know concepts before touching a single lab</div><div class="dtopic">IP addressing, public vs private, gateway, DNS, DHCP, MAC, ports, TCP vs UDP, NAT, firewall basics</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The vocabulary — understood, not memorized</div>
+  <table class="reftbl">
+    <thead><tr><th>Concept</th><th>What it actually means</th></tr></thead>
+    <tbody>
+      <tr><td>Private vs public IP</td><td>Private (10.x, 172.16–31.x, 192.168.x) only routes inside your local network; a router's NAT translates it to one public IP for the internet.</td></tr>
+      <tr><td>Default gateway</td><td>The device (usually your router) that traffic goes through to leave your local network.</td></tr>
+      <tr><td>DNS</td><td>Translates human-readable names (google.com) into IP addresses computers actually route by.</td></tr>
+      <tr><td>DHCP</td><td>Automatically assigns an IP, gateway, and DNS server to a device when it joins a network — the alternative is manually configuring every device by hand.</td></tr>
+      <tr><td>MAC address</td><td>A hardware-burned identifier for a network interface, used at the local-network (Layer 2) level, distinct from the IP address used for routing.</td></tr>
+      <tr><td>TCP vs UDP</td><td>TCP confirms delivery (web browsing, email — accuracy matters); UDP doesn't (video calls, streaming — speed matters more than a dropped packet).</td></tr>
+      <tr><td>NAT</td><td>Network Address Translation — how one public IP represents many private devices to the outside internet.</td></tr>
+      <tr><td>Firewall</td><td>Rules that allow or block traffic based on port, protocol, or source — your first line of network-level security.</td></tr>
+    </tbody>
+  </table>
+  <p class="explain">Spend the rest of today on your real Ubuntu host: run <code>ip a</code> and identify your own IP, gateway, and DNS server. Run <code>ip route</code> and explain, in your own words, what each line means.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D9–10</span><div><div class="dtitle">The diagnostic sequence — drilled until it's habit, not a lookup</div><div class="dtopic">ipconfig/ip a → ping gateway → ping 8.8.8.8 → nslookup → tracert — memorized by doing it, repeatedly</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The sequence real technicians use, and why the order matters</div>
+  <table class="reftbl">
+    <thead><tr><th>Command</th><th>What it tells you</th></tr></thead>
+    <tbody>
+      <tr><td>ipconfig /all (Win) · ip a (Linux)</td><td>Does this machine even have a valid IP, gateway, and DNS server?</td></tr>
+      <tr><td>ping [gateway]</td><td>Can this machine reach the local network at all?</td></tr>
+      <tr><td>ping 8.8.8.8</td><td>Can this machine reach the internet by IP — rules out DNS as the problem.</td></tr>
+      <tr><td>nslookup [domain]</td><td>If ping-by-IP works but browsing doesn't, DNS resolution is the suspect.</td></tr>
+      <tr><td>tracert / traceroute</td><td>Where exactly along the path does the connection stop responding?</td></tr>
+      <tr><td>netstat -an / ss -tulpn</td><td>What ports and connections is this machine actually using right now?</td></tr>
+    </tbody>
+  </table>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">Day 9–10 lab: deliberately break DNS on your Ubuntu Server VM, then diagnose it blind</span></div>
+    <div class="cbc"><span class="cm"># Deliberately misconfigure DNS</span>
+sudo nano /etc/resolv.conf
+<span class="cm"># set nameserver to an invalid IP, e.g. 10.10.10.10 — save and exit</span>
+
+<span class="cm"># Now diagnose it as if a real ticket just arrived:</span>
+<span class="cm"># "I can't reach any websites, but I can still SSH into other machines on my network"</span>
+ping <span class="hl">8.8.8.8</span>        <span class="cm"># works — rules out total connectivity loss</span>
+ping google.com     <span class="cm"># fails — confirms DNS is the suspect</span>
+nslookup google.com <span class="cm"># confirms resolution failure, points at the bad nameserver</span>
+
+<span class="cm"># Fix it, then log this as your first real networking ticket using the 7-step format</span></div>
+  </div>
+  <p class="explain">Repeat this exact pattern for 2 more scenarios you break yourself: a wrong subnet mask making a machine unreachable on its own subnet, and a firewall rule blocking a specific port with <code>ufw</code>. Each becomes a ticket.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D11</span><div><div class="dtitle">Subnetting — brute-force practice, 20–30 min daily from here on</div><div class="dtopic">CIDR notation, usable host ranges, the one topic that punishes cramming</div></div></div>
+  <div class="dhr"><span class="dtag dt-l">Practice</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this deserves its own daily habit, not a single study day</div>
+  <p class="explain">Subnetting is the single most memorization-resistant topic in networking — you either fluently convert CIDR notation to usable host ranges under time pressure, or you don't. This is exactly the kind of material that responds to spaced repetition, not cramming: 20–30 minutes daily, continuing well past this week, beats one long session every time.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">the core calculation, worked through</span></div>
+    <div class="cbc"><span class="cm"># Given: 192.168.1.0/26</span>
+<span class="cm"># /26 = 26 network bits, 6 host bits remaining (32-26=6)</span>
+<span class="cm"># Total addresses = 2^6 = 64</span>
+<span class="cm"># Usable hosts = 64 - 2 (network + broadcast) = 62</span>
+<span class="cm"># Subnet size = 256 - 192 (the /26 block size in the last relevant octet) = 64</span>
+
+<span class="cm"># So: Network = 192.168.1.0, Broadcast = 192.168.1.63</span>
+<span class="cm"># Usable range = 192.168.1.1 - 192.168.1.62</span>
+<span class="cm"># Next subnet starts at 192.168.1.64</span></div>
+  </div>
+  <p class="explain">Use subnettingpractice.com daily — 15 minutes, timed, every day this week and into Week 3. By Week 4 you should solve a /27 or /28 problem in under 60 seconds without hesitation.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D12–13</span><div><div class="dtitle">Wireless, VPN, and cabling — the physical and remote-access layer</div><div class="dtopic">Wi-Fi standards and security, VPN concepts, common cable types and their use cases</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Wireless fundamentals</div>
+  <p class="explain">Wi-Fi standards (802.11ac/ax) and their practical speed/range trade-offs, wireless security protocols (WPA3 is current best practice, WEP/WPA are legacy and insecure), and common wireless troubleshooting (channel interference, signal strength, band selection between 2.4GHz and 5GHz).</p>
+  <div class="dbl" style="margin-top:1rem">VPN — the concept every remote-support ticket eventually touches</div>
+  <p class="explain">A VPN creates an encrypted tunnel between a device and a remote network, making a remote machine behave as if it's on the local network. Practice: install WireGuard or OpenVPN on your Ubuntu Server VM, connect to it from your host, and confirm you can reach a service on the VM's private network that wouldn't otherwise be accessible.</p>
+  <div class="dbl" style="margin-top:1rem">Cabling — the physical layer</div>
+  <p class="explain">Ethernet cable categories (Cat5e vs Cat6 and their speed/distance differences), straight-through vs crossover (mostly historical now with auto-MDIX, but still tested), and fiber basics (single-mode vs multi-mode) at a conceptual level.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D14</span><div><div class="dtitle">Week 2 capstone — 3 resolved networking tickets</div><div class="dtopic">DNS failure, subnet misconfiguration, firewall block — each fully documented</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Finalize and commit</div>
+  <p class="explain">Take the 3 tickets you generated this week (DNS break/fix, subnet mask issue, firewall block) and polish each into the full 7-step format. Commit them to your GitHub repo under <code>it-support-labs/networking</code>. Include the actual terminal output as a code block or screenshot in each — proof beats a summary.</p>
+</div>
+
+<div class="gate">
+  <div class="gate-title">WEEK 2 CHECKPOINT — before moving to Week 3:</div>
+  <div class="gate-item">You can run the full diagnostic sequence (ipconfig/ip a → ping gateway → ping 8.8.8.8 → nslookup → tracert) from memory, in order, without hesitation</div>
+  <div class="gate-item">You can solve a /26, /27, or /28 subnetting problem correctly in under 90 seconds</div>
+  <div class="gate-item">You can explain NAT, DHCP, and DNS in your own words, each in 2–3 sentences, without notes</div>
+  <div class="gate-item">3 real networking tickets are committed to your GitHub repo, each in the full 7-step format</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ WEEK 3: OPERATING SYSTEMS ═══ -->
+<div class="section" id="s3">
+<div class="wh">
+  <div class="weyebrow">WEEK 3 · DAYS 15–21</div>
+  <div class="wtitle">Operating Systems — Windows Client Admin + Linux Deep Dive</div>
+  <div class="wsub">Both platforms this week, deliberately kept side by side — the danger of being an Ubuntu daily driver is getting comfortable only with Linux and neglecting Windows, and this roadmap is designed to produce someone credible on both.</div>
+  <div class="wtags">
+    <span class="tag">Windows user/disk admin</span><span class="tag">PowerShell basics</span>
+    <span class="tag">Linux permissions deep dive</span><span class="tag">Bash scripting basics</span>
+    <span class="tag">Backups & snapshots</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D15</span><div><div class="dtitle">PowerShell basics — before any real scripting</div><div class="dtopic">Get-Help, Get-Command, Get-ChildItem, Get-Process, variables, pipelines — the foundation, not a bulk script yet</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this comes before "real" scripting tasks</div>
+  <p class="explain">Jumping straight into bulk user creation without understanding what each cmdlet actually does means you can't debug it when it fails — and it will fail at some point. This day builds the same foundation the Linux CLI day built in Week 1, just for PowerShell.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">the core cmdlets — run every one of these yourself, inside the Windows VM</span></div>
+    <div class="cbc">Get-Help Get-Process -Examples      <span class="cm"># PowerShell's built-in documentation — use this constantly</span>
+Get-Command *service*                <span class="cm"># find every cmdlet related to "service"</span>
+Get-ChildItem C:\Windows -Directory  <span class="cm"># list directories — the ls equivalent</span>
+Get-Process | Sort-Object CPU -Descending | Select-Object -First <span class="hl">5</span>
+Get-Service | Where-Object {$_.Status -eq <span class="st">"Running"</span>}
+Get-Content C:\Windows\System32\drivers\etc\hosts</div>
+  </div>
+  <div class="dbl" style="margin-top:1rem">Variables and pipelines — the two concepts everything else builds on</div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">a real, small script — not a one-liner, not a bulk provisioning tool yet</span></div>
+    <div class="cbc">$topProcesses = Get-Process | Sort-Object CPU -Descending | Select-Object -First <span class="hl">3</span>
+
+<span class="kw">foreach</span> ($p <span class="kw">in</span> $topProcesses) {
+  Write-Output <span class="st">"$($p.ProcessName) is using $($p.CPU) CPU seconds"</span>
+}</div>
+  </div>
+  <div class="analogy">
+    <span class="albl">ANALOGY — THE PIPELINE</span>
+    A PowerShell pipeline (<code>|</code>) passes structured objects from one cmdlet to the next, not plain text like Bash does. That's why <code>Get-Process | Sort-Object CPU</code> just works — you're sorting real process objects by a real property, not parsing text output. Understanding this difference is what separates someone who copies PowerShell one-liners from someone who can actually reason about why one works and another doesn't.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D16–17</span><div><div class="dtitle">Windows user administration and disk management</div><div class="dtopic">Local accounts, disk partitions, chkdsk, Windows Update troubleshooting, Task Scheduler</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">User account management — command line first</div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">create, lock out, and recover a local user — command line only</span></div>
+    <div class="cbc">net user testuser P@ssw0rd123 /add
+net localgroup Users testuser /add
+
+<span class="cm"># Simulate a lockout scenario (if a local lockout policy is configured), then recover:</span>
+net user testuser /active:yes
+net user testuser NewP@ss456 /logonpasswordchg:yes
+
+<span class="cm"># PowerShell equivalents — practice both syntaxes</span>
+New-LocalUser -Name <span class="st">"testuser2"</span> -Password (ConvertTo-SecureString <span class="st">"P@ss2026!"</span> -AsPlainText -Force)
+Add-LocalGroupMember -Group <span class="st">"Users"</span> -Member <span class="st">"testuser2"</span></div>
+  </div>
+  <div class="dbl" style="margin-top:1rem">Disk management and health</div>
+  <p class="explain">Practice creating and shrinking a partition inside Disk Management, and run <code>chkdsk /f</code> against a non-boot volume to understand what it actually checks. Explore Windows Update troubleshooting: the common failure codes, and how to reset the Windows Update components (stopping the wuauserv service, renaming the SoftwareDistribution folder, restarting).</p>
+  <p class="explain"><strong>Task Scheduler:</strong> create one real scheduled task — a script that runs daily and logs disk free space to a text file, the Windows equivalent of the cron job you'll build on Linux this week.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D18–19</span><div><div class="dtitle">Linux permissions deep dive — the exact model, not just chmod syntax</div><div class="dtopic">Owner/group/other, numeric vs symbolic notation, special bits, real permission-conflict diagnosis</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The permission model, understood conceptually</div>
+  <p class="explain">Every file has an owner, a group, and a permission set for "other" (everyone else) — each with read/write/execute independently. <code>chmod 750</code> means owner gets read+write+execute (7), group gets read+execute (5), other gets nothing (0). Understanding the math behind the numbers, not just memorizing common combinations, is what lets you reason about an unfamiliar permission set under pressure.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">Day 18–19 lab: break and fix a permissions problem, command line only</span></div>
+    <div class="cbc"><span class="cm"># Create a file only root can read, then try to access it as testuser</span>
+sudo useradd -m testuser
+sudo -u testuser touch /home/testuser/secret.txt
+sudo chmod <span class="hl">600</span> /home/testuser/secret.txt
+sudo chown root:root /home/testuser/secret.txt
+
+<span class="cm"># Now, as testuser, confirm the failure and diagnose why</span>
+su - testuser
+cat /home/testuser/secret.txt   <span class="cm"># Permission denied — explain exactly why in your ticket</span>
+
+<span class="cm"># Fix: restore correct ownership</span>
+exit
+sudo chown testuser:testuser /home/testuser/secret.txt</div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Running every command as root/Administrator "to make it easier." Real environments enforce least privilege, and interviewers ask about it directly. Diagnose and fix permission problems as the affected user first, escalating only when the fix genuinely requires it — and explain in your ticket notes why escalation was necessary.
+  </div>
+</div>
+<div class="db-s">
+  <div class="dbl">Bash scripting basics — beyond just running commands</div>
+  <p class="explain">Linux commands and Bash scripting are two different skills — knowing <code>chmod</code> doesn't mean you can write a script that uses it conditionally. This is the foundation Month 2's automation work depends on: variables, arguments, conditionals, loops, exit codes, functions.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">a real small script combining variables, a conditional, and an exit code</span></div>
+    <div class="cbc"><span class="cm">#!/bin/bash</span>
+<span class="cm"># check_user.sh — verifies a user exists, exits with a meaningful code</span>
+
+USERNAME=<span class="fl">$1</span>
+
+<span class="kw">if</span> [ -z <span class="st">"$USERNAME"</span> ]; <span class="kw">then</span>
+  <span class="fl">echo</span> <span class="st">"Usage: ./check_user.sh &lt;username&gt;"</span>
+  <span class="kw">exit</span> <span class="hl">1</span>
+<span class="kw">fi</span>
+
+<span class="kw">if</span> id <span class="st">"$USERNAME"</span> &>/dev/null; <span class="kw">then</span>
+  <span class="fl">echo</span> <span class="st">"$USERNAME exists"</span>
+  <span class="kw">exit</span> <span class="hl">0</span>
+<span class="kw">else</span>
+  <span class="fl">echo</span> <span class="st">"$USERNAME does not exist"</span>
+  <span class="kw">exit</span> <span class="hl">2</span>
+<span class="kw">fi</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D20</span><div><div class="dtitle">Backups, snapshots, and recovery — practiced, not just understood</div><div class="dtopic">Snapshot vs backup, restoring a deleted file, the discipline that separates a sysadmin from someone who only installs things</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Snapshot vs. backup — a distinction worth being precise about</div>
+  <p class="explain">A snapshot captures the entire VM state at a point in time and lives alongside the VM — fast to create and restore, but not a substitute for an actual backup, since a snapshot chain can grow large and a corrupted VM disk can take the snapshot down with it. A backup is an independent copy of specific data, stored separately, meant to survive the original failing entirely. Both matter, for different reasons.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>On your Ubuntu Server VM, deliberately delete a file you care about — then restore it from a manual backup (a simple <code>tar</code> archive you created beforehand), not from a snapshot.</div></div>
+    <div class="step"><div class="sn">2</div><div>Practice a full VM snapshot restore: take a snapshot, make an intentionally destructive change (like removing a critical package), then restore the snapshot and verify the VM is back to its prior state.</div></div>
+    <div class="step"><div class="sn">3</div><div>Write a short SOP: "when to use a snapshot vs. when to use a real backup" — this is genuinely strong interview material most junior candidates can't speak to clearly.</div></div>
+  </div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">a simple backup script — the foundation for Month 2's automated version</span></div>
+    <div class="cbc"><span class="cm">#!/bin/bash</span>
+<span class="cm"># backup_home.sh — archives a user's home directory with a timestamp</span>
+BACKUP_DIR=<span class="st">"/backups"</span>
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+mkdir -p <span class="fl">$BACKUP_DIR</span>
+
+tar -czf <span class="st">"$BACKUP_DIR/testuser_$TIMESTAMP.tar.gz"</span> /home/testuser
+<span class="fl">echo</span> <span class="st">"Backup created: testuser_$TIMESTAMP.tar.gz"</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D21</span><div><div class="dtitle">Week 3 capstone — 3 resolved OS/permissions tickets</div><div class="dtopic">Windows account lockout, Linux permission conflict, a backup/recovery scenario</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Finalize and commit</div>
+  <p class="explain">Write up 3 tickets from this week's work in the full 7-step format: the Windows account lockout/recovery, the Linux permissions conflict, and a "user accidentally deleted an important file" scenario resolved via your backup script. Commit all 3, plus both scripts (check_user.sh and backup_home.sh), to <code>it-support-labs/os-administration</code> in your GitHub repo.</p>
+</div>
+
+<div class="gate">
+  <div class="gate-title">WEEK 3 CHECKPOINT — before moving to Week 4:</div>
+  <div class="gate-item">You can create, lock out, and recover a Windows local user entirely from the command line or PowerShell</div>
+  <div class="gate-item">You can diagnose and fix a Linux permissions conflict, explaining the owner/group/other model without hesitation</div>
+  <div class="gate-item">You've written at least one working Bash script with a conditional and an exit code, from scratch</div>
+  <div class="gate-item">You can explain the difference between a snapshot and a backup, and when to use each</div>
+  <div class="gate-item">3 more tickets committed to GitHub — 6 total across Weeks 2 and 3</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ WEEK 4: SECURITY + CAPSTONE ═══ -->
+<div class="section" id="s4">
+<div class="wh">
+  <div class="weyebrow">WEEK 4 · DAYS 22–30</div>
+  <div class="wtitle">Security Fundamentals + the Capstone Ticket Queue</div>
+  <div class="wsub">Security thinking threaded here as a formal topic, but really an extension of the least-privilege habit you've been practicing since Week 3. The month closes with the capstone: 10 real, well-reasoned tickets and 2 full SOPs — your first real portfolio artifact.</div>
+  <div class="wtags">
+    <span class="tag">Malware · phishing · MFA</span><span class="tag">Least privilege mindset</span>
+    <span class="tag">6-step troubleshooting methodology</span><span class="tag">Capstone: 10 tickets</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D22–23</span><div><div class="dtitle">Security fundamentals every support tech needs</div><div class="dtopic">Malware categories, MFA types, phishing red flags, patch management discipline</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The core vocabulary</div>
+  <table class="reftbl">
+    <thead><tr><th>Malware type</th><th>How it typically presents to a user</th></tr></thead>
+    <tbody>
+      <tr><td>Virus</td><td>Attaches to legitimate files/programs, spreads when the host file is run or shared</td></tr>
+      <tr><td>Worm</td><td>Self-replicates across a network without needing a host file or user action</td></tr>
+      <tr><td>Trojan</td><td>Disguised as legitimate software; the user installs it willingly, not knowing what it actually does</td></tr>
+      <tr><td>Ransomware</td><td>Encrypts files and demands payment — usually very visible, unlike the others</td></tr>
+      <tr><td>Spyware</td><td>Runs silently, collecting data without the user's knowledge — often the hardest to detect</td></tr>
+    </tbody>
+  </table>
+  <div class="dbl" style="margin-top:1rem">MFA and phishing — the two topics with the most real-world weight</div>
+  <p class="explain">Multi-factor authentication types: SMS (weakest — vulnerable to SIM-swap attacks), authenticator app (TOTP — stronger), hardware key (strongest — phishing-resistant). Phishing red flags to be able to name specifically: mismatched sender domain (hover, don't trust the display name), urgency/fear language ("your account will be suspended"), suspicious links (hover to preview the actual URL before clicking), and requests for credentials or payment that bypass normal channels.</p>
+  <div class="analogy">
+    <span class="albl">ANALOGY — LEAST PRIVILEGE AS A HABIT, NOT A RULE</span>
+    You've been practicing this since Week 3 without naming it: diagnosing permission problems as the affected user first, escalating only when genuinely necessary. Security thinking isn't a separate skill bolted on this week — it's asking "what access does this actually need, and what access does it not need?" every single time, on every system, from now on.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D24</span><div><div class="dtitle">The 6-step troubleshooting methodology — memorized cold</div><div class="dtopic">CompTIA's official sequence — appears on the exam, and is exactly what interviewers want to hear</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The exact 6 steps</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Identify the problem — gather information, question the user, identify recent changes.</div></div>
+    <div class="step"><div class="sn">2</div><div>Establish a theory of probable cause — start with the obvious, question the obvious if it's wrong.</div></div>
+    <div class="step"><div class="sn">3</div><div>Test the theory to determine the cause — confirm before you act.</div></div>
+    <div class="step"><div class="sn">4</div><div>Establish a plan of action and implement the solution.</div></div>
+    <div class="step"><div class="sn">5</div><div>Verify full system functionality and implement preventive measures.</div></div>
+    <div class="step"><div class="sn">6</div><div>Document findings, actions, and outcomes.</div></div>
+  </div>
+  <p class="explain">Notice this maps almost exactly onto the 7-step ticket format you've been using since Week 1 — that's not a coincidence, it's the same discipline. From today, explicitly reference these 6 steps in every remaining ticket, and practice reciting them without notes until it's automatic.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D25–29</span><div><div class="dtitle">Build the capstone ticket queue — 10 tickets, quality over quantity</div><div class="dtopic">At least 2 hardware, 3 networking, 3 OS/permissions, 2 security — selected from your best work, not manufactured</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Where these 10 tickets actually come from</div>
+  <p class="explain">If you've been logging tickets since Week 1, you should already have 6+ real ones sitting in your queue. This isn't about inventing 10 from scratch — it's about selecting your 10 strongest, polishing them to the full 7-step standard, and filling any category gaps with 1–2 new realistic scenarios.</p>
+  <div class="dbl" style="margin-top:1rem">Fill any gaps with these realistic scenarios if needed</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div><strong>Hardware:</strong> "laptop won't boot" (diagnose via POST beep codes or BIOS access, isolate to RAM/storage/power) and "printer not responding" (spooler service check, driver reinstall).</div></div>
+    <div class="step"><div class="sn">2</div><div><strong>Security:</strong> "user reports a suspicious email" (walk through your phishing red-flag checklist) and "user locked out after failed MFA attempts" (verify identity through a secondary channel, reset correctly).</div></div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Writing tickets that are too easy or too vague ("computer broken, fixed it"). A hiring manager reading these should see real diagnostic thinking — the wrong theory you ruled out, not just the right answer you landed on.
+  </div>
+</div>
+<div class="db-s">
+  <div class="dbl">Write 2 full SOPs from your strongest, most instructive tickets</div>
+  <p class="explain">Pick the 2 tickets that taught you the most, and expand them into standalone SOPs — documents detailed enough that a stranger could follow them cold, without asking a question. Good candidates: the DNS troubleshooting sequence, or the Windows account lockout recovery process.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D30</span><div><div class="dtitle">Final review, commit, and Phase 1 close-out</div><div class="dtopic">Everything pushed to GitHub, README updated, ready to move into Phase 2</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The close-out checklist</div>
+  <div class="chklist">
+    <div class="chk"><div class="chk-box"></div><div>10 tickets finalized in the full 7-step format, spanning hardware, networking, OS, and security</div></div>
+    <div class="chk"><div class="chk-box"></div><div>2 full SOPs written and committed</div></div>
+    <div class="chk"><div class="chk-box"></div><div>Hardware audit scripts (PowerShell + Bash) committed</div></div>
+    <div class="chk"><div class="chk-box"></div><div>check_user.sh and backup_home.sh committed and tested</div></div>
+    <div class="chk"><div class="chk-box"></div><div>README.md updated with a short summary of what Phase 1 covered and links to key artifacts</div></div>
+    <div class="chk"><div class="chk-box"></div><div>Subnetting: solving 10 timed practice problems in under 15 minutes total</div></div>
+  </div>
+</div>
+
+<div class="cap">
+  <div class="capeye">PHASE 1 CAPSTONE REQUIREMENTS</div>
+  <div class="captitle">10 resolved Tier 1 tickets + 2 documented SOPs — your first portfolio artifact</div>
+  <div class="capbody">A working ticket queue (osTicket or Markdown) with 10 fully resolved, realistically-written tickets covering hardware, networking, OS, and security scenarios — each following the 6-step troubleshooting methodology — plus 2 full SOPs, all committed to a live GitHub repository.</div>
+  <div class="capreqs">
+    <div class="capreq">Home lab live: Windows 11 + Ubuntu Server VMs with snapshots, ticket system running</div>
+    <div class="capreq">10 tickets resolved, spanning hardware, network, OS, and security categories</div>
+    <div class="capreq">Every ticket documents the 6-step troubleshooting methodology explicitly</div>
+    <div class="capreq">2 full SOPs written — a stranger could follow them without asking a question</div>
+    <div class="capreq">Hardware audit scripts (PowerShell + Bash), check_user.sh, backup_home.sh — all committed to GitHub</div>
+    <div class="capreq">GitHub repo shows consistent commits across the month, not one bulk upload at the end</div>
+    <div class="capreq">Subnetting fluency — solve 10 timed practice problems in under 15 minutes total</div>
+  </div>
+</div>
+
+<div class="gate">
+  <div class="gate-title">PHASE 1 EXIT GATE — you're ready for Phase 2 when:</div>
+  <div class="gate-item">You can audit a machine's hardware from the command line alone, on both Windows and Linux</div>
+  <div class="gate-item">You can diagnose a broken network connection using only the diagnostic sequence, without looking it up</div>
+  <div class="gate-item">You can create, lock out, and recover a Windows local user account entirely from the command line</div>
+  <div class="gate-item">You can explain a Linux permissions problem and fix it correctly on the first try</div>
+  <div class="gate-item">You've written and tested at least 2 real Bash scripts and understand PowerShell pipelines conceptually</div>
+  <div class="gate-item">You can recite the 6-step troubleshooting methodology without notes and apply it in a live scenario</div>
+  <div class="gate-item">Your GitHub repo shows 10 real, well-documented resolved tickets and steady commit history</div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">10</div><div class="ml">tickets resolved</div></div>
+  <div class="metric"><div class="mv">2</div><div class="ml">VMs + snapshots</div></div>
+  <div class="metric"><div class="mv">2</div><div class="ml">SOPs written</div></div>
+  <div class="metric"><div class="mv">GitHub</div><div class="ml">live since Week 1</div></div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ RESOURCES ═══ -->
+<div class="section" id="s5">
+<div class="wh">
+  <div class="weyebrow">PHASE 1 REFERENCE</div>
+  <div class="wtitle">Resources and Tools</div>
+  <div class="wsub">Everything below is free.</div>
+</div>
+
+<div class="res-grid">
+  <div class="res-card">
+    <div class="res-cat">FREE VIDEO COURSES</div>
+    <div class="res-item"><div class="res-dot"></div><div>Professor Messer — professormesser.com — the gold-standard free A+ Core 1 & Core 2 course</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>freeCodeCamp — Linux and networking full courses on YouTube</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">LAB TOOLS</div>
+    <div class="res-item"><div class="res-dot"></div><div>VirtualBox — virtualbox.org — free virtualization</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Ubuntu Server 22.04 LTS ISO — ubuntu.com/download/server</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Windows 11 Evaluation ISO — microsoft.com evaluation center</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>osTicket — osticket.com — free, self-hosted ticketing</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">PRACTICE</div>
+    <div class="res-item"><div class="res-dot"></div><div>subnettingpractice.com — free, timed subnetting drills</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>man pages — man chmod, man systemctl, man crontab</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Microsoft Learn — official PowerShell fundamentals path</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">DOCUMENTATION</div>
+    <div class="res-item"><div class="res-dot"></div><div>CompTIA official exam objectives — comptia.org (220-1201/1202, not the retired 1101/1102)</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Ubuntu Server Guide — ubuntu.com/server/docs</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Git documentation — git-scm.com/doc</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">DAILY HABITS FOR PHASE 1</div>
+    <div class="res-item"><div class="res-dot"></div><div>Commit something to GitHub every single day, even if small</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>20–30 minutes of subnetting practice daily from Week 2 onward</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Log every lab task as a ticket — even a 5-minute fix — the queue is your proof of consistency</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Snapshot before every risky change, every time, no exceptions</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Try it yourself first, use AI to explain a failure second, try again yourself third — never copy-paste a fix straight from AI without understanding it</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="alert al-s">
+  <span class="ali">✓</span>
+  <span><strong>Phase 1 is the foundation everything else stands on.</strong> By Day 30 you'll have a real lab, a real GitHub history, and 10 tickets that prove you can actually diagnose problems — not just recite definitions. That's a stronger starting position than most entry-level candidates ever build, and it's exactly what Month 2's domain environment gets built on top of.</span>
+</div>
+</div>
+
+</main>
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ top</button>
+
+<script>
+const SS=['s0','s1','s2','s3','s4','s5'];
+function go(n){
+  SS.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el)el.classList.toggle('on',i===n);
+  });
+  document.querySelectorAll('.tnav').forEach((el,i)=>el.classList.toggle('on',i===n));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function td(h){h.closest('.day').classList.toggle('open')}
+</script>
+</body>
+</html>

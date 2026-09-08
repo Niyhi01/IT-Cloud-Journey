@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 2 — Systems Administration | IT/Cloud Support Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0e1015;--ink2:#2d3142;--ink3:#5a617d;--ink4:#8e96b0;
+  --paper:#f7f6f2;--paper2:#edecea;--paper3:#e4e2dd;--cream:#faf9f5;
+  --green:#0d6e4a;--green-bg:#d6f0e6;
+  --amber:#7a4700;--amber-bg:#fdefd4;
+  --red:#b91c1c;--red-bg:#fee2e2;
+  --purple:#5b21b6;--purple-bg:#ede9fe;
+  --teal:#0e6b70;--teal-bg:#ccfbf1;
+  --blue:#1e40af;--blue-bg:#dbeafe;
+  --ph2:#0f766e;--ph2-bg:#ccfbf1;--ph2-light:rgba(15,118,110,.15);
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Fraunces',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.site-header{background:var(--ink);padding:3.5rem 0 3rem}
+.hinner{max-width:900px;margin:0 auto;padding:0 2rem}
+.phase-badge{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ph2);margin-bottom:1rem;display:block}
+.site-header h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.15;letter-spacing:-.02em;margin-bottom:.75rem;color:#e8eaf0}
+.site-header h1 em{font-style:italic;color:#aab0c8}
+.header-desc{font-family:var(--mono);font-size:12px;color:#9ba3b8;max-width:620px;line-height:1.75}
+.header-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.5rem}
+.hbadge{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:3px;border:1px solid rgba(255,255,255,.12);color:#9ba3b8}
+.hbadge.p{border-color:rgba(15,118,110,.4);color:#5eead4}
+.hbadge.g{border-color:rgba(62,207,142,.3);color:#3ecf8e}
+.hbadge.a{border-color:rgba(245,163,71,.3);color:#f0a347}
+
+.toolbar{position:sticky;top:0;z-index:100;background:rgba(14,16,21,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);padding:.5rem 0}
+.tinner{max-width:900px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;gap:0}
+.tinner::-webkit-scrollbar{display:none}
+.tnav{font-family:var(--mono);font-size:10px;padding:8px 12px;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.35);cursor:pointer;background:transparent;white-space:nowrap;transition:all .15s;flex-shrink:0}
+.tnav:hover{color:rgba(255,255,255,.6)}
+.tnav.on{color:#fff;border-bottom-color:var(--ph2)}
+.tsep{width:1px;height:16px;background:rgba(255,255,255,.1);margin:0 6px;flex-shrink:0}
+.print-btn{font-family:var(--mono);font-size:10px;margin-left:auto;padding:5px 12px;border:1px solid rgba(255,255,255,.15);border-radius:3px;color:rgba(255,255,255,.4);background:transparent;cursor:pointer;flex-shrink:0;transition:all .15s;white-space:nowrap}
+.print-btn:hover{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.7)}
+
+.main{max-width:900px;margin:0 auto;padding:0 2rem 5rem}
+.section{display:none;padding:2.5rem 0}
+.section.on{display:block}
+.wh{padding:1.75rem 0 1.25rem;border-bottom:2px solid var(--ink);margin-bottom:1.75rem}
+.weyebrow{font-family:var(--mono);font-size:10px;color:var(--ph2);letter-spacing:.1em;margin-bottom:.4rem}
+.wtitle{font-size:1.6rem;font-weight:600;color:var(--ink);letter-spacing:-.02em;line-height:1.25}
+.wsub{font-size:.95rem;color:var(--ink3);margin-top:.4rem;line-height:1.65;max-width:680px}
+.wtags{display:flex;flex-wrap:wrap;gap:7px;margin-top:.9rem}
+.tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:3px;border:1.5px solid var(--paper3);color:var(--ink3);background:var(--paper2)}
+
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:2rem}
+.ov-card{background:var(--cream);border:1.5px solid var(--paper3);border-radius:8px;padding:1.1rem 1.25rem;cursor:pointer;transition:all .18s}
+.ov-card:hover{border-color:var(--ph2);transform:translateY(-2px);box-shadow:0 4px 20px var(--ph2-light)}
+.ov-week{font-family:var(--mono);font-size:10px;color:var(--ph2);letter-spacing:.08em;margin-bottom:.4rem}
+.ov-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.25rem}
+.ov-sub{font-family:var(--mono);font-size:10px;color:var(--ink3);line-height:1.5}
+.ov-days{font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--paper3)}
+
+.day{background:var(--cream);border:1.5px solid var(--paper3);border-radius:8px;margin-bottom:14px;overflow:hidden}
+.day-header{padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:10px;transition:background .12s}
+.day-header:hover{background:var(--paper2)}
+.dhl{display:flex;align-items:center;gap:10px}
+.dnum{font-family:var(--mono);font-size:10px;color:var(--ph2);width:60px;flex-shrink:0;letter-spacing:.06em}
+.dtitle{font-size:.92rem;font-weight:600;color:var(--ink)}
+.dtopic{font-family:var(--mono);font-size:10px;color:var(--ink4);margin-top:1px}
+.dhr{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.dtag{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:2px}
+.dt-t{background:var(--purple-bg);color:var(--purple)}
+.dt-l{background:var(--green-bg);color:var(--green)}
+.dt-b{background:var(--blue-bg);color:var(--blue)}
+.dt-c{background:var(--amber-bg);color:var(--amber)}
+.dt-d{background:var(--red-bg);color:var(--red)}
+.chev{font-size:10px;color:var(--ink4);transition:transform .18s}
+.day.open .chev{transform:rotate(180deg)}
+.day-body{display:none;border-top:1.5px solid var(--paper3)}
+.day.open .day-body{display:block}
+.db-s{padding:1.25rem 1.5rem;border-bottom:1px solid var(--paper2)}
+.db-s:last-child{border-bottom:none}
+.dbl{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+.dbl::after{content:'';flex:1;height:1px;background:var(--paper3)}
+
+.explain{font-size:.92rem;color:var(--ink2);line-height:1.8;margin-bottom:.8rem}
+.explain:last-child{margin-bottom:0}
+.explain strong{color:var(--ink);font-weight:600}
+.analogy{background:var(--amber-bg);border-left:3px solid var(--amber);border-radius:0 6px 6px 0;padding:.85rem 1rem;margin:.8rem 0;font-size:.88rem;color:var(--amber);line-height:1.65}
+.analogy .albl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;display:block;margin-bottom:.2rem;font-weight:600}
+
+.cb{background:var(--ink);border-radius:6px;overflow:hidden;margin-bottom:.65rem}
+.cb:last-child{margin-bottom:0}
+.cbh{padding:.45rem .85rem;background:rgba(255,255,255,.04);display:flex;align-items:center}
+.cbp{font-family:var(--mono);font-size:9px;color:var(--ph2);letter-spacing:.04em}
+.cbc{padding:.65rem .85rem;font-family:var(--mono);font-size:12px;color:#e0e4f0;line-height:1.8;overflow-x:auto;white-space:pre}
+.cbc .cm{color:#4a5168;font-style:italic}
+.cbc .hl{color:#3ecf8e}
+.cbc .kw{color:#9b7ef5}
+.cbc .st{color:#f0c040}
+.cbc .vr{color:#f57eb6}
+.cbc .fl{color:#f0a347}
+
+.steps{margin:.5rem 0}
+.step{display:flex;gap:12px;margin-bottom:.75rem;font-size:.9rem;color:var(--ink2);line-height:1.6}
+.sn{font-family:var(--mono);font-size:10px;color:var(--ph2);width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(15,118,110,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+
+.chklist{margin:.5rem 0}
+.chk{display:flex;gap:10px;font-size:.9rem;color:var(--ink2);margin-bottom:.55rem;line-height:1.5}
+.chk-box{width:16px;height:16px;border:1.5px solid var(--paper3);border-radius:3px;flex-shrink:0;margin-top:2px}
+
+.alert{border-radius:6px;padding:.85rem 1rem;margin:.8rem 0;font-size:.88rem;line-height:1.65;display:flex;gap:.75rem}
+.ali{font-size:14px;flex-shrink:0;margin-top:2px}
+.al-w{background:var(--amber-bg);border:1.5px solid rgba(122,71,0,.2);color:var(--amber)}
+.al-i{background:var(--blue-bg);border:1.5px solid rgba(30,64,175,.2);color:var(--blue)}
+.al-s{background:var(--green-bg);border:1.5px solid rgba(13,110,74,.2);color:var(--green)}
+.al-n{background:var(--purple-bg);border:1.5px solid rgba(91,33,182,.2);color:var(--purple)}
+.al-p{background:var(--ph2-bg);border:1.5px solid rgba(15,118,110,.25);color:var(--ph2)}
+
+.mistake{background:var(--red-bg);border:1.5px solid rgba(185,28,28,.2);border-radius:6px;padding:.85rem 1rem;margin:.8rem 0;font-size:.87rem;color:var(--red);line-height:1.6}
+.mistake .mlbl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;display:block;margin-bottom:.2rem;font-weight:600}
+
+.cap{background:linear-gradient(135deg,#0e1015 0%,#0a1a1c 100%);border-radius:10px;padding:1.75rem;margin:1.5rem 0;border:1.5px solid rgba(15,118,110,.4)}
+.capeye{font-family:var(--mono);font-size:10px;color:var(--ph2);letter-spacing:.1em;margin-bottom:.6rem}
+.captitle{font-size:1.15rem;font-weight:600;color:#e8eaf0;margin-bottom:.6rem}
+.capbody{font-size:.88rem;color:#9ba3b8;line-height:1.7;margin-bottom:1rem}
+.capreqs{border-top:1px solid rgba(255,255,255,.07);padding-top:.9rem}
+.capreq{display:flex;gap:8px;font-family:var(--mono);font-size:11px;color:#aab0c8;margin-bottom:.45rem;line-height:1.5}
+.capreq::before{content:'→';color:#5eead4;flex-shrink:0}
+
+.gate{background:var(--green-bg);border:1.5px solid rgba(13,110,74,.2);border-radius:8px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+.gate-title{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.08em;margin-bottom:.75rem}
+.gate-item{display:flex;gap:10px;font-size:.9rem;color:var(--ink2);margin-bottom:.45rem;line-height:1.5}
+.gate-item::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:1.5rem 0}
+.metric{background:var(--paper2);border:1.5px solid var(--paper3);border-radius:7px;padding:1rem 1.1rem}
+.mv{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:var(--ink);line-height:1}
+.ml{font-size:.8rem;color:var(--ink3);margin-top:.3rem;font-family:var(--mono)}
+
+.reftbl{width:100%;border-collapse:collapse;font-size:.85rem;margin:.75rem 0}
+.reftbl th{text-align:left;font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.08em;padding:6px 10px;border-bottom:2px solid var(--paper3)}
+.reftbl td{padding:7px 10px;border-bottom:1px solid var(--paper2);color:var(--ink2);vertical-align:top}
+.reftbl td:first-child{font-family:var(--mono);font-size:11px;color:var(--ph2)}
+
+code{font-family:var(--mono);font-size:.82em;background:var(--paper2);border:1px solid var(--paper3);padding:1px 5px;border-radius:3px;color:var(--ink2)}
+.divider{border:none;border-top:1.5px solid var(--paper3);margin:2rem 0}
+.back-top{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:#e8eaf0;border:none;border-radius:4px;padding:8px 13px;font-family:var(--mono);font-size:11px;cursor:pointer;z-index:200;opacity:.7;transition:all .15s}
+.back-top:hover{opacity:1}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:1rem 0}
+.res-card{background:var(--paper2);border:1.5px solid var(--paper3);border-radius:7px;padding:1rem 1.1rem}
+.res-cat{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.1em;margin-bottom:.7rem}
+.res-item{display:flex;gap:8px;font-size:.85rem;color:var(--ink2);margin-bottom:.5rem;line-height:1.45}
+.res-dot{width:4px;height:4px;border-radius:50%;background:var(--ph2);flex-shrink:0;margin-top:7px}
+
+@media print{
+  .toolbar,.back-top,.print-btn{display:none!important}
+  .section{display:block!important;page-break-before:always}
+  .section:first-child{page-break-before:avoid}
+  .day-body{display:block!important}
+  body{background:#fff;color:#111}
+}
+@media(max-width:640px){
+  .hinner,.tinner,.main{padding-left:1rem;padding-right:1rem}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+<div class="hinner">
+  <span class="phase-badge">it/cloud support roadmap · phase 2 of 4</span>
+  <h1>Systems<br><em>Administration.</em></h1>
+  <p class="header-desc">Month 2 · Days 31–60. This is the phase that moves you from "fixes one user's laptop" to "manages the environment 50 users work in." A real Windows Server domain, Active Directory, Group Policy, a parallel Linux file server, and automation that separates a Tier 1 technician from a Tier 2/sysadmin candidate.</p>
+  <div class="header-meta">
+    <span class="hbadge">Month 2 · Days 31–60</span>
+    <span class="hbadge p">Windows Server 2022 + AD DS + GPO</span>
+    <span class="hbadge g">Linux Samba server, sized for 16GB — 3 VMs at once</span>
+    <span class="hbadge a">Capstone: small-business IT environment, 20 scripted users</span>
+  </div>
+</div>
+</header>
+
+<nav class="toolbar">
+<div class="tinner">
+  <button class="tnav on" onclick="go(0)">Overview</button>
+  <div class="tsep"></div>
+  <button class="tnav" onclick="go(1)">Week 5: Windows Server</button>
+  <button class="tnav" onclick="go(2)">Week 6: Active Directory</button>
+  <button class="tnav" onclick="go(3)">Week 7: Linux Admin</button>
+  <button class="tnav" onclick="go(4)">Week 8: Automation + Capstone</button>
+  <div class="tsep"></div>
+  <button class="tnav" onclick="go(5)">Resources</button>
+  <button class="print-btn" onclick="window.print()">⬇ Save / Print</button>
+</div>
+</nav>
+
+<main class="main">
+
+<!-- ═══ OVERVIEW ═══ -->
+<div class="section on" id="s0">
+<div class="wh">
+  <div class="weyebrow">PHASE 2 OVERVIEW</div>
+  <div class="wtitle">Why a domain changes everything</div>
+  <div class="wsub">Every machine in Phase 1 was standalone — local accounts, local policies, nothing shared. A domain is what turns 50 separate computers into one manageable environment: one place to create a user, one place to push a password policy, one place to see who has access to what. This month builds that environment from a blank VM, manages it for real, and automates the repetitive parts.</div>
+</div>
+
+<p class="explain">Phase 2 is 30 days across 4 weeks. Week 5 stands up your first Windows Server domain controller, in the correct order (static IP, DNS, then AD DS, then DHCP). Week 6 goes deep on Active Directory — organizational units, users, groups, and Group Policy Objects that actually apply, verified, not assumed. Week 7 mirrors that work on the Linux side: a Samba file server, SSH hardening, cron automation, and log analysis. Week 8 closes with real automation — a PowerShell script that bulk-provisions users from a CSV — plus backup discipline and the capstone: a fully documented small-business IT environment.</p>
+
+<div class="alert al-p">
+  <span class="ali">→</span>
+  <span><strong>Your lab, sized for 16GB RAM:</strong> you can comfortably run your domain controller, a domain-joined client, and your Ubuntu Server VM simultaneously — no need to shut one down before starting another. Allocate roughly 4GB to the domain controller, 3GB to the client, 2GB to the Linux server, leaving healthy headroom for your host.</span>
+</div>
+
+<div class="ov-grid">
+  <div class="ov-card" onclick="go(1)">
+    <div class="ov-week">WEEK 5 · DAYS 31–37</div>
+    <div class="ov-title">Windows Server Fundamentals</div>
+    <div class="ov-sub">Domain controller from a blank VM — static IP, DNS, AD DS, DHCP, domain-joined client</div>
+    <div class="ov-days">Deliverable: a working domain, verified end to end</div>
+  </div>
+  <div class="ov-card" onclick="go(2)">
+    <div class="ov-week">WEEK 6 · DAYS 38–44</div>
+    <div class="ov-title">Active Directory Deep Dive</div>
+    <div class="ov-sub">OUs, users, groups, 3 GPOs verified with gpresult, NTFS vs. share permissions</div>
+    <div class="ov-days">Deliverable: 2 resolved AD/permissions tickets</div>
+  </div>
+  <div class="ov-card" onclick="go(3)">
+    <div class="ov-week">WEEK 7 · DAYS 45–51</div>
+    <div class="ov-title">Linux System Administration</div>
+    <div class="ov-sub">Samba file server, SSH hardening, cron, log analysis, ufw firewall</div>
+    <div class="ov-days">Deliverable: 2 resolved Linux server tickets</div>
+  </div>
+  <div class="ov-card" onclick="go(4)">
+    <div class="ov-week">WEEK 8 · DAYS 52–60</div>
+    <div class="ov-title">Automation + Capstone</div>
+    <div class="ov-sub">Bulk PowerShell provisioning, backup discipline, Azure AD/Intune intro, capstone build</div>
+    <div class="ov-days">Capstone: 20 scripted users, 3 verified GPOs, onboarding runbook</div>
+  </div>
+</div>
+
+<div class="alert al-i">
+  <span class="ali">i</span>
+  <span><strong>Why the order matters:</strong> A domain controller with no DNS role installed first will silently misbehave in ways that are confusing to debug later — get the static IP and DNS role installed before AD DS, every time, on every domain controller you ever build. This exact sequencing mistake is one of the most common real-world setup errors.</span>
+</div>
+</div>
+
+<!-- ═══ WEEK 5: WINDOWS SERVER ═══ -->
+<div class="section" id="s1">
+<div class="wh">
+  <div class="weyebrow">WEEK 5 · DAYS 31–37</div>
+  <div class="wtitle">Windows Server Fundamentals — Your First Domain Controller</div>
+  <div class="wsub">Seven days to go from a blank VM to a working domain with a joined client — in the correct order, understood at each step, not just clicked through.</div>
+  <div class="wtags">
+    <span class="tag">Windows Server 2022 Evaluation</span><span class="tag">Static IP + DNS role</span>
+    <span class="tag">AD DS promotion</span><span class="tag">DHCP role</span><span class="tag">Domain-joined client</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D31</span><div><div class="dtitle">Provision the Windows Server VM — sized for your 16GB lab</div><div class="dtopic">Download the evaluation ISO, allocate resources, install the OS</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The lab plan for Month 2</div>
+  <table class="reftbl">
+    <thead><tr><th>VM</th><th>RAM</th><th>Disk</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Windows Server 2022 (DC)</td><td>4GB</td><td>60GB</td><td>Domain controller — AD DS, DNS, DHCP roles</td></tr>
+      <tr><td>Windows 11 client</td><td>3GB</td><td>40GB</td><td>Domain-joined, from your Phase 1 VM (reused)</td></tr>
+      <tr><td>Ubuntu Server 22.04</td><td>2GB</td><td>25GB</td><td>Samba file server, from Phase 1 (reused)</td></tr>
+    </tbody>
+  </table>
+  <p class="explain">That's roughly 9GB allocated across all 3 running simultaneously, leaving comfortable headroom on your 16GB host. Download Windows Server 2022 Evaluation (free, 180-day license) from Microsoft's evaluation center, and create the VM in VirtualBox with the allocations above.</p>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Installing the OS and immediately trying to promote it to a domain controller in the same session. Slow down here — a domain controller is infrastructure everything else in this roadmap depends on. A rushed setup now means confusing failures in Week 6 and beyond that are hard to trace back to this step.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D32</span><div><div class="dtitle">Static IP + DNS Server role — in that exact order</div><div class="dtopic">Why a domain controller can never run on a DHCP-assigned address</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this step comes first, non-negotiably</div>
+  <p class="explain">Active Directory depends on DNS to function — clients find domain controllers through DNS SRV records, not by IP. If the server's IP can change (as it would on DHCP), every client's cached DNS records for that domain controller become stale, and authentication starts failing in ways that look unrelated to DNS at all. Set a static IP first, every time.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Set a static IP on the server VM through Network Settings — pick an address in your lab's private range, e.g. 192.168.56.10.</div></div>
+    <div class="step"><div class="sn">2</div><div>Open Server Manager → Add Roles and Features → select DNS Server. Complete the installation before touching AD DS.</div></div>
+    <div class="step"><div class="sn">3</div><div>Verify: <code>Get-Service DNS</code> in PowerShell should show it running. <code>nslookup localhost</code> should resolve against your own server.</div></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D33</span><div><div class="dtitle">AD DS role + promoting to a domain controller</div><div class="dtopic">Installing Active Directory Domain Services, creating a new forest</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The promotion itself</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Server Manager → Add Roles and Features → Active Directory Domain Services. Install the role, then use the "promote this server to a domain controller" prompt that appears.</div></div>
+    <div class="step"><div class="sn">2</div><div>Choose "Add a new forest" and name your domain — something like <code>corp.lab</code> works well and won't conflict with any real domain.</div></div>
+    <div class="step"><div class="sn">3</div><div>Set a Directory Services Restore Mode (DSRM) password — write this down somewhere safe, it's for disaster recovery scenarios, not daily use.</div></div>
+    <div class="step"><div class="sn">4</div><div>The server reboots as part of promotion. After reboot, verify: open Active Directory Users and Computers — you should see your new domain structure.</div></div>
+  </div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">PowerShell verification — confirm the domain is actually healthy</span></div>
+    <div class="cbc">Get-ADDomain
+Get-ADForest
+dcdiag /v   <span class="cm"># comprehensive domain controller health check — read the output, don't just glance at it</span></div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Skipping <code>dcdiag</code> because the GUI "looks fine." dcdiag catches DNS registration issues, replication problems, and service failures that the GUI won't surface clearly. Run it after every domain controller change you ever make, in this lab or a real one.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D34</span><div><div class="dtitle">DHCP Server role — handing out addresses automatically</div><div class="dtopic">Scope configuration matching your lab's private network range</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why DHCP matters even in a small lab</div>
+  <p class="explain">Manually configuring IPs on every client doesn't scale past a handful of machines, and it's not how real environments work. Install the DHCP Server role, authorize it in AD (a required extra step for domain-joined DHCP servers — easy to miss), and configure a scope covering your lab's client address range, excluding the static addresses you've already assigned to servers.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">verify the scope is actually handing out addresses</span></div>
+    <div class="cbc">Get-DhcpServerv4Scope
+Get-DhcpServerv4Lease -ScopeId <span class="hl">192.168.56.0</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D35</span><div><div class="dtitle">Domain-join your Windows 11 client</div><div class="dtopic">The moment the domain becomes real — a client actually authenticating against it</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Joining and verifying</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>On the Windows 11 client VM, set its DNS server to point at your domain controller's static IP — this is how it finds the domain.</div></div>
+    <div class="step"><div class="sn">2</div><div>System Properties → Change → Join a domain → enter <code>corp.lab</code>, authenticate with your domain admin credentials.</div></div>
+    <div class="step"><div class="sn">3</div><div>Reboot the client, then log in with a domain account (not a local one) to confirm the join actually works end to end.</div></div>
+  </div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">verify from both sides</span></div>
+    <div class="cbc"><span class="cm"># On the domain controller</span>
+Get-ADComputer -Filter *
+
+<span class="cm"># On the client, confirm it's actually authenticating against the domain</span>
+whoami
+echo <span class="fl">%USERDOMAIN%</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D36</span><div><div class="dtitle">The Active Directory PowerShell module — before bulk automation</div><div class="dtopic">Get-ADUser, Get-ADComputer, New-ADUser — one at a time, understood, before scripting many</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this comes before Week 8's bulk script</div>
+  <p class="explain">Creating one user by hand with the AD module is what lets you debug the bulk script when it inevitably fails on a malformed CSV row in Week 8. Practice the core cmdlets individually today.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">the core AD cmdlets, run one at a time</span></div>
+    <div class="cbc">Get-ADUser -Filter * | Select-Object Name, SamAccountName
+Get-ADComputer -Filter * | Select-Object Name, DNSHostName
+
+New-ADUser -Name <span class="st">"Test User"</span> -SamAccountName <span class="st">"tuser"</span> <span class="fl">\</span>
+  -AccountPassword (ConvertTo-SecureString <span class="st">"P@ss2026!"</span> -AsPlainText -Force) <span class="fl">\</span>
+  -Enabled <span class="hl">$true</span>
+
+Get-ADUser -Identity tuser -Properties *   <span class="cm"># see every attribute a user actually has</span>
+Remove-ADUser -Identity tuser -Confirm:<span class="hl">$false</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D37</span><div><div class="dtitle">Week 5 checkpoint — first ticket, commit to GitHub</div><div class="dtopic">Document the full domain build as your first Phase 2 ticket</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Write it up</div>
+  <p class="explain">This week doesn't fit the usual "broken thing, fixed" ticket format — instead, write an SOP: "Standing up a Windows Server domain controller from a blank VM," covering the exact order (static IP → DNS → AD DS → DHCP → client join) and why that order matters. This becomes genuinely useful reference material and a strong portfolio artifact. Commit it to <code>windows-server-lab</code> in your GitHub repo.</p>
+</div>
+
+<div class="gate">
+  <div class="gate-title">WEEK 5 CHECKPOINT — before moving to Week 6:</div>
+  <div class="gate-item">dcdiag /v runs clean with no unresolved errors</div>
+  <div class="gate-item">Your Windows 11 client is domain-joined and you can log in with a domain account</div>
+  <div class="gate-item">DHCP is actively leasing addresses to clients on the domain</div>
+  <div class="gate-item">You can create and delete an AD user via PowerShell without looking up the syntax</div>
+  <div class="gate-item">Your domain-build SOP is committed to GitHub</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ WEEK 6: ACTIVE DIRECTORY ═══ -->
+<div class="section" id="s2">
+<div class="wh">
+  <div class="weyebrow">WEEK 6 · DAYS 38–44</div>
+  <div class="wtitle">Active Directory Deep Dive — OUs, GPOs, and Real Permission Conflicts</div>
+  <div class="wsub">A working domain from Week 5 is infrastructure. This week turns it into something that actually manages a company: organizational structure, enforced policy, and file permissions that behave the way you intend — verified, not assumed.</div>
+  <div class="wtags">
+    <span class="tag">Organizational Units</span><span class="tag">Security groups</span>
+    <span class="tag">3 GPOs, verified with gpresult</span><span class="tag">NTFS vs share permissions</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D38</span><div><div class="dtitle">Organizational Units — modeling a real company structure</div><div class="dtopic">Sales, IT, and Management OUs — the container Group Policy and delegation will target</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">What an OU actually is</div>
+  <p class="explain">An OU is a container used to organize users, groups, and computers so Group Policy and delegated permissions can target the right subset of the domain. Without OUs, every policy applies domain-wide or not at all — no way to give Sales a different desktop restriction than IT.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">create the OU structure via PowerShell</span></div>
+    <div class="cbc">New-ADOrganizationalUnit -Name <span class="st">"Sales"</span> -Path <span class="st">"DC=corp,DC=lab"</span>
+New-ADOrganizationalUnit -Name <span class="st">"IT"</span> -Path <span class="st">"DC=corp,DC=lab"</span>
+New-ADOrganizationalUnit -Name <span class="st">"Management"</span> -Path <span class="st">"DC=corp,DC=lab"</span>
+
+<span class="cm"># Verify</span>
+Get-ADOrganizationalUnit -Filter *</div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D39</span><div><div class="dtitle">Users and security groups — the access model</div><div class="dtopic">Creating individual users, then grouping them for scalable permission management</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why groups, not individual permissions</div>
+  <p class="explain">Granting permissions to individual users doesn't scale — when someone joins Sales, you'd have to remember every resource they need access to and grant each one manually. Granting permissions to a <code>Sales</code> security group, then adding the user to that group, means access is correct automatically the moment they're added.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">create a few real users and a security group</span></div>
+    <div class="cbc">New-ADUser -Name <span class="st">"Amaka Johnson"</span> -SamAccountName <span class="st">"ajohnson"</span> <span class="fl">\</span>
+  -Path <span class="st">"OU=Sales,DC=corp,DC=lab"</span> <span class="fl">\</span>
+  -AccountPassword (ConvertTo-SecureString <span class="st">"P@ssw0rd2026!"</span> -AsPlainText -Force) <span class="fl">\</span>
+  -Enabled <span class="hl">$true</span>
+
+New-ADGroup -Name <span class="st">"Sales-Team"</span> -GroupScope Global -Path <span class="st">"OU=Sales,DC=corp,DC=lab"</span>
+Add-ADGroupMember -Identity <span class="st">"Sales-Team"</span> -Members ajohnson
+
+<span class="cm"># Verify membership</span>
+Get-ADGroupMember -Identity <span class="st">"Sales-Team"</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D40–41</span><div><div class="dtitle">Group Policy Objects — 3 real policies, built and tested</div><div class="dtopic">Password policy, drive mapping, desktop restriction — each verified, not assumed to work</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">What a GPO actually does</div>
+  <p class="explain">A GPO applies settings automatically to every user or computer in the OU (or domain) it's linked to. This week, build and test 3 real GPOs so the concept has something concrete to attach to — not just theory you can recite.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div><strong>Password policy GPO:</strong> Group Policy Management → create a GPO linked at the domain level → Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies. Enforce minimum length (12+), complexity, and account lockout threshold (5 attempts).</div></div>
+    <div class="step"><div class="sn">2</div><div><strong>Drive mapping GPO:</strong> a new GPO linked to the Sales OU only, using Group Policy Preferences → Drive Maps, mapping a network drive (e.g. <code>\\SERVER\Sales</code>) automatically for anyone in that OU.</div></div>
+    <div class="step"><div class="sn">3</div><div><strong>Desktop restriction GPO:</strong> linked to the Sales OU, under User Configuration → Administrative Templates → Control Panel, preventing access to Control Panel — a common real-world helpdesk-reducing policy.</div></div>
+  </div>
+</div>
+<div class="db-s">
+  <div class="dbl">Verify every GPO actually applies — never trust the GUI alone</div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">on the domain-joined client, force a policy refresh and check what actually applied</span></div>
+    <div class="cbc">gpupdate /force
+gpresult /r          <span class="cm"># summary — which GPOs applied, which didn't, and why</span>
+gpresult /h report.html   <span class="cm"># full HTML report — open it, read it, don't skim</span></div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Building a GPO, linking it, and assuming it works because the GUI shows no errors. A GPO that "should" work but was never verified with gpresult is a common source of real production incidents — build the habit of always checking now, in the lab, before it costs you in a real job.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D42</span><div><div class="dtitle">File share permissions — NTFS vs. share, the layer most techs confuse</div><div class="dtopic">Two permission systems that combine, and the diagnostic pattern for "I see the folder but can't open it"</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this is a frequent point of confusion</div>
+  <p class="explain">A shared folder has two independent permission layers: share-level (set when you create the share) and NTFS-level (set on the folder itself, on disk). When both apply, the more restrictive one always wins — a share permission of "Everyone: Full Control" means nothing if the NTFS permission underneath denies access.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Create a folder, share it with "Everyone: Read/Write" at the share level.</div></div>
+    <div class="step"><div class="sn">2</div><div>Set the NTFS permission on the same folder to deny write access to your test user specifically.</div></div>
+    <div class="step"><div class="sn">3</div><div>Log in as that user, browse to the share (works — share permission allows it), try to create a file (fails — NTFS permission blocks it). This is exactly the "I can see the folder on the network but get access denied opening it" ticket you'll get in real support work.</div></div>
+    <div class="step"><div class="sn">4</div><div>Fix the NTFS permission to match intent, verify the write now succeeds.</div></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D43–44</span><div><div class="dtitle">Week 6 capstone — 2 resolved tickets, committed</div><div class="dtopic">A GPO-not-applying scenario and the NTFS/share permission conflict, fully documented</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Write up and commit</div>
+  <p class="explain">Take the permission conflict from Day 42 and write it up in the full 7-step ticket format. Then deliberately break a GPO (link it to the wrong OU, or misconfigure a setting) and diagnose why it's not applying using gpresult — write that up as a second ticket. Commit both, plus screenshots of your gpresult output, to <code>active-directory-lab</code> in your GitHub repo.</p>
+</div>
+
+<div class="gate">
+  <div class="gate-title">WEEK 6 CHECKPOINT — before moving to Week 7:</div>
+  <div class="gate-item">3 GPOs built, linked to the correct OUs, and verified with gpresult to actually apply</div>
+  <div class="gate-item">You can explain the NTFS vs. share permission model and diagnose a conflict correctly on the first try</div>
+  <div class="gate-item">You understand why security groups scale better than individual user permissions</div>
+  <div class="gate-item">2 more tickets committed — 12 total across Phases 1–2 so far</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ WEEK 7: LINUX ADMIN ═══ -->
+<div class="section" id="s3">
+<div class="wh">
+  <div class="weyebrow">WEEK 7 · DAYS 45–51</div>
+  <div class="wtitle">Linux System Administration — The Server Side, Not Just the Desktop</div>
+  <div class="wsub">Most real environments are mixed — Windows domain for user management, Linux servers for specific services. This week builds a Samba file server mirroring the one you built on Windows, and hardens it the way a real sysadmin would.</div>
+  <div class="wtags">
+    <span class="tag">Samba file server</span><span class="tag">SSH key-based auth</span>
+    <span class="tag">cron automation</span><span class="tag">Log analysis</span><span class="tag">ufw firewall</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D45</span><div><div class="dtitle">Samba file server — your Linux counterpart to the Windows share</div><div class="dtopic">Proper permission groups, setgid, group ownership — the Linux equivalent of NTFS permissions</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Building it, permission-conscious from the start</div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">a Samba share with a real permission group, not wide-open access</span></div>
+    <div class="cbc">sudo apt update && sudo apt install samba -y
+
+<span class="cm"># Create a shared group and directory</span>
+sudo groupadd itshare
+sudo mkdir -p /srv/samba/it
+sudo chown :itshare /srv/samba/it
+sudo chmod <span class="hl">2770</span> /srv/samba/it   <span class="cm"># setgid bit — new files inherit the group automatically</span>
+
+<span class="cm"># Add the share definition to /etc/samba/smb.conf:</span>
+<span class="cm">[it]</span>
+<span class="cm">   path = /srv/samba/it</span>
+<span class="cm">   valid users = @itshare</span>
+<span class="cm">   read only = no</span>
+
+sudo systemctl restart smbd
+sudo systemctl status smbd</div>
+  </div>
+  <div class="analogy">
+    <span class="albl">ANALOGY — THE SETGID BIT</span>
+    Without setgid, every new file created in a shared folder inherits the creating user's personal group — meaning a second person on the team suddenly can't touch a file their teammate created five minutes earlier. Setgid forces every new file to inherit the folder's group instead, so the whole team keeps access automatically. It's the same intent as the Windows NTFS group-based permissions you set up in Week 6, just a different mechanism.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D46</span><div><div class="dtitle">SSH hardening — key-based auth, password login disabled</div><div class="dtopic">The single most common real-world security hardening step on any Linux server</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why key-based auth matters</div>
+  <p class="explain">Password-based SSH is vulnerable to brute-force attacks in a way key-based auth simply isn't — an attacker can't guess a 256-bit private key. This is also a near-universal requirement in real production environments.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">generate a key pair, install it, disable password login</span></div>
+    <div class="cbc"><span class="cm"># On your Ubuntu host (not the server VM)</span>
+ssh-keygen -t ed25519 -C <span class="st">"lab-key"</span>
+ssh-copy-id testuser@<your-server-vm-ip>
+
+<span class="cm"># SSH in with the key, confirm it works passwordless, then harden sshd_config on the server</span>
+sudo nano /etc/ssh/sshd_config
+<span class="cm"># set: PasswordAuthentication no</span>
+<span class="cm"># set: PermitRootLogin no</span>
+sudo systemctl restart sshd</div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Disabling password authentication before confirming key-based login actually works. Always test the key login successfully in a separate terminal session <em>before</em> restarting sshd with password auth disabled — locking yourself out of a VM is recoverable (via the VirtualBox console), but locking yourself out of a real remote server is a much worse day.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D47</span><div><div class="dtitle">cron automation — a real maintenance job, not a toy example</div><div class="dtopic">Extending Phase 1's backup script into a scheduled, logged, dependable job</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Scheduling the backup script from Phase 1</div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">schedule backup_home.sh to run nightly, with proper logging</span></div>
+    <div class="cbc"><span class="cm"># Edit the crontab for the appropriate user</span>
+crontab -e
+
+<span class="cm"># Add this line — runs at 2 AM daily, logs output and errors separately</span>
+<span class="hl">0 2 * * *</span> /home/testuser/backup_home.sh >> /var/log/backup.log <span class="hl">2>&1</span>
+
+<span class="cm"># Verify it's scheduled</span>
+crontab -l</div>
+  </div>
+  <p class="explain">Also add a disk-space alert cron job from Phase 1's script, now scheduled hourly rather than run manually — this is the difference between a script and actual automation: it runs whether or not you remember to.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D48</span><div><div class="dtitle">Log analysis — reading logs to answer real questions</div><div class="dtopic">/var/log/auth.log and syslog — who logged in, when, from where, and what failed</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The questions real log analysis answers</div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">practical log queries — practice each against your own server's real logs</span></div>
+    <div class="cbc"><span class="cm"># Who successfully logged in via SSH, and from where?</span>
+grep <span class="st">"Accepted"</span> /var/log/auth.log
+
+<span class="cm"># Failed login attempts — a real security-relevant question</span>
+grep <span class="st">"Failed password"</span> /var/log/auth.log | tail -20
+
+<span class="cm"># What did a specific service log around the time it failed?</span>
+sudo journalctl -u smbd --since <span class="st">"1 hour ago"</span>
+
+<span class="cm"># Search syslog for anything mentioning a specific error keyword</span>
+grep -i <span class="st">"error"</span> /var/log/syslog | tail -30</div>
+  </div>
+  <p class="explain">Generate a real failed-login event by deliberately mistyping a password via SSH from another terminal, then find the exact log line documenting it. This closes the loop between "I know the grep syntax" and "I can actually investigate an incident."</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D49</span><div><div class="dtitle">ufw firewall — default deny, explicit allow, verified</div><div class="dtopic">Enable, configure, and actually test that the rules block what they should</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Configuring and testing — not just enabling</div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">allow only what's needed, deny everything else by default</span></div>
+    <div class="cbc">sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow <span class="hl">22</span>/tcp        <span class="cm"># SSH</span>
+sudo ufw allow <span class="hl">139</span>,<span class="hl">445</span>/tcp    <span class="cm"># Samba</span>
+sudo ufw enable
+sudo ufw status verbose</div>
+  </div>
+  <p class="explain"><strong>Verify the rules actually work, don't just trust the status output:</strong> from your host machine, try connecting to a port you didn't allow (e.g. try <code>telnet server-ip 8080</code>) and confirm it times out. A firewall rule you haven't tested against a should-fail case is a firewall rule you don't actually understand.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D50–51</span><div><div class="dtitle">Week 7 capstone — 2 resolved Linux server tickets</div><div class="dtopic">SSH lockout scenario and a firewall-blocking-legitimate-traffic scenario</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Write up and commit</div>
+  <p class="explain">Write 2 tickets in the full 7-step format: one where you diagnose a failed SSH connection using the auth.log analysis from Day 48, and one where ufw is blocking legitimate Samba traffic (deliberately misconfigure the port, then diagnose and fix it). Commit both, plus your final smb.conf and crontab, to <code>linux-server-lab</code> in your GitHub repo.</p>
+</div>
+
+<div class="gate">
+  <div class="gate-title">WEEK 7 CHECKPOINT — before moving to Week 8:</div>
+  <div class="gate-item">Your Samba share is live with a correctly scoped permission group (setgid, group ownership working)</div>
+  <div class="gate-item">SSH key-based auth is configured and password login is disabled, verified working before you locked it down</div>
+  <div class="gate-item">A cron job is actively running your backup script on schedule, with logged output</div>
+  <div class="gate-item">You can find a specific event in auth.log or syslog to answer a real diagnostic question</div>
+  <div class="gate-item">ufw rules are verified to actually block unauthorized ports, not just enabled</div>
+  <div class="gate-item">2 more tickets committed — 14 total so far</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ WEEK 8: AUTOMATION + CAPSTONE ═══ -->
+<div class="section" id="s4">
+<div class="wh">
+  <div class="weyebrow">WEEK 8 · DAYS 52–60</div>
+  <div class="wtitle">Automation, Backups, and the Small-Business Capstone</div>
+  <div class="wsub">The week that separates a Tier 1 technician from a sysadmin candidate: real bulk automation, disciplined backup practice, a first look at cloud identity, and the capstone that ties the whole month together into one documented environment.</div>
+  <div class="wtags">
+    <span class="tag">PowerShell bulk provisioning</span><span class="tag">System state backup</span>
+    <span class="tag">Azure AD / Entra ID intro</span><span class="tag">Capstone: 20 scripted users</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D52–53</span><div><div class="dtitle">Bulk user provisioning — the script that actually separates the tiers</div><div class="dtopic">A CSV, a PowerShell script, error handling, and a log — not 20 manual clicks</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this is the clearest automation signal in a junior sysadmin interview</div>
+  <p class="explain">Creating one AD user by hand is a helpdesk task. Creating 20 from a CSV, correctly placed into their OUs with the right group memberships, with errors caught and logged instead of silently failing, is a sysadmin task. Build this properly — with a <code>try/catch</code> block, not a script that only works when every input is perfect.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">new_users.csv — your source data</span></div>
+    <div class="cbc">FirstName,LastName,Department,OU
+Amaka,Johnson,Sales,Sales
+Chidi,Okafor,IT,IT
+Ngozi,Eze,Management,Management
+<span class="cm">... 17 more rows, realistic names, spread across your 3 OUs</span></div>
+  </div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">bulk-create-users.ps1 — reads the CSV, creates every user, logs the result</span></div>
+    <div class="cbc">$users = Import-Csv -Path <span class="st">"C:\scripts\new_users.csv"</span>
+$logPath = <span class="st">"C:\scripts\provisioning_log.txt"</span>
+
+<span class="kw">foreach</span> ($u <span class="kw">in</span> $users) {
+  $sam = ($u.FirstName.Substring(<span class="hl">0</span>,<span class="hl">1</span>) + $u.LastName).ToLower()
+  $upn = <span class="st">"$sam@corp.lab"</span>
+
+  <span class="kw">try</span> {
+    New-ADUser -Name <span class="st">"$($u.FirstName) $($u.LastName)"</span> <span class="fl">\</span>
+      -SamAccountName $sam -UserPrincipalName $upn <span class="fl">\</span>
+      -Path <span class="st">"OU=$($u.OU),DC=corp,DC=lab"</span> <span class="fl">\</span>
+      -AccountPassword (ConvertTo-SecureString <span class="st">"Temp@2026!"</span> -AsPlainText -Force) <span class="fl">\</span>
+      -Enabled <span class="hl">$true</span> -ChangePasswordAtLogon <span class="hl">$true</span>
+    <span class="st">"$(Get-Date) - SUCCESS: $sam"</span> | Out-File -Append $logPath
+  } <span class="kw">catch</span> {
+    <span class="st">"$(Get-Date) - FAILED: $sam - $_"</span> | Out-File -Append $logPath
+  }
+}
+
+<span class="cm"># Verify: count how many were actually created vs. how many were in the CSV</span>
+(Get-ADUser -Filter *).Count</div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Testing the script only with perfect data. Deliberately add one malformed row to your CSV (a missing OU, a duplicate SamAccountName) and confirm the script logs the failure clearly and keeps processing the rest — a script that silently dies on one bad row isn't automation you can trust.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D54</span><div><div class="dtitle">Virtualization discipline — checkpoint before risky change</div><div class="dtopic">Snapshot the domain controller, make a risky GPO change, deliberately roll back</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Practicing the full cycle</div>
+  <p class="explain">Snapshot the domain controller before a risky change (like a GPO that could lock out all users), make the change, verify it, and — deliberately, once — roll back a snapshot to prove you can recover cleanly. This exact discipline (checkpoint before risky change) is what separates a sysadmin who causes outages from one who doesn't.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Snapshot the DC, named clearly: <code>before-lockout-policy-change</code>.</div></div>
+    <div class="step"><div class="sn">2</div><div>Modify the password lockout policy to something deliberately too aggressive (e.g. lockout after 1 failed attempt).</div></div>
+    <div class="step"><div class="sn">3</div><div>Confirm the problem: a legitimate typo now locks out a test account immediately.</div></div>
+    <div class="step"><div class="sn">4</div><div>Restore the snapshot, verify the policy is back to sane defaults, and the test account is no longer locked.</div></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D55</span><div><div class="dtitle">Real backup strategy — AD system state + Linux config</div><div class="dtopic">Beyond snapshots: what a real backup of a domain controller and a Linux server actually looks like</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">System state backup — the AD-specific backup that matters</div>
+  <p class="explain">A VM snapshot backs up everything; a system state backup is Windows Server's targeted backup of AD DS, SYSVOL, the registry, and boot files — the minimum needed to recover a domain controller without relying on the whole VM.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">Windows Server Backup — system state, PowerShell</span></div>
+    <div class="cbc"><span class="cm"># Install the feature first if not already present</span>
+Install-WindowsFeature Windows-Server-Backup
+
+<span class="cm"># Run a one-time system state backup to a target location</span>
+wbadmin start systemstatebackup -backupTarget:D: -quiet</div>
+  </div>
+  <div class="dbl" style="margin-top:1rem">Linux config backup — extending your Phase 1 script</div>
+  <p class="explain">Extend <code>backup_home.sh</code> logic to also archive <code>/etc/samba/smb.conf</code> and your crontab export — the configuration that would take real time to rebuild from memory if the server were lost.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D56</span><div><div class="dtitle">Intro to cloud identity — Azure AD / Entra ID</div><div class="dtopic">The direction the field is moving, compared directly against the on-prem AD you just built</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this matters now, briefly, before Phase 3 goes deeper</div>
+  <p class="explain">Most organizations are migrating identity to the cloud — Azure AD (now Microsoft Entra ID) for authentication, Intune for device management. Create a free Microsoft 365 developer tenant, add a few test users, and compare the experience directly against the on-prem AD you just built: what's the same conceptually (users, groups, policies), and what's different (no domain controller to manage, policies pushed to devices anywhere, not just on the local network).</p>
+  <p class="explain">This is intentionally brief — Phase 3 goes much deeper into cloud fundamentals. Today is about making the on-prem-to-cloud conceptual bridge explicit, not becoming an Entra ID expert yet.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D57–59</span><div><div class="dtitle">Capstone build — the small-business IT environment</div><div class="dtopic">Everything from this month, assembled into one documented environment</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Assembling the pieces</div>
+  <p class="explain">Combine everything from this month into one documented environment: the Windows Server domain with 3 OUs and 20 users created via your bulk-provisioning script, 3 GPOs verified with gpresult, the Linux Samba file server with correctly configured permissions, and a network diagram showing how it all connects.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Draw the network diagram — DC, client, Linux server, their IPs, and how traffic flows between them. draw.io (free) works well for this.</div></div>
+    <div class="step"><div class="sn">2</div><div>Write the onboarding runbook: a new employee joins Sales — walk through AD account creation via your script, OU placement, group membership, GPO-driven drive mapping, and Linux share access if relevant, start to finish.</div></div>
+    <div class="step"><div class="sn">3</div><div>Capture screenshots as evidence: <code>gpresult</code> output showing all 3 GPOs applied, the provisioning log showing 20 successful creations, the Samba share working from a client.</div></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D60</span><div><div class="dtitle">Final review, commit, and Phase 2 close-out</div><div class="dtopic">Everything pushed to GitHub, README updated, ready for Phase 3</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The close-out checklist</div>
+  <div class="chklist">
+    <div class="chk"><div class="chk-box"></div><div>bulk-create-users.ps1 and new_users.csv committed, with the provisioning log as proof</div></div>
+    <div class="chk"><div class="chk-box"></div><div>3 GPOs documented with gpresult screenshots</div></div>
+    <div class="chk"><div class="chk-box"></div><div>Network diagram and onboarding runbook committed</div></div>
+    <div class="chk"><div class="chk-box"></div><div>4 tickets from Weeks 5–7 finalized in the 7-step format</div></div>
+    <div class="chk"><div class="chk-box"></div><div>README.md updated with a Phase 2 summary and links to key artifacts</div></div>
+  </div>
+</div>
+
+<div class="cap">
+  <div class="capeye">PHASE 2 CAPSTONE REQUIREMENTS</div>
+  <div class="captitle">A complete, documented small-business IT environment — Windows + Linux</div>
+  <div class="capbody">A live Active Directory domain with 20 scripted users across 3 OUs, 3 verified GPOs, a Linux Samba file server with correct permission groups, and a written new-employee onboarding runbook spanning both systems — all committed to GitHub.</div>
+  <div class="capreqs">
+    <div class="capreq">Windows Server domain controller live, static IP, DNS + DHCP roles configured in the correct order</div>
+    <div class="capreq">3 OUs with 20 users created via a working PowerShell bulk-provisioning script reading from CSV, with error handling proven to work</div>
+    <div class="capreq">3 GPOs built and verified to actually apply, using gpresult as proof</div>
+    <div class="capreq">Linux Samba file server live with a correctly scoped permission group (setgid, group ownership)</div>
+    <div class="capreq">SSH key-based auth configured, password login disabled, ufw firewall rules verified against a should-fail case</div>
+    <div class="capreq">A cron-scheduled backup script with logged output, plus a Windows system state backup completed at least once</div>
+    <div class="capreq">A written onboarding runbook: new employee, AD account to Linux share access, start to finish</div>
+    <div class="capreq">Network diagram of the full environment, committed to your GitHub repo</div>
+  </div>
+</div>
+
+<div class="gate">
+  <div class="gate-title">PHASE 2 EXIT GATE — you're ready for Phase 3 when:</div>
+  <div class="gate-item">You can stand up a new domain controller from a blank VM, in the correct order, without a checklist</div>
+  <div class="gate-item">You can create an OU structure and bulk-provision users from a CSV using your own PowerShell script, including handling a bad row gracefully</div>
+  <div class="gate-item">You can build a GPO, link it to the right OU, and prove with gpresult that it actually applied</div>
+  <div class="gate-item">You can diagnose an NTFS vs. share permission conflict on Windows and a group-ownership issue on Linux</div>
+  <div class="gate-item">You understand the difference between a snapshot and a real backup, and have practiced both</div>
+  <div class="gate-item">You can explain, in an interview, the conceptual difference between on-prem AD and Azure AD/Entra ID</div>
+  <div class="gate-item">Your onboarding runbook is detailed enough that a stranger could follow it without asking a question</div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">20</div><div class="ml">users scripted</div></div>
+  <div class="metric"><div class="mv">3</div><div class="ml">GPOs verified</div></div>
+  <div class="metric"><div class="mv">3</div><div class="ml">VMs, 16GB lab</div></div>
+  <div class="metric"><div class="mv">14+</div><div class="ml">total tickets so far</div></div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ RESOURCES ═══ -->
+<div class="section" id="s5">
+<div class="wh">
+  <div class="weyebrow">PHASE 2 REFERENCE</div>
+  <div class="wtitle">Resources and Tools</div>
+  <div class="wsub">Everything below is free.</div>
+</div>
+
+<div class="res-grid">
+  <div class="res-card">
+    <div class="res-cat">SOFTWARE + ISOs</div>
+    <div class="res-item"><div class="res-dot"></div><div>Windows Server 2022 Evaluation — free 180-day license from Microsoft's evaluation center</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Microsoft 365 Developer Program — free tenant with test users for the Azure AD/Entra ID intro</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>draw.io — app.diagrams.net — free network diagrams</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">FREE COURSES + DOCS</div>
+    <div class="res-item"><div class="res-dot"></div><div>Microsoft Learn — learn.microsoft.com — official AD DS, GPO, and PowerShell learning paths</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Professor Messer — professormesser.com — continues to be useful for A+ Core 2 overlap material</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Samba official documentation — samba.org/samba/docs</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">COMMAND REFERENCE</div>
+    <div class="res-item"><div class="res-dot"></div><div>Get-Help &lt;cmdlet&gt; -Examples — PowerShell's built-in docs, use constantly</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>man smb.conf — full Samba configuration reference</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>man crontab — cron scheduling syntax</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>man ufw — firewall rule syntax</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">DAILY HABITS FOR PHASE 2</div>
+    <div class="res-item"><div class="res-dot"></div><div>Run dcdiag /v after any domain controller change, every time</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Verify every GPO with gpresult — never trust the GUI alone</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Snapshot before every risky change on the domain controller, no exceptions</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Commit to GitHub daily — scripts, SOPs, screenshots, tickets</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Test key-based SSH login before disabling password auth, every time, in every environment</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="alert al-s">
+  <span class="ali">✓</span>
+  <span><strong>Phase 2 is where "I followed a tutorial" stops being possible.</strong> A real domain, real GPOs verified with gpresult, a working bulk-provisioning script with error handling, and a Linux file server hardened the way a real sysadmin would harden it — this is the environment Phase 3's cloud work builds directly on top of.</span>
+</div>
+</div>
+
+</main>
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ top</button>
+
+<script>
+const SS=['s0','s1','s2','s3','s4','s5'];
+function go(n){
+  SS.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el)el.classList.toggle('on',i===n);
+  });
+  document.querySelectorAll('.tnav').forEach((el,i)=>el.classList.toggle('on',i===n));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function td(h){h.closest('.day').classList.toggle('open')}
+</script>
+</body>
+</html>

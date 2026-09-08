@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Support, Cloud Support & Systems Administration — Builder's Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0e1015;--ink2:#2d3142;--ink3:#5a617d;--ink4:#8e96b0;
+  --paper:#f7f6f2;--paper2:#edecea;--paper3:#e4e2dd;--cream:#faf9f5;
+  --green:#0d6e4a;--green-bg:#d6f0e6;
+  --amber:#7a4700;--amber-bg:#fdefd4;
+  --red:#b91c1c;--red-bg:#fee2e2;
+  --purple:#5b21b6;--purple-bg:#ede9fe;
+  --teal:#0e6b70;--teal-bg:#ccfbf1;
+  --blue:#1e40af;--blue-bg:#dbeafe;
+  --main:#4338ca;--main-bg:#e0e7ff;--main-light:rgba(67,56,202,.15);
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Fraunces',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.site-header{background:var(--ink);padding:3.5rem 0 3rem}
+.hinner{max-width:900px;margin:0 auto;padding:0 2rem}
+.phase-badge{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--main);margin-bottom:1rem;display:block}
+.site-header h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.15;letter-spacing:-.02em;margin-bottom:.75rem;color:#e8eaf0}
+.site-header h1 em{font-style:italic;color:#aab0c8}
+.header-desc{font-family:var(--mono);font-size:12px;color:#9ba3b8;max-width:620px;line-height:1.75}
+.header-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.5rem}
+.hbadge{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:3px;border:1px solid rgba(255,255,255,.12);color:#9ba3b8}
+.hbadge.p{border-color:rgba(67,56,202,.4);color:#a5b4fc}
+.hbadge.g{border-color:rgba(62,207,142,.3);color:#3ecf8e}
+.hbadge.a{border-color:rgba(245,163,71,.3);color:#f0a347}
+
+.toolbar{position:sticky;top:0;z-index:100;background:rgba(14,16,21,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);padding:.5rem 0}
+.tinner{max-width:900px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;gap:0}
+.tinner::-webkit-scrollbar{display:none}
+.tnav{font-family:var(--mono);font-size:10px;padding:8px 12px;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.35);cursor:pointer;background:transparent;white-space:nowrap;transition:all .15s;flex-shrink:0}
+.tnav:hover{color:rgba(255,255,255,.6)}
+.tnav.on{color:#fff;border-bottom-color:var(--main)}
+.tsep{width:1px;height:16px;background:rgba(255,255,255,.1);margin:0 6px;flex-shrink:0}
+.print-btn{font-family:var(--mono);font-size:10px;margin-left:auto;padding:5px 12px;border:1px solid rgba(255,255,255,.15);border-radius:3px;color:rgba(255,255,255,.4);background:transparent;cursor:pointer;flex-shrink:0;transition:all .15s;white-space:nowrap}
+.print-btn:hover{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.7)}
+
+.main{max-width:900px;margin:0 auto;padding:0 2rem 5rem}
+.section{display:none;padding:2.5rem 0}
+.section.on{display:block}
+.wh{padding:1.75rem 0 1.25rem;border-bottom:2px solid var(--ink);margin-bottom:1.75rem}
+.weyebrow{font-family:var(--mono);font-size:10px;color:var(--main);letter-spacing:.1em;margin-bottom:.4rem}
+.wtitle{font-size:1.6rem;font-weight:600;color:var(--ink);letter-spacing:-.02em;line-height:1.25}
+.wsub{font-size:.95rem;color:var(--ink3);margin-top:.4rem;line-height:1.65;max-width:680px}
+.wtags{display:flex;flex-wrap:wrap;gap:7px;margin-top:.9rem}
+.tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:3px;border:1.5px solid var(--paper3);color:var(--ink3);background:var(--paper2)}
+
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:2rem}
+.ov-card{background:var(--cream);border:1.5px solid var(--paper3);border-radius:8px;padding:1.1rem 1.25rem;cursor:pointer;transition:all .18s}
+.ov-card:hover{border-color:var(--main);transform:translateY(-2px);box-shadow:0 4px 20px var(--main-light)}
+.ov-week{font-family:var(--mono);font-size:10px;color:var(--main);letter-spacing:.08em;margin-bottom:.4rem}
+.ov-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.25rem}
+.ov-sub{font-family:var(--mono);font-size:10px;color:var(--ink3);line-height:1.5}
+.ov-days{font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--paper3)}
+
+.day{background:var(--cream);border:1.5px solid var(--paper3);border-radius:8px;margin-bottom:14px;overflow:hidden}
+.day-header{padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:10px;transition:background .12s}
+.day-header:hover{background:var(--paper2)}
+.dhl{display:flex;align-items:center;gap:10px}
+.dnum{font-family:var(--mono);font-size:10px;color:var(--main);width:60px;flex-shrink:0;letter-spacing:.06em}
+.dtitle{font-size:.92rem;font-weight:600;color:var(--ink)}
+.dtopic{font-family:var(--mono);font-size:10px;color:var(--ink4);margin-top:1px}
+.dhr{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.dtag{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:2px}
+.dt-t{background:var(--purple-bg);color:var(--purple)}
+.dt-l{background:var(--green-bg);color:var(--green)}
+.dt-b{background:var(--blue-bg);color:var(--blue)}
+.dt-c{background:var(--amber-bg);color:var(--amber)}
+.dt-d{background:var(--red-bg);color:var(--red)}
+.chev{font-size:10px;color:var(--ink4);transition:transform .18s}
+.day.open .chev{transform:rotate(180deg)}
+.day-body{display:none;border-top:1.5px solid var(--paper3)}
+.day.open .day-body{display:block}
+.db-s{padding:1.25rem 1.5rem;border-bottom:1px solid var(--paper2)}
+.db-s:last-child{border-bottom:none}
+.dbl{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+.dbl::after{content:'';flex:1;height:1px;background:var(--paper3)}
+
+.explain{font-size:.92rem;color:var(--ink2);line-height:1.8;margin-bottom:.8rem}
+.explain:last-child{margin-bottom:0}
+.explain strong{color:var(--ink);font-weight:600}
+.analogy{background:var(--amber-bg);border-left:3px solid var(--amber);border-radius:0 6px 6px 0;padding:.85rem 1rem;margin:.8rem 0;font-size:.88rem;color:var(--amber);line-height:1.65}
+.analogy .albl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;display:block;margin-bottom:.2rem;font-weight:600}
+
+.cb{background:var(--ink);border-radius:6px;overflow:hidden;margin-bottom:.65rem}
+.cb:last-child{margin-bottom:0}
+.cbh{padding:.45rem .85rem;background:rgba(255,255,255,.04);display:flex;align-items:center}
+.cbp{font-family:var(--mono);font-size:9px;color:var(--main);letter-spacing:.04em}
+.cbc{padding:.65rem .85rem;font-family:var(--mono);font-size:12px;color:#e0e4f0;line-height:1.8;overflow-x:auto;white-space:pre}
+.cbc .cm{color:#4a5168;font-style:italic}
+.cbc .hl{color:#3ecf8e}
+.cbc .kw{color:#9b7ef5}
+.cbc .st{color:#f0c040}
+.cbc .vr{color:#f57eb6}
+.cbc .fl{color:#f0a347}
+
+.steps{margin:.5rem 0}
+.step{display:flex;gap:12px;margin-bottom:.75rem;font-size:.9rem;color:var(--ink2);line-height:1.6}
+.sn{font-family:var(--mono);font-size:10px;color:var(--main);width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(67,56,202,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+
+.chklist{margin:.5rem 0}
+.chk{display:flex;gap:10px;font-size:.9rem;color:var(--ink2);margin-bottom:.55rem;line-height:1.5}
+.chk-box{width:16px;height:16px;border:1.5px solid var(--paper3);border-radius:3px;flex-shrink:0;margin-top:2px}
+
+.alert{border-radius:6px;padding:.85rem 1rem;margin:.8rem 0;font-size:.88rem;line-height:1.65;display:flex;gap:.75rem}
+.ali{font-size:14px;flex-shrink:0;margin-top:2px}
+.al-w{background:var(--amber-bg);border:1.5px solid rgba(122,71,0,.2);color:var(--amber)}
+.al-i{background:var(--blue-bg);border:1.5px solid rgba(30,64,175,.2);color:var(--blue)}
+.al-s{background:var(--green-bg);border:1.5px solid rgba(13,110,74,.2);color:var(--green)}
+.al-n{background:var(--purple-bg);border:1.5px solid rgba(91,33,182,.2);color:var(--purple)}
+.al-p{background:var(--main-bg);border:1.5px solid rgba(67,56,202,.25);color:var(--main)}
+
+.mistake{background:var(--red-bg);border:1.5px solid rgba(185,28,28,.2);border-radius:6px;padding:.85rem 1rem;margin:.8rem 0;font-size:.87rem;color:var(--red);line-height:1.6}
+.mistake .mlbl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;display:block;margin-bottom:.2rem;font-weight:600}
+
+.cap{background:linear-gradient(135deg,#0e1015 0%,#141129 100%);border-radius:10px;padding:1.75rem;margin:1.5rem 0;border:1.5px solid rgba(67,56,202,.4)}
+.capeye{font-family:var(--mono);font-size:10px;color:var(--main);letter-spacing:.1em;margin-bottom:.6rem}
+.capeye2{color:#a5b4fc}
+.captitle{font-size:1.15rem;font-weight:600;color:#e8eaf0;margin-bottom:.6rem}
+.capbody{font-size:.88rem;color:#9ba3b8;line-height:1.7;margin-bottom:1rem}
+.capreqs{border-top:1px solid rgba(255,255,255,.07);padding-top:.9rem}
+.capreq{display:flex;gap:8px;font-family:var(--mono);font-size:11px;color:#aab0c8;margin-bottom:.45rem;line-height:1.5}
+.capreq::before{content:'→';color:#a5b4fc;flex-shrink:0}
+
+.gate{background:var(--green-bg);border:1.5px solid rgba(13,110,74,.2);border-radius:8px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+.gate-title{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.08em;margin-bottom:.75rem}
+.gate-item{display:flex;gap:10px;font-size:.9rem;color:var(--ink2);margin-bottom:.45rem;line-height:1.5}
+.gate-item::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:1.5rem 0}
+.metric{background:var(--paper2);border:1.5px solid var(--paper3);border-radius:7px;padding:1rem 1.1rem}
+.mv{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:var(--ink);line-height:1}
+.ml{font-size:.8rem;color:var(--ink3);margin-top:.3rem;font-family:var(--mono)}
+
+.reftbl{width:100%;border-collapse:collapse;font-size:.85rem;margin:.75rem 0}
+.reftbl th{text-align:left;font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.08em;padding:6px 10px;border-bottom:2px solid var(--paper3)}
+.reftbl td{padding:7px 10px;border-bottom:1px solid var(--paper2);color:var(--ink2);vertical-align:top}
+.reftbl td:first-child{font-family:var(--mono);font-size:11px;color:var(--main)}
+
+code{font-family:var(--mono);font-size:.82em;background:var(--paper2);border:1px solid var(--paper3);padding:1px 5px;border-radius:3px;color:var(--ink2)}
+.divider{border:none;border-top:1.5px solid var(--paper3);margin:2rem 0}
+.back-top{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:#e8eaf0;border:none;border-radius:4px;padding:8px 13px;font-family:var(--mono);font-size:11px;cursor:pointer;z-index:200;opacity:.7;transition:all .15s}
+.back-top:hover{opacity:1}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:1rem 0}
+.res-card{background:var(--paper2);border:1.5px solid var(--paper3);border-radius:7px;padding:1rem 1.1rem}
+.res-cat{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.1em;margin-bottom:.7rem}
+.res-item{display:flex;gap:8px;font-size:.85rem;color:var(--ink2);margin-bottom:.5rem;line-height:1.45}
+.res-dot{width:4px;height:4px;border-radius:50%;background:var(--main);flex-shrink:0;margin-top:7px}
+
+.covenant{background:var(--cream);border:1.5px solid var(--paper3);border-radius:10px;padding:.5rem 1.75rem;margin-bottom:2rem}
+.crow{display:flex;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--paper2)}
+.crow:last-child{border-bottom:none}
+.cnum{font-family:var(--mono);font-size:11px;color:var(--main);width:26px;height:26px;border:1.5px solid rgba(67,56,202,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.ctitle{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.3rem}
+.ctext{font-size:.87rem;color:var(--ink3);line-height:1.65}
+
+.timeline-nav{display:flex;flex-wrap:wrap;gap:8px;margin:1.5rem 0 2rem}
+.tl-btn{font-family:var(--mono);font-size:11px;padding:8px 14px;border-radius:6px;border:1.5px solid var(--paper3);background:var(--cream);color:var(--ink3);cursor:pointer;transition:all .15s}
+.tl-btn:hover,.tl-btn.on{border-color:var(--main);color:var(--main);background:var(--main-bg)}
+
+@media print{
+  .toolbar,.back-top,.print-btn{display:none!important}
+  .section{display:block!important;page-break-before:always}
+  .section:first-child{page-break-before:avoid}
+  .day-body{display:block!important}
+  body{background:#fff;color:#111}
+}
+@media(max-width:640px){
+  .hinner,.tinner,.main{padding-left:1rem;padding-right:1rem}
+  .covenant{padding:.5rem 1rem}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+<div class="hinner">
+  <span class="phase-badge">the builder's path · 4 months</span>
+  <h1>IT Support, Cloud Support<br>& <em>Systems Administration.</em></h1>
+  <p class="header-desc">You don't want to study IT — you want to fix things, break things, and build a small IT environment with your own hands until you understand it cold. This is a 4-month, builder-first roadmap: real tickets, a real home lab, real Active Directory domain, real AWS/Azure accounts — CompTIA A+ and AWS Cloud Practitioner earned as proof of what you already built, not the other way around. Built to prepare you for both an NYSC PPA placement and general job applications, local or remote.</p>
+  <div class="header-meta">
+    <span class="hbadge">4 months · 120 days</span>
+    <span class="hbadge p">CompTIA A+ (220-1201/1202) · AWS CLF-C02</span>
+    <span class="hbadge g">100% hands-on — home lab first, cloud second</span>
+    <span class="hbadge a">Target: NYSC PPA + ₦80k–₦450k local · $2k–$4k remote</span>
+  </div>
+</div>
+</header>
+
+<nav class="toolbar">
+<div class="tinner">
+  <button class="tnav on" onclick="go(0)">Overview</button>
+  <div class="tsep"></div>
+  <button class="tnav" onclick="go(1)">Phase 1 · Month 1</button>
+  <button class="tnav" onclick="go(2)">Phase 2 · Month 2</button>
+  <button class="tnav" onclick="go(3)">Phase 3 · Month 3</button>
+  <button class="tnav" onclick="go(4)">Phase 4 · Month 4</button>
+  <div class="tsep"></div>
+  <button class="tnav" onclick="go(5)">Resources</button>
+  <button class="print-btn" onclick="window.print()">⬇ Save / Print</button>
+</div>
+</nav>
+
+<main class="main">
+
+<!-- ═══ OVERVIEW ═══ -->
+<div class="section on" id="s0">
+<div class="wh">
+  <div class="weyebrow">ROADMAP OVERVIEW</div>
+  <div class="wtitle">Why this roadmap is built backwards from how courses teach it</div>
+  <div class="wsub">Most IT support courses start with slides: OSI model, then a quiz, then the next slide. This roadmap starts with a broken thing in front of you — a PC that won't boot, a user who can't log in, a server with no DNS — and only pulls in exactly the theory needed to fix it. Certifications are checkpoints that prove what you already built, not the goal itself.</div>
+</div>
+
+<div class="covenant">
+  <div class="crow">
+    <div class="cnum">1</div>
+    <div><div class="ctitle">Break it before you learn to fix it</div><div class="ctext">Every topic starts with a deliberately broken lab — a corrupted boot record, a locked-out user, a misconfigured DNS zone — before any explanation. You diagnose first, read second. This is how real Tier 1/2 support actually works: the ticket arrives broken, nobody hands you the answer.</div></div>
+  </div>
+  <div class="crow">
+    <div class="cnum">2</div>
+    <div><div class="ctitle">Ticket everything, like a real desk</div><div class="ctext">Every lab task gets logged as a real ticket — company, categorized, prioritized, resolved with a full 7-step write-up (problem, observations, causes considered, tests, root cause, fix, verification). By Month 4 you'll have 24+ real resolved tickets. Quality over quantity: 15 excellent, well-reasoned tickets beat 40 shallow ones.</div></div>
+  </div>
+  <div class="crow">
+    <div class="cnum">3</div>
+    <div><div class="ctitle">No copy-paste, ever</div><div class="ctext">You type every PowerShell cmdlet, every Bash command, every GPO setting by hand. AI can explain why a command failed. AI does not run the command for you. The muscle memory of the command line lives in your hands or nowhere.</div></div>
+  </div>
+  <div class="crow">
+    <div class="cnum">4</div>
+    <div><div class="ctitle">Document like you're training your replacement</div><div class="ctext">Every resolved issue gets a short SOP (Standard Operating Procedure) — the exact steps, written so a stranger could follow them cold. This is a real skill gap in junior candidates and one of the fastest ways to stand out in an interview.</div></div>
+  </div>
+  <div class="crow">
+    <div class="cnum">5</div>
+    <div><div class="ctitle">Certifications prove readiness — labs build it</div><div class="ctext">You sit CompTIA A+ Core 1 and Core 2, and AWS Cloud Practitioner (CLF-C02), only after the hands-on labs that cover their material are done. A cert earned after real practice sticks in an interview; a cert earned by memorizing flashcards falls apart under one follow-up question.</div></div>
+  </div>
+  <div class="crow">
+    <div class="cnum">6</div>
+    <div><div class="ctitle">PowerShell and Bash are daily tools, not a "scripting week"</div><div class="ctext">Automation — bulk user creation, automated reports, scheduled cleanup — separates a Tier 1 technician from a Tier 2/sysadmin candidate. You start scripting in Month 1 and use it every week after, not as an isolated topic.</div></div>
+  </div>
+  <div class="crow">
+    <div class="cnum">7</div>
+    <div><div class="ctitle">Git and GitHub start Day 1, not Month 4</div><div class="ctext">Every script, SOP, and ticket gets committed as you build it — starting Week 1, Day 3. By the time the portfolio phase arrives, you're assembling and selecting from 4 months of real commits, not reconstructing your work from memory.</div></div>
+  </div>
+</div>
+
+<p class="explain">This roadmap runs 4 months — 120 days, split into 4 monthly phases. Each phase builds directly on the last: fundamentals become the foundation a domain server runs on, the domain becomes the environment your cloud account extends, and everything together becomes the portfolio Month 4 turns into job offers.</p>
+
+<div class="ov-grid">
+  <div class="ov-card" onclick="go(1)">
+    <div class="ov-week">PHASE 1 · MONTH 1</div>
+    <div class="ov-title">IT Support Fundamentals</div>
+    <div class="ov-sub">Linux CLI + Git foundation, hardware, networking, OS troubleshooting, ticketing — aligned to CompTIA A+ Core 1 & Core 2</div>
+    <div class="ov-days">Capstone: 10 resolved Tier 1 tickets + hardware audit script</div>
+  </div>
+  <div class="ov-card" onclick="go(2)">
+    <div class="ov-week">PHASE 2 · MONTH 2</div>
+    <div class="ov-title">Systems Administration</div>
+    <div class="ov-sub">Windows Server, Active Directory, Linux admin, PowerShell/Bash automation</div>
+    <div class="ov-days">Capstone: small-business AD domain with 20 scripted users + Linux file server</div>
+  </div>
+  <div class="ov-card" onclick="go(3)">
+    <div class="ov-week">PHASE 3 · MONTH 3</div>
+    <div class="ov-title">Cloud Support</div>
+    <div class="ov-sub">AWS + Azure fundamentals, IAM, cloud networking, monitoring, cost management</div>
+    <div class="ov-days">Capstone: live AWS environment + 10 resolved cloud support tickets</div>
+  </div>
+  <div class="ov-card" onclick="go(4)">
+    <div class="ov-week">PHASE 4 · MONTH 4</div>
+    <div class="ov-title">Certification + Job Hunt</div>
+    <div class="ov-sub">Sit CompTIA A+ + AWS CLF-C02, build portfolio, apply with discipline</div>
+    <div class="ov-days">Target: certs earned, portfolio live, 300+ applications sent</div>
+  </div>
+</div>
+
+<div class="alert al-p">
+  <span class="ali">→</span>
+  <span><strong>The single most important principle of this roadmap:</strong> a resolved ticket with documented steps is worth more than a certification badge with no proof behind it. Employers hiring Tier 1/2 support and junior sysadmins are filtering for one thing above all else: can this person walk in and actually fix things on day one, calmly, without hand-holding. Everything in this roadmap is built to prove exactly that.</span>
+</div>
+</div>
+
+<!-- ═══ PHASE 1: IT SUPPORT FUNDAMENTALS ═══ -->
+<div class="section" id="s1">
+<div class="wh">
+  <div class="weyebrow">PHASE 1 · MONTH 1 · DAYS 1–30</div>
+  <div class="wtitle">IT Support Fundamentals — Hardware, Networking, OS, Ticketing</div>
+  <div class="wsub">The foundation every other phase depends on. Four weeks, each covering one full domain from CompTIA A+, learned by breaking and fixing real systems in a home lab — not by watching a video about them.</div>
+  <div class="wtags">
+    <span class="tag">CompTIA A+ 220-1201 & 220-1202 aligned</span><span class="tag">VirtualBox home lab</span>
+    <span class="tag">osTicket</span><span class="tag">PowerShell basics</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 1</span><div><div class="dtitle">Hardware & devices — what's actually inside the box</div><div class="dtopic">Motherboard, CPU, RAM, storage, ports/connectors, laptops vs. desktops, mobile devices</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">What to understand, not just memorize</div>
+  <p class="explain">CompTIA A+ Core 1 leans heavily on hardware you can see and touch: motherboard form factors and chipsets, CPU sockets and cooling, RAM types and channels, storage (HDD vs SSD vs NVMe and why the interface matters for speed), power supply wattage and connector types, and the full range of ports and cable connectors (USB-C, HDMI, DisplayPort, SATA, PCIe). Laptop-specific components — batteries, displays, docking stations — and mobile device basics (SIM, biometrics, MDM enrollment) round out the domain.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">Day 1–2 lab: full hardware inventory via command line, no GUI tools</span></div>
+    <div class="cbc"><span class="cm"># Windows — PowerShell, no Device Manager clicking allowed</span>
+Get-ComputerInfo | Select-Object CsManufacturer, CsModel, BiosVersion
+Get-CimInstance Win32_Processor | Select-Object Name, NumberOfCores, MaxClockSpeed
+Get-CimInstance Win32_PhysicalMemory | Select-Object Capacity, Speed, Manufacturer
+Get-CimInstance Win32_DiskDrive | Select-Object Model, Size, InterfaceType
+
+<span class="cm"># Linux — same audit, different tools</span>
+sudo lshw -short
+lscpu
+free -h
+lsblk -o NAME,SIZE,TYPE,MOUNTPOINT</div>
+  </div>
+  <p class="explain"><strong>Write this up as your first SOP:</strong> "How to audit a workstation's hardware from the command line, Windows and Linux" — a real document a Tier 1 tech would keep pinned. This becomes ticket #1 in your osTicket instance later this week.</p>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Memorizing port numbers and connector names as flashcards without ever plugging one in. If you have access to any old PC or laptop — even a dead one — open the case, physically identify the RAM slots, SATA ports, and PCIe slots. Tactile memory from 10 minutes with a screwdriver outlasts an hour of flashcards.
+  </div>
+</div>
+<div class="db-s">
+  <div class="dbl">Day 3–5: build your home lab — the environment every phase after this runs on</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Install VirtualBox (free) or VMware Workstation Player (free for personal use) on your main machine.</div></div>
+    <div class="step"><div class="sn">2</div><div>Create 2 VMs: Windows 11 (or Windows 10 if resources are limited) and Ubuntu 22.04 LTS. Allocate at least 4GB RAM and 40GB disk to each if your host machine allows it.</div></div>
+    <div class="step"><div class="sn">3</div><div>Take a clean snapshot of each VM immediately after setup, before installing anything else. This is your "factory reset" button — every lab this month that breaks something on purpose ends with reverting to this snapshot.</div></div>
+    <div class="step"><div class="sn">4</div><div>Install osTicket on a third lightweight VM (or via XAMPP directly on Ubuntu) — this becomes your ticketing system for the rest of the roadmap.</div></div>
+  </div>
+  <div class="analogy">
+    <span class="albl">ANALOGY — WHY SNAPSHOTS MATTER</span>
+    A snapshot is a save point in a video game. Real Tier 1 techs get comfortable deliberately breaking test systems because they know exactly how to reset to a known-good state. Without that safety net, you'll hesitate to actually break anything — and hesitation is why tutorial-only learners freeze the first time a real system fails in front of them.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 2</span><div><div class="dtitle">Networking fundamentals — the domain most techs are weakest in</div><div class="dtopic">TCP/IP, DNS, DHCP, subnetting, cabling, wireless, VPN, common ports and protocols</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why networking is the domain that separates candidates</div>
+  <p class="explain">Most entry-level candidates can talk about hardware confidently but freeze the moment an interviewer asks "a user says they can't reach the file server — walk me through your diagnostic process." This week fixes that by drilling the exact diagnostic sequence real technicians use, then practicing it against real broken connections you create yourself.</p>
+  <div class="dbl" style="margin-top:1rem">The diagnostic sequence to memorize by doing, not reading</div>
+  <table class="reftbl">
+    <thead><tr><th>Command</th><th>What it tells you</th></tr></thead>
+    <tbody>
+      <tr><td>ipconfig /all (Win) · ip a (Linux)</td><td>Does this machine even have a valid IP, gateway, and DNS server?</td></tr>
+      <tr><td>ping [gateway]</td><td>Can this machine reach the local network at all?</td></tr>
+      <tr><td>ping 8.8.8.8</td><td>Can this machine reach the internet by IP — rules out DNS as the problem.</td></tr>
+      <tr><td>nslookup [domain]</td><td>If ping-by-IP works but browsing doesn't, DNS resolution is the suspect.</td></tr>
+      <tr><td>tracert / traceroute</td><td>Where exactly along the path does the connection stop responding?</td></tr>
+      <tr><td>netstat -an</td><td>What ports and connections is this machine actually using right now?</td></tr>
+    </tbody>
+  </table>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">Day 6–8 lab: build a broken network, then fix it using only the sequence above</span></div>
+    <div class="cbc"><span class="cm"># On your Ubuntu VM, deliberately misconfigure DNS</span>
+sudo nano /etc/resolv.conf
+<span class="cm"># set nameserver to an invalid IP, e.g. 10.10.10.10 — save and exit</span>
+
+<span class="cm"># Now diagnose it blind, as if a user just filed this ticket:</span>
+<span class="cm"># "I can't reach any websites, but Slack still shows me as connected"</span>
+ping 8.8.8.8        <span class="cm"># works — so it's not a total connectivity loss</span>
+ping google.com     <span class="cm"># fails — confirms DNS is the suspect</span>
+nslookup google.com <span class="cm"># confirms resolution failure, points at bad nameserver</span>
+
+<span class="cm"># Fix it, document the exact steps, log it as a resolved ticket</span></div>
+  </div>
+  <p class="explain">Repeat this pattern for at least 3 more scenarios you break yourself: a wrong subnet mask causing a machine to be unreachable on its own subnet, a duplicate IP address conflict, and a firewall rule blocking a specific port. Each one becomes a ticket with a documented resolution.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">Subnetting — the one topic worth brute-force practicing</div>
+  <p class="explain">Subnetting is the single most memorization-resistant topic in networking — you either fluently convert CIDR notation to usable host ranges under time pressure, or you don't. Do 15 minutes of subnetting practice problems daily this week (subnettingpractice.com is free) rather than one long session — this is exactly the kind of material that responds to spaced repetition, not cramming.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 3</span><div><div class="dtitle">Operating systems — Windows client admin + Linux fundamentals</div><div class="dtopic">User accounts, disk management, Task Scheduler, updates, and your first real Linux commands</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Windows — the tasks a Tier 1 tech does daily</div>
+  <p class="explain">Local user and group account management (net user, net localgroup, or the GUI equivalents), disk management (partitions, drive letters, checking disk health with chkdsk), Windows Update troubleshooting (common failure codes and how to reset the Windows Update components), and Task Scheduler for recurring maintenance jobs.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">Day 11–12: create a locked-out user scenario, then recover it — command line only</span></div>
+    <div class="cbc"><span class="cm"># Create a test user, then simulate an account lockout scenario</span>
+net user testuser P@ssw0rd123 /add
+net localgroup Users testuser /add
+
+<span class="cm"># Simulate 3 failed logins to trigger lockout policy (if configured)</span>
+<span class="cm"># then unlock and reset:</span>
+net user testuser /active:yes
+net user testuser NewP@ss456 /logonpasswordchg:yes</div>
+  </div>
+</div>
+<div class="db-s">
+  <div class="dbl">Linux — your first real commands, not a cheat sheet</div>
+  <p class="explain">File system navigation, the permission model (owner/group/other, chmod, chown), package management (apt for Ubuntu), process management (ps, top, kill), and basic service control with systemctl. Every command below, type it yourself — don't paste it.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">Day 13–15: break and fix a permissions problem on your Ubuntu VM</span></div>
+    <div class="cbc"><span class="cm"># Create a file only root can read, then try to access it as testuser</span>
+sudo useradd -m testuser
+sudo -u testuser touch /home/testuser/secret.txt
+sudo chmod 600 /home/testuser/secret.txt
+sudo chown root:root /home/testuser/secret.txt
+
+<span class="cm"># Now, as testuser, confirm the failure and diagnose why</span>
+su - testuser
+cat /home/testuser/secret.txt   <span class="cm"># Permission denied — explain exactly why in your ticket notes</span>
+
+<span class="cm"># Fix: restore correct ownership</span>
+exit
+sudo chown testuser:testuser /home/testuser/secret.txt</div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Running every command as root/Administrator "to make it easier." Real environments enforce least privilege, and interviewers ask about it directly. Practice diagnosing and fixing permission problems as the affected user first, escalating to sudo/admin only when the fix actually requires it — and explain in your ticket notes why escalation was necessary.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 4</span><div><div class="dtitle">Security fundamentals + the ticketing workflow capstone</div><div class="dtopic">Malware types, MFA, phishing recognition, troubleshooting methodology, 10 resolved tickets</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Security awareness every support tech needs</div>
+  <p class="explain">Common malware categories (virus, worm, trojan, ransomware, spyware) and how each typically presents to an end user, multi-factor authentication (why it matters and the common types — SMS, authenticator app, hardware key), phishing recognition (the specific red flags: mismatched sender domains, urgency language, suspicious links), and basic patch management discipline.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">CompTIA's official troubleshooting methodology — memorize this exact order</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Identify the problem — gather information, question the user, identify recent changes.</div></div>
+    <div class="step"><div class="sn">2</div><div>Establish a theory of probable cause — start with the obvious, question the obvious if it's wrong.</div></div>
+    <div class="step"><div class="sn">3</div><div>Test the theory to determine the cause — confirm before you act.</div></div>
+    <div class="step"><div class="sn">4</div><div>Establish a plan of action and implement the solution.</div></div>
+    <div class="step"><div class="sn">5</div><div>Verify full system functionality and implement preventive measures.</div></div>
+    <div class="step"><div class="sn">6</div><div>Document findings, actions, and outcomes.</div></div>
+  </div>
+  <p class="explain">This sequence appears directly on the A+ exam and, more importantly, is exactly the structure a hiring manager wants to hear in an interview answer to "walk me through how you'd troubleshoot X." Use this exact 6-step structure in every ticket you log from here on.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">Capstone: 10 resolved Tier 1 tickets in your osTicket instance</div>
+  <p class="explain">Simulate 10 realistic tickets spanning everything from this month — at least 2 hardware-related, 3 networking-related, 3 OS/permissions-related, and 2 security-related. Each ticket must follow the full lifecycle: submitted (written from the user's point of view, non-technical language), triaged (priority + category assigned), diagnosed using the 6-step methodology, resolved with a documented SOP, and closed with a resolution summary.</p>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Writing tickets that are too easy or too vague ("computer broken, fixed it"). A hiring manager reading these should see real diagnostic thinking — the wrong theory you ruled out, not just the right answer you landed on. A ticket that shows one dead end before the fix is more convincing than one that goes straight to the answer.
+  </div>
+</div>
+
+<div class="cap">
+  <div class="capeye">PHASE 1 CAPSTONE REQUIREMENTS</div>
+  <div class="captitle">10 resolved Tier 1 tickets + 2 documented SOPs — your first portfolio artifact</div>
+  <div class="capbody">A working osTicket instance with 10 fully resolved, realistically-written tickets covering hardware, networking, OS, and security scenarios — each following the 6-step troubleshooting methodology and ending in a written SOP for the two most instructive ones.</div>
+  <div class="capreqs">
+    <div class="capreq">Home lab live: 2 VMs (Windows + Linux) with snapshots, osTicket instance running</div>
+    <div class="capreq">10 tickets resolved, spanning hardware, network, OS, and security categories</div>
+    <div class="capreq">Every ticket documents the 6-step troubleshooting methodology explicitly</div>
+    <div class="capreq">2 full SOPs written — a stranger could follow them without asking a question</div>
+    <div class="capreq">Hardware audit script (PowerShell + Bash versions) saved to your GitHub</div>
+    <div class="capreq">Subnetting fluency — solve 10 timed practice problems in under 15 minutes total</div>
+  </div>
+</div>
+
+<div class="gate">
+  <div class="gate-title">PHASE 1 EXIT GATE — you're ready for Phase 2 when:</div>
+  <div class="gate-item">You can audit a machine's hardware from the command line alone, on both Windows and Linux</div>
+  <div class="gate-item">You can diagnose a broken network connection using only the ping → nslookup → tracert sequence, without looking it up</div>
+  <div class="gate-item">You can create, lock out, and recover a Windows local user account entirely from the command line</div>
+  <div class="gate-item">You can explain a Linux permissions problem (owner/group/other) and fix it correctly on the first try</div>
+  <div class="gate-item">You can recite the 6-step troubleshooting methodology without notes and apply it in a live scenario</div>
+  <div class="gate-item">Your osTicket instance shows 10 real, well-documented resolved tickets</div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">10</div><div class="ml">tickets resolved</div></div>
+  <div class="metric"><div class="mv">2</div><div class="ml">VMs + snapshots</div></div>
+  <div class="metric"><div class="mv">2</div><div class="ml">SOPs written</div></div>
+  <div class="metric"><div class="mv">A+</div><div class="ml">exam-ready material covered</div></div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ PHASE 2: SYSTEMS ADMINISTRATION ═══ -->
+<div class="section" id="s2">
+<div class="wh">
+  <div class="weyebrow">PHASE 2 · MONTH 2 · DAYS 31–60</div>
+  <div class="wtitle">Systems Administration — Windows Server, Active Directory, Linux, Automation</div>
+  <div class="wsub">This is the phase that moves you from "fixes one user's laptop" to "manages the environment 50 users work in." You'll stand up a real Windows Server domain, manage it with Active Directory and Group Policy, run a parallel Linux file server, and automate the repetitive parts with PowerShell and Bash.</div>
+  <div class="wtags">
+    <span class="tag">Windows Server 2022 (eval)</span><span class="tag">Active Directory + GPO</span>
+    <span class="tag">Linux server admin</span><span class="tag">PowerShell + Bash automation</span>
+    <span class="tag">Virtualization + backups</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 5</span><div><div class="dtitle">Windows Server fundamentals — installing your first domain controller</div><div class="dtopic">Server roles and features, DNS/DHCP server roles, promoting a server to a domain controller</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why a domain changes everything</div>
+  <p class="explain">Every machine in Month 1 was standalone — local accounts, local policies, nothing shared. A domain is what turns 50 separate computers into one manageable environment: one place to create a user, one place to push a password policy, one place to see who has access to what. Understanding this shift is the conceptual core of the entire month.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Download Windows Server 2022 Evaluation (free, 180-day license from Microsoft) and install it as a new VM in VirtualBox — allocate at least 4GB RAM, 60GB disk.</div></div>
+    <div class="step"><div class="sn">2</div><div>Set a static IP on the server VM — a domain controller cannot run on a DHCP-assigned address that might change.</div></div>
+    <div class="step"><div class="sn">3</div><div>Install the DNS Server role first — Active Directory depends on DNS to function, and installing it out of order is one of the most common setup mistakes.</div></div>
+    <div class="step"><div class="sn">4</div><div>Install Active Directory Domain Services (AD DS) role, then promote the server to a new domain controller in a new forest (e.g. <code>corp.lab</code>).</div></div>
+    <div class="step"><div class="sn">5</div><div>Install and configure the DHCP Server role to hand out addresses to future client machines, with a scope matching your lab's private network range.</div></div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Installing AD DS before DNS, or leaving the server on a DHCP-assigned IP. Both cause the domain promotion to silently misbehave in ways that are confusing to debug later — get the static IP and DNS role installed first, every time, on every domain controller you ever build.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 6</span><div><div class="dtitle">Active Directory deep dive — OUs, users, groups, and Group Policy</div><div class="dtopic">Organizational structure, security groups, GPOs enforcing real policy, file share permissions</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Organizational Units — modeling a real company structure</div>
+  <p class="explain">An OU is a container used to organize users, groups, and computers so Group Policy and delegated permissions can target the right subset of the domain. Model a small company: create OUs for Sales, IT, and Management, each with its own users and, later, its own specific GPOs.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">create the OU structure and 5 test users via PowerShell — Active Directory module</span></div>
+    <div class="cbc">New-ADOrganizationalUnit -Name <span class="st">"Sales"</span> -Path <span class="st">"DC=corp,DC=lab"</span>
+New-ADOrganizationalUnit -Name <span class="st">"IT"</span> -Path <span class="st">"DC=corp,DC=lab"</span>
+New-ADOrganizationalUnit -Name <span class="st">"Management"</span> -Path <span class="st">"DC=corp,DC=lab"</span>
+
+New-ADUser -Name <span class="st">"Amaka Johnson"</span> -SamAccountName <span class="st">"ajohnson"</span> <span class="fl">\</span>
+  -Path <span class="st">"OU=Sales,DC=corp,DC=lab"</span> <span class="fl">\</span>
+  -AccountPassword (ConvertTo-SecureString <span class="st">"P@ssw0rd2026!"</span> -AsPlainText -Force) <span class="fl">\</span>
+  -Enabled <span class="hl">$true</span></div>
+  </div>
+</div>
+<div class="db-s">
+  <div class="dbl">Group Policy Objects — enforcing real policy, not just theory</div>
+  <p class="explain">A GPO applies settings automatically to every user or computer in the OU (or domain) it's linked to — password complexity, drive mappings, desktop restrictions, software deployment. This week, build and test 3 real GPOs so the theory has something to attach to.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Password policy GPO: enforce minimum length, complexity, and account lockout threshold at the domain level.</div></div>
+    <div class="step"><div class="sn">2</div><div>Drive mapping GPO: automatically map a network drive (e.g. <code>\\SERVER\Sales</code>) for every user in the Sales OU only.</div></div>
+    <div class="step"><div class="sn">3</div><div>Desktop restriction GPO: prevent users in a chosen OU from accessing Control Panel — a common real-world helpdesk policy.</div></div>
+  </div>
+  <p class="explain"><strong>Verify every GPO actually applies:</strong> log into a domain-joined client VM as a test user and confirm the policy took effect, using <code>gpresult /r</code> to see exactly which GPOs applied and why. A GPO that "should" work but was never verified is a common source of real production incidents — build the habit of always checking now.</p>
+  <div class="dbl" style="margin-top:1rem">File share permissions — NTFS vs. share permissions</div>
+  <p class="explain">Create a shared folder for the Sales OU and set both share-level and NTFS-level permissions — this is a frequent point of confusion because the two layers combine, and the more restrictive one always wins. Practice diagnosing "I can see the folder on the network but get access denied opening it" — almost always an NTFS permission gap under a share permission that looks fine.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 7</span><div><div class="dtitle">Linux system administration — the server side, not just the desktop</div><div class="dtopic">User/group management, systemd services, package management, SSH, cron, log analysis, firewall</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Standing up a Linux file server as your domain's Linux counterpart</div>
+  <p class="explain">Most real environments are mixed — Windows domain for user management, Linux servers for specific services. This week builds a Samba-based Linux file server that mirrors the Windows share you built in Week 6, so you understand permission models on both platforms.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">Samba file share with proper Linux permission groups</span></div>
+    <div class="cbc">sudo apt update && sudo apt install samba -y
+
+<span class="cm"># Create a shared group and directory</span>
+sudo groupadd itshare
+sudo mkdir -p /srv/samba/it
+sudo chown :itshare /srv/samba/it
+sudo chmod 2770 /srv/samba/it   <span class="cm"># setgid bit — new files inherit the group</span>
+
+<span class="cm"># Add the share definition to /etc/samba/smb.conf, then restart</span>
+sudo systemctl restart smbd
+sudo systemctl status smbd</div>
+  </div>
+</div>
+<div class="db-s">
+  <div class="dbl">SSH, cron, and log analysis — the daily sysadmin toolkit</div>
+  <p class="explain">Configure SSH key-based authentication and disable password login entirely — the single most common security hardening step on any Linux server. Set up a cron job that automates a real maintenance task (e.g. nightly log rotation or a disk-space check that emails an alert). Practice reading <code>/var/log/auth.log</code> and <code>/var/log/syslog</code> to answer real questions: who logged in, when, and from where; what service failed and why.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">a real cron job — disk space alert, the kind a junior sysadmin actually writes</span></div>
+    <div class="cbc"><span class="cm">#!/bin/bash</span>
+<span class="cm"># disk_check.sh — alerts if root partition exceeds 85% usage</span>
+THRESHOLD=<span class="hl">85</span>
+USAGE=$(df / | tail -1 | awk <span class="st">'{print $5}'</span> | tr -d <span class="st">'%'</span>)
+
+<span class="kw">if</span> [ <span class="fl">$USAGE</span> -gt <span class="fl">$THRESHOLD</span> ]; <span class="kw">then</span>
+  <span class="fl">echo</span> <span class="st">"WARNING: disk usage at ${USAGE}% on $(hostname), $(date)"</span> >> /var/log/disk_alerts.log
+<span class="kw">fi</span>
+
+<span class="cm"># Schedule it: crontab -e, then add:</span>
+<span class="cm"># 0 * * * * /home/user/disk_check.sh</span></div>
+  </div>
+  <p class="explain">Finally, enable and configure <code>ufw</code> (uncomplicated firewall) — allow only SSH and Samba ports, deny everything else by default, and verify the rules actually block an unauthorized port using a test connection from another VM.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 8</span><div><div class="dtitle">Automation + virtualization + the sysadmin capstone</div><div class="dtopic">Bulk PowerShell provisioning, VM snapshots/backups, intro Azure AD/Intune, capstone build</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Bulk user provisioning — the script that actually separates Tier 1 from Tier 2</div>
+  <p class="explain">Creating one AD user by hand is a helpdesk task. Creating 20 from a CSV, correctly placed into their OUs with the right group memberships, is a sysadmin task — and it's the single clearest automation skill hiring managers look for at this level.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">bulk-create-users.ps1 — reads a CSV, creates every user, logs the result</span></div>
+    <div class="cbc">$users = Import-Csv -Path <span class="st">"C:\scripts\new_users.csv"</span>
+<span class="cm"># CSV columns: FirstName,LastName,Department,OU</span>
+
+<span class="kw">foreach</span> ($u <span class="kw">in</span> $users) {
+  $sam = ($u.FirstName.Substring(<span class="hl">0</span>,<span class="hl">1</span>) + $u.LastName).ToLower()
+  $upn = <span class="st">"$sam@corp.lab"</span>
+
+  <span class="kw">try</span> {
+    New-ADUser -Name <span class="st">"$($u.FirstName) $($u.LastName)"</span> <span class="fl">\</span>
+      -SamAccountName $sam -UserPrincipalName $upn <span class="fl">\</span>
+      -Path <span class="st">"OU=$($u.OU),DC=corp,DC=lab"</span> <span class="fl">\</span>
+      -AccountPassword (ConvertTo-SecureString <span class="st">"Temp@2026!"</span> -AsPlainText -Force) <span class="fl">\</span>
+      -Enabled <span class="hl">$true</span> -ChangePasswordAtLogon <span class="hl">$true</span>
+    Write-Output <span class="st">"Created: $sam"</span> | Out-File -Append log.txt
+  } <span class="kw">catch</span> {
+    Write-Output <span class="st">"FAILED: $sam - $_"</span> | Out-File -Append log.txt
+  }
+}</div>
+  </div>
+</div>
+<div class="db-s">
+  <div class="dbl">Virtualization discipline — snapshots as a real backup strategy</div>
+  <p class="explain">Practice the full cycle: snapshot the domain controller before a risky change (like a GPO that could lock out all users), make the change, verify it, and — deliberately, once — roll back a snapshot to prove you can recover from a mistake cleanly. This exact discipline (checkpoint before risky change) is what separates a sysadmin who causes outages from one who doesn't.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">Intro to cloud identity — Azure AD / Intune, the direction the field is moving</div>
+  <p class="explain">Most organizations are migrating identity to the cloud — Azure AD (now Microsoft Entra ID) for authentication and Intune for device management. Create a free Microsoft 365 developer tenant, add a few test users, and compare the experience directly against the on-prem AD you just built: what's the same conceptually (users, groups, policies), and what's different (no domain controller to manage, policies pushed to devices anywhere, not just on the local network).</p>
+</div>
+<div class="db-s">
+  <div class="dbl">Capstone: the small-business IT environment</div>
+  <p class="explain">Combine everything from this month into one documented environment: a Windows Server domain with 3 OUs and 20 users created via your bulk-provisioning script, 3 working GPOs verified with <code>gpresult</code>, a Linux Samba file server with a correctly configured permission group, and a network diagram showing how it all connects — plus a written runbook covering "how to onboard a new employee" end to end across both systems.</p>
+</div>
+
+<div class="cap">
+  <div class="capeye">PHASE 2 CAPSTONE REQUIREMENTS</div>
+  <div class="captitle">A complete, documented small-business IT environment — Windows + Linux</div>
+  <div class="capbody">A live Active Directory domain with 20 scripted users across 3 OUs, 3 verified GPOs, a Linux Samba file server with correct permission groups, and a written new-employee onboarding runbook spanning both systems.</div>
+  <div class="capreqs">
+    <div class="capreq">Windows Server domain controller live, static IP, DNS + DHCP roles configured correctly</div>
+    <div class="capreq">3 OUs with 20 users created via a working PowerShell bulk-provisioning script reading from CSV</div>
+    <div class="capreq">3 GPOs built and verified to actually apply, using gpresult as proof</div>
+    <div class="capreq">Linux Samba file server live with a correctly scoped permission group (setgid, group ownership)</div>
+    <div class="capreq">SSH key-based auth configured, password login disabled, ufw firewall rules verified</div>
+    <div class="capreq">One working cron-scheduled maintenance script with logged output</div>
+    <div class="capreq">A written onboarding runbook: new employee, AD account to Linux share access, start to finish</div>
+    <div class="capreq">Network diagram of the full environment, saved to your portfolio repo</div>
+  </div>
+</div>
+
+<div class="gate">
+  <div class="gate-title">PHASE 2 EXIT GATE — you're ready for Phase 3 when:</div>
+  <div class="gate-item">You can stand up a new domain controller from a blank VM, in the correct order, without a checklist</div>
+  <div class="gate-item">You can create an OU structure and bulk-provision users from a CSV using your own PowerShell script</div>
+  <div class="gate-item">You can build a GPO, link it to the right OU, and prove with gpresult that it actually applied</div>
+  <div class="gate-item">You can diagnose an NTFS vs. share permission conflict on Windows and a group-ownership issue on Linux</div>
+  <div class="gate-item">You can explain, in an interview, the conceptual difference between on-prem AD and Azure AD/Entra ID</div>
+  <div class="gate-item">Your onboarding runbook is detailed enough that a stranger could follow it without asking a question</div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">20</div><div class="ml">users scripted</div></div>
+  <div class="metric"><div class="mv">3</div><div class="ml">GPOs verified</div></div>
+  <div class="metric"><div class="mv">2</div><div class="ml">servers, Win + Linux</div></div>
+  <div class="metric"><div class="mv">1</div><div class="ml">onboarding runbook</div></div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ PHASE 3: CLOUD SUPPORT ═══ -->
+<div class="section" id="s3">
+<div class="wh">
+  <div class="weyebrow">PHASE 3 · MONTH 3 · DAYS 61–90</div>
+  <div class="wtitle">Cloud Support — AWS, Azure, and the Support Workflows Built Around Them</div>
+  <div class="wsub">On-prem AD taught you identity and access on your own network. This month moves the same concepts — users, permissions, monitoring, cost — into AWS and Azure, and builds the specific skill cloud support roles actually hire for: resolving access, provisioning, and cost tickets against a real cloud account.</div>
+  <div class="wtags">
+    <span class="tag">AWS free tier</span><span class="tag">CLF-C02 aligned</span><span class="tag">Azure free account</span>
+    <span class="tag">AZ-900 concepts</span><span class="tag">CloudWatch / Azure Monitor</span><span class="tag">Cost management</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 9</span><div><div class="dtitle">AWS fundamentals — account, IAM, EC2, S3, VPC basics</div><div class="dtopic">Every core service the CLF-C02 exam and real cloud support tickets both depend on</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Account setup, billing alerts, and IAM — in that order, always</div>
+  <p class="explain">Create an AWS Free Tier account. Before touching any service, set a billing alarm at a low threshold (e.g. $5) — this single habit prevents the most common beginner mistake: an accidentally-running resource generating a surprise bill. Then create an IAM user for yourself with least-privilege permissions instead of using the root account for daily work — root is for account-level tasks only, from day one.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">create your daily-use IAM user and a billing alarm — AWS CLI</span></div>
+    <div class="cbc"><span class="cm"># After installing and configuring the AWS CLI with root credentials once:</span>
+aws iam create-user --user-name daily-admin
+aws iam attach-user-policy --user-name daily-admin \
+  --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+aws iam create-access-key --user-name daily-admin
+
+<span class="cm"># Switch to using these credentials for everything from here on —</span>
+<span class="cm"># never use root access keys for daily work</span></div>
+  </div>
+  <div class="dbl" style="margin-top:1rem">IAM — users, groups, policies, and the concept every cloud ticket touches</div>
+  <p class="explain">IAM controls who can do what in an AWS account — this is the exact same conceptual model as Active Directory from Month 2, just cloud-native. Create an IAM group called <code>SupportTeam</code> with a policy granting only read access to EC2 and S3, then create a user, add them to the group, and verify the restricted permissions actually work by attempting (and correctly failing) a write operation.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">EC2, S3, and VPC — the 3 services every cloud support ticket touches</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Launch a t2.micro EC2 instance (free tier eligible) running Amazon Linux. SSH into it, confirm you understand security groups as the cloud equivalent of the firewall rules from Month 2.</div></div>
+    <div class="step"><div class="sn">2</div><div>Create an S3 bucket, upload a test file, and practice setting bucket policies — deliberately misconfigure one to be briefly public, observe AWS's warning, then correct it. Understanding accidental public exposure is a real, frequently-tested support scenario.</div></div>
+    <div class="step"><div class="sn">3</div><div>Create a custom VPC with public and private subnets, an internet gateway, and route tables — this is the conceptual foundation for every "why can't this resource reach the internet" ticket you'll ever get.</div></div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Leaving free-tier resources running after the lab session ends. Set a personal rule: stop or terminate every EC2 instance at the end of each study session, and check the AWS billing dashboard weekly without fail. This habit alone prevents almost every "how did I get a surprise bill" story from junior cloud learners.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 10</span><div><div class="dtitle">Azure fundamentals — the other cloud most enterprise support desks run</div><div class="dtopic">Azure AD, VMs, storage accounts, resource groups, cost management — AZ-900 aligned</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why Azure matters as much as AWS for support roles specifically</div>
+  <p class="explain">AWS dominates cloud infrastructure market share, but most mid-size and enterprise companies — especially ones already running Windows Server and on-prem AD, exactly like the environment you built in Month 2 — run heavily on Azure and Microsoft 365. A support technician who only knows AWS is locked out of a huge share of real job postings that mention "Azure AD," "Intune," or "M365 admin."</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Create an Azure free account and a resource group — the Azure equivalent of a logical folder grouping related resources together.</div></div>
+    <div class="step"><div class="sn">2</div><div>Deploy a small Windows or Linux VM inside that resource group, connect to it, and compare the experience directly against your AWS EC2 instance from Week 9.</div></div>
+    <div class="step"><div class="sn">3</div><div>Create a storage account and a blob container, upload a test file, and compare its access-control model against S3 bucket policies.</div></div>
+    <div class="step"><div class="sn">4</div><div>Return to the Azure AD / Entra ID tenant you created in Month 2 Week 8, and connect the concept explicitly: this is the identity layer behind every Azure resource you just touched.</div></div>
+  </div>
+  <div class="dbl" style="margin-top:1rem">The comparison table every interview question about "AWS vs Azure" is really asking for</div>
+  <table class="reftbl">
+    <thead><tr><th>Concept</th><th>AWS</th><th>Azure</th></tr></thead>
+    <tbody>
+      <tr><td>Compute</td><td>EC2</td><td>Virtual Machines</td></tr>
+      <tr><td>Object storage</td><td>S3</td><td>Blob Storage</td></tr>
+      <tr><td>Identity</td><td>IAM</td><td>Azure AD / Entra ID</td></tr>
+      <tr><td>Resource grouping</td><td>Tags / Organizations</td><td>Resource Groups</td></tr>
+      <tr><td>Cost tool</td><td>Cost Explorer</td><td>Cost Management + Billing</td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 11</span><div><div class="dtitle">Cloud support workflows — monitoring, backup, and the shared responsibility model</div><div class="dtopic">CloudWatch/Azure Monitor basics, MFA and shared responsibility, real access-request tickets</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The shared responsibility model — the concept every cloud security question tests</div>
+  <p class="explain">AWS and Azure secure the underlying infrastructure — physical data centers, the hypervisor, network hardware. You (or your employer) are responsible for everything above that: data encryption, access management, security group/firewall rules, and OS-level patching on any VM you run. Almost every cloud security incident in the real world traces back to someone misunderstanding where that line sits — usually an overly permissive security group or a public S3 bucket. Be able to explain this model clearly and give one concrete example on each side of the line.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">Basic monitoring — CloudWatch and Azure Monitor</div>
+  <p class="explain">Set up a CloudWatch alarm on your EC2 instance that triggers if CPU usage exceeds 80% for 5 minutes, and an Azure Monitor alert on your VM for the same condition. Generate a brief CPU spike deliberately (a simple stress-test command) and confirm the alarm actually fires — never trust a monitoring config you haven't verified triggers correctly.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">Simulating real cloud support tickets — access requests and provisioning</div>
+  <p class="explain">In your osTicket instance, log and resolve 5 cloud-specific tickets this week: a new employee needs read-only S3 access to a specific bucket (resolved by writing a scoped IAM policy), a user is locked out of the Azure portal (resolved by resetting MFA in Azure AD), a developer needs a new EC2 instance provisioned to a spec (resolved by launching and configuring it, then documenting the handoff), a security group is blocking a legitimate connection (resolved by correctly diagnosing and adjusting the rule), and a storage cost anomaly needs investigating (resolved using Cost Explorer to identify the source).</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 12</span><div><div class="dtitle">Certification sprint + the cloud support capstone</div><div class="dtopic">CLF-C02 focused review, 5 more resolved tickets, capstone environment finalized</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">CLF-C02 domain weighting — study time allocation that matches the actual exam</div>
+  <table class="reftbl">
+    <thead><tr><th>Domain</th><th>Exam weight</th><th>Study focus</th></tr></thead>
+    <tbody>
+      <tr><td>Cloud Technology & Services</td><td>34%</td><td>Core services you've now used hands-on: EC2, S3, VPC, IAM, RDS basics</td></tr>
+      <tr><td>Security & Compliance</td><td>30%</td><td>Shared responsibility model, IAM policies, MFA, encryption basics</td></tr>
+      <tr><td>Cloud Concepts</td><td>24%</td><td>Elasticity, availability zones, the well-architected framework at a high level</td></tr>
+      <tr><td>Billing, Pricing & Support</td><td>12%</td><td>Free tier, pricing models, support plan tiers, Cost Explorer</td></tr>
+    </tbody>
+  </table>
+  <p class="explain">The exam is 65 questions in 90 minutes, scenario-based rather than pure definition recall, with a 700/1000 passing score. Spend the majority of your remaining study time on Cloud Technology and Security — together that's 64% of the exam, and it's also the material your hands-on labs this month already cover best.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">Capstone: the cloud support ticket queue</div>
+  <p class="explain">Finish the month with 10 total resolved cloud tickets (the 5 from Week 11 plus 5 more spanning both AWS and Azure), a documented small AWS environment (custom VPC, EC2 instance, S3 bucket with correct policies, IAM group structure), and a one-page comparison document explaining AWS vs. Azure service equivalents in your own words — the exact table from Week 10, but written from your own hands-on experience rather than copied.</p>
+</div>
+
+<div class="cap">
+  <div class="capeye">PHASE 3 CAPSTONE REQUIREMENTS</div>
+  <div class="captitle">A live AWS environment + 10 resolved cloud support tickets</div>
+  <div class="capbody">A documented AWS environment with correct IAM, networking, and storage configuration, 10 resolved cloud support tickets spanning both AWS and Azure, and exam-ready command of the CLF-C02 domains earned through hands-on practice.</div>
+  <div class="capreqs">
+    <div class="capreq">AWS account with billing alarm active, daily-use IAM user (not root) for all work</div>
+    <div class="capreq">Custom VPC with public/private subnets, EC2 instance, S3 bucket with correct (not accidentally public) policies</div>
+    <div class="capreq">IAM group with a scoped least-privilege policy, verified by a failed write attempt as proof</div>
+    <div class="capreq">Azure resource group with a VM and storage account, compared directly against the AWS equivalents</div>
+    <div class="capreq">CloudWatch and Azure Monitor alarms, both verified to actually trigger under a real load test</div>
+    <div class="capreq">10 resolved cloud support tickets — access requests, provisioning, security groups, cost investigation</div>
+    <div class="capreq">Practice exam scores of 80%+ on at least 2 full-length CLF-C02 practice tests before exam day</div>
+  </div>
+</div>
+
+<div class="gate">
+  <div class="gate-title">PHASE 3 EXIT GATE — you're ready for Phase 4 when:</div>
+  <div class="gate-item">You can explain the shared responsibility model with one concrete example on each side, without hesitation</div>
+  <div class="gate-item">You can write a scoped IAM policy from scratch and verify it actually restricts access correctly</div>
+  <div class="gate-item">You can diagnose a security group misconfiguration blocking legitimate traffic</div>
+  <div class="gate-item">You can explain AWS vs. Azure service equivalents from your own hands-on experience, not a memorized table</div>
+  <div class="gate-item">You're consistently scoring 80%+ on full-length CLF-C02 practice exams</div>
+  <div class="gate-item">Your osTicket queue shows 10 real, well-documented cloud support tickets</div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">10</div><div class="ml">cloud tickets resolved</div></div>
+  <div class="metric"><div class="mv">2</div><div class="ml">clouds — AWS + Azure</div></div>
+  <div class="metric"><div class="mv">80%+</div><div class="ml">practice exam scores</div></div>
+  <div class="metric"><div class="mv">CLF-C02</div><div class="ml">exam-ready</div></div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ PHASE 4: CERTIFICATION + JOB HUNT ═══ -->
+<div class="section" id="s4">
+<div class="wh">
+  <div class="weyebrow">PHASE 4 · MONTH 4 · DAYS 91–120</div>
+  <div class="wtitle">Certification + Portfolio + the Hunt — Job Applications and NYSC PPA, in Parallel</div>
+  <div class="wsub">Three months of real, documented builds are only useful once someone can see them. This final month closes out CompTIA A+, translates three months of tickets, scripts, and environments into a portfolio a hiring manager — or a company deciding whether to accept you as a corps member — can be convinced by fast, then executes a disciplined dual-track outreach campaign.</div>
+  <div class="wtags">
+    <span class="tag">Sit CompTIA A+ Core 1 + Core 2</span><span class="tag">Portfolio site</span>
+    <span class="tag">Resume + LinkedIn + PPA brief</span><span class="tag">PPA outreach + 300+ applications</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 13</span><div><div class="dtitle">Certification exam week — CompTIA A+, sit what you've earned</div><div class="dtopic">Core 1 and Core 2 — AWS CLF-C02 was already handled at the end of Phase 3</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Milestone</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Exam logistics and sequencing</div>
+  <p class="explain">Book Core 1 and Core 2 3–5 days apart rather than both on the same day — enough gap to review weak areas from Core 1 before Core 2, not so much that momentum is lost. This is targeted review, not re-learning: the material has had 3 months to solidify through everything you built since Phase 1.</p>
+  <div class="chklist">
+    <div class="chk"><div class="chk-box"></div><div>Core 1 (220-1201) booked and passed — 675/900 minimum</div></div>
+    <div class="chk"><div class="chk-box"></div><div>Core 2 (220-1202) booked and passed — 700/900 minimum</div></div>
+    <div class="chk"><div class="chk-box"></div><div>Digital badges added to LinkedIn and Credly, ready to embed in the portfolio</div></div>
+  </div>
+  <div class="alert al-i">
+    <span class="ali">i</span>
+    <span>If a certification doesn't land on the first attempt, that's a normal part of the process, not a roadmap failure — retake it within 2 weeks while the material is fresh, and keep moving on portfolio work in parallel rather than pausing everything to wait.</span>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 14</span><div><div class="dtitle">Portfolio construction — turning 3 months of tickets into evidence</div><div class="dtopic">Portfolio site live, 3 project write-ups, resume, LinkedIn overhaul</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Portfolio site — same free stack, same 3-day target</div>
+  <p class="explain">Hugo + GitHub Pages + Cloudflare, exactly as any builder-focused technical portfolio should be: free, fast, and professional. A custom domain (~₦5,000/year) is worth it if budget allows.</p>
+  <div class="dbl" style="margin-top:1rem">3 project pages — one per phase, structured to prove real thinking</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div><strong>Tier 1 Helpdesk Simulation (Phase 1):</strong> a summary of your 10 tickets, 2 full SOPs embedded, hardware audit scripts linked from GitHub, and 2–3 screenshots of the osTicket queue itself.</div></div>
+    <div class="step"><div class="sn">2</div><div><strong>Small-Business IT Environment (Phase 2):</strong> the network diagram, the bulk-provisioning PowerShell script, a screenshot of gpresult proving a GPO applied, and the full onboarding runbook.</div></div>
+    <div class="step"><div class="sn">3</div><div><strong>Cloud Support Environment (Phase 3):</strong> the AWS architecture (VPC diagram), the IAM policy JSON you wrote, screenshots of a triggered CloudWatch alarm, and the AWS-vs-Azure comparison document.</div></div>
+  </div>
+  <p class="explain">Each page follows the same structure that worked for the DevOps roadmap: what it is, the decisions you made and why, the artifact itself (script, screenshot, document), and one honest "what I'd do differently" sentence.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">Resume — quantified, ATS-safe, certification-forward</div>
+  <p class="explain">Lead with certifications (CompTIA A+, AWS CLF-C02) since they're the first filter many ATS systems and recruiters apply for these roles. Quantify project work exactly like the portfolio pages: "Resolved 30+ simulated Tier 1–2 support tickets across hardware, networking, and cloud domains, each documented with full diagnostic methodology" reads far stronger than "Familiar with troubleshooting."</p>
+  <table class="reftbl">
+    <thead><tr><th>ATS keyword bank</th><th>Include naturally, don't stuff</th></tr></thead>
+    <tbody>
+      <tr><td>Certifications</td><td>CompTIA A+, AWS Certified Cloud Practitioner, ITIL awareness</td></tr>
+      <tr><td>Platforms</td><td>Windows Server, Active Directory, Group Policy, Linux (Ubuntu), Azure AD, AWS</td></tr>
+      <tr><td>Tools</td><td>PowerShell, Bash, osTicket, ServiceNow/Zendesk (familiarity), VirtualBox/VMware</td></tr>
+      <tr><td>Concepts</td><td>Ticketing, SLA, Tier 1/Tier 2 support, IAM, DNS/DHCP, VPN, MFA, patch management</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="db-s">
+  <div class="dbl">LinkedIn — same discipline as the resume, tuned for this field</div>
+  <p class="explain">Headline: "IT Support / Cloud Support Technician | CompTIA A+ | AWS Certified Cloud Practitioner | Active Directory · Azure · Linux | NYSC Corps Member seeking a technical PPA." About section: 5 sentences — what you built (a full simulated IT environment, not just a course certificate), your certifications, what makes you different (documented, ticket-driven, hands-on proof), what you're looking for (a technical PPA and/or remote/local roles), and your portfolio link. Featured section: portfolio site, one strong screenshot from each of the 3 projects.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">The PPA technical brief — a separate one-page document, purpose-built</div>
+  <p class="explain">A resume is written for a job description to match against. A PPA request is different — you're asking a company to accept you as a corps member, often through a short, informal decision process. Build a one-page brief, scannable in 90 seconds: who you are and your certifications in 2 lines, your 3 strongest concrete claims (one per environment you built), your portfolio link, and what you're asking for — a PPA placement with your NYSC availability dates. Export it as a clean PDF; you'll use it constantly during the outreach weeks.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEK 15</span><div><div class="dtitle">Interview preparation — the scenarios that decide these interviews</div><div class="dtopic">5 rehearsed scenarios covering support, sysadmin, and cloud, from your own real labs</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The 5 scenarios — answered from what you actually built</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div><strong>"Walk me through how you'd troubleshoot a user who can't connect to the network."</strong> Recite the 6-step methodology from Phase 1, then walk through the exact ping → nslookup → tracert sequence you practiced, using your own DNS-misconfiguration lab as a concrete example.</div></div>
+    <div class="step"><div class="sn">2</div><div><strong>"How would you onboard a new employee?"</strong> Walk through your own onboarding runbook from Phase 2 — AD account creation, OU placement, group membership, drive mapping via GPO, and the Linux share access if relevant.</div></div>
+    <div class="step"><div class="sn">3</div><div><strong>"A user says they can't access a shared file, but their coworker in the same role can."</strong> Diagnose it live: check group membership first, then NTFS permissions vs. share permissions, referencing the exact conflict you deliberately created and resolved in Phase 2.</div></div>
+    <div class="step"><div class="sn">4</div><div><strong>"How do you handle a request for access to a cloud resource?"</strong> Walk through the least-privilege IAM policy you wrote in Phase 3 — least privilege by default, verified by testing a denied action, not just granted and assumed correct.</div></div>
+    <div class="step"><div class="sn">5</div><div><strong>"Tell me about a time you had to explain something technical to a non-technical person."</strong> Use one of your own written SOPs or the onboarding runbook as the concrete example — you wrote these to be followed by a stranger, which is exactly this skill in practice.</div></div>
+  </div>
+  <div class="alert al-s">
+    <span class="ali">✓</span>
+    <span>Practice each answer out loud until fluent, without notes, under 3 minutes. Use Pramp.com for free peer mock interviews — a real conversational partner surfaces gaps that a solo run-through never will.</span>
+  </div>
+</div>
+<div class="db-s">
+  <div class="dbl">The PPA outreach conversation — a different skill from interviewing</div>
+  <p class="explain">A job interview responds to a posting where a company already wants to hire. A PPA request is you initiating — reaching a company that wasn't necessarily planning to take a corps member, asking them to say yes with real (if modest) cost to them. Write a personalized cold-outreach email template naming a specific IT manager or technical lead, not a general inbox, and rehearse a 60-second verbal pitch: who you are, your certifications, what you built, and what you're asking for — a PPA placement with your specific service dates.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">WEEKS 16–17</span><div><div class="dtitle">The hunt — daily discipline, tracked, toward both goals at once</div><div class="dtopic">PPA outreach and job applications, run in parallel, for the rest of the month</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The daily routine</div>
+  <p class="explain">Mornings: 5–8 personalized PPA outreach messages to named IT managers or technical leads, using your Week 14 brief and Week 15 template. Mid-day: 10–15 job applications across LinkedIn Easy Apply, Jobberman, and company career pages directly, each tailored in 10 minutes using the right resume emphasis. Evenings: LinkedIn outreach and engagement. Track both in a spreadsheet — separate tabs for PPA outreach and job applications, each with company, contact, date, channel, status, follow-up date — updated the moment you act, and follow up once after 7 days of silence.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">Target companies for PPA — IT-heavy Nigerian organizations</div>
+  <p class="explain">IT managed service providers (MSPs) are especially strong PPA targets — smaller technical teams that often welcome extra hands. Also worth targeting: banks and fintech with in-house IT teams, telecoms (large IT departments), and university/polytechnic IT departments, which frequently host corps members and value the CompTIA A+ and AWS credentials directly.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">Target companies and salary ranges — Nigerian market</div>
+  <p class="explain">Realistic entry-level ranges based on current 2026 data: small companies and MSPs typically pay ₦80,000–₦150,000/month for Tier 1 support; banks and larger multinationals (GTBank, Zenith, Access, Interswitch, Inlaks, CWG) pay ₦150,000–₦300,000/month; oil & gas and telecoms pay the highest, often ₦250,000–₦450,000+/month for candidates with strong certifications. IT managed service providers (MSPs) are especially good first-job targets — they expose you to many different client environments quickly, accelerating real experience.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">Target companies and salary ranges — international remote</div>
+  <p class="explain">Remote entry-level IT/cloud support roles for candidates outside the US or UK commonly land in the $2,000–$4,000/month range depending on employer and time-zone overlap requirements. Prioritize companies explicitly built around distributed support teams (BPOs with a tech focus, MSPs with remote desks, SaaS companies with global support coverage) — these tend to have the most realistic hiring pipelines for candidates applying from Nigeria.</p>
+  <p class="explain"><strong>Job boards to work daily:</strong> LinkedIn (primary), Jobberman (Nigerian market), Indeed, WeWorkRemotely and RemoteOK (remote-only support/IT roles), and direct MSP career pages — many mid-size MSPs hire faster and with less formal process than large enterprises.</p>
+</div>
+<div class="db-s">
+  <div class="dbl">Negotiation — the leverage you actually have</div>
+  <p class="explain">Two real certifications plus three fully documented, portfolio-backed environments (helpdesk, sysadmin, cloud) is a materially stronger position than a candidate with a certification alone and no proof of hands-on ability. Don't accept the first offer reflexively — counter within the realistic ranges above, and ask about certification reimbursement, remote flexibility, and growth path toward Tier 2/sysadmin as negotiable benefits beyond base pay.</p>
+</div>
+
+<div class="cap">
+  <div class="capeye">PHASE 4 CAPSTONE REQUIREMENTS</div>
+  <div class="captitle">Certifications earned, portfolio live, dual-track outreach executed</div>
+  <div class="capbody">CompTIA A+ in hand, a live portfolio site with all 3 phase projects documented, resume and LinkedIn fully optimized, a PPA technical brief actively in use, and both tracking spreadsheets showing real, disciplined outreach.</div>
+  <div class="capreqs">
+    <div class="capreq">CompTIA A+ (Core 1 + Core 2) passed and badges live on LinkedIn/Credly</div>
+    <div class="capreq">Portfolio site live with 3 fully documented project pages</div>
+    <div class="capreq">Resume tailored across at least 2 versions (support-focused, cloud-focused)</div>
+    <div class="capreq">LinkedIn headline, About, and Featured sections fully optimized</div>
+    <div class="capreq">PPA technical brief — a polished, one-page PDF, actively sent</div>
+    <div class="capreq">5 interview scenarios rehearsed fluently, under 3 minutes each, without notes</div>
+    <div class="capreq">40–60+ PPA outreach contacts tracked, 300+ job applications tracked</div>
+  </div>
+</div>
+
+<div class="gate">
+  <div class="gate-title">ROADMAP COMPLETE — the 4 months are done when:</div>
+  <div class="gate-item">Both CompTIA A+ certifications are earned and visible on your portfolio and LinkedIn</div>
+  <div class="gate-item">A stranger opening your portfolio can see, within 2 minutes, that you built real environments — not just watched tutorials about them</div>
+  <div class="gate-item">You can answer any of the 5 interview scenarios fluently, grounded in your own labs, without notes</div>
+  <div class="gate-item">You can deliver the 60-second PPA pitch confidently, and both trackers show real, sustained activity</div>
+  <div class="gate-item">You know your target salary range for both the Nigerian and remote markets and can justify it from your own portfolio</div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">2</div><div class="ml">certifications earned</div></div>
+  <div class="metric"><div class="mv">3</div><div class="ml">portfolio projects live</div></div>
+  <div class="metric"><div class="mv">300+</div><div class="ml">applications sent</div></div>
+  <div class="metric"><div class="mv">PPA + jobs</div><div class="ml">dual-track outreach</div></div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ RESOURCES ═══ -->
+<div class="section" id="s5">
+<div class="wh">
+  <div class="weyebrow">REFERENCE</div>
+  <div class="wtitle">Resources, Tools, and Budget</div>
+  <div class="wsub">Every resource below is free unless marked. The only required spend across all 4 months is the two exam fees.</div>
+</div>
+
+<div class="res-grid">
+  <div class="res-card">
+    <div class="res-cat">EXAM COSTS — THE ONLY REQUIRED SPEND</div>
+    <div class="res-item"><div class="res-dot"></div><div>CompTIA A+ Core 1 (220-1201) — $246 (~₦370,000 at current exchange rates, check CompTIA's Nigeria/international pricing)</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>CompTIA A+ Core 2 (220-1202) — $246</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>AWS Certified Cloud Practitioner (CLF-C02) — $100</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Optional custom domain for portfolio — ~₦5,000/year</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">FREE VIDEO COURSES</div>
+    <div class="res-item"><div class="res-dot"></div><div>Professor Messer — professormesser.com — the gold standard free A+ Core 1 & Core 2 course</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>freeCodeCamp — Linux, Networking, and AWS full courses on YouTube</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>TechWorld with Nana — Docker/cloud-adjacent concepts explained clearly</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Microsoft Learn — free official AZ-900 learning path</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">PRACTICE + LAB PLATFORMS</div>
+    <div class="res-item"><div class="res-dot"></div><div>VirtualBox — virtualbox.org — free virtualization for the entire home lab</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Windows Server 2022 Evaluation — free 180-day license from Microsoft</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>osTicket — osticket.com — free, self-hosted ticketing system</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>AWS Free Tier — aws.amazon.com/free</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Azure Free Account — azure.microsoft.com/free</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>subnettingpractice.com — free, timed subnetting drills</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Pramp — pramp.com — free peer mock interviews</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">DOCUMENTATION</div>
+    <div class="res-item"><div class="res-dot"></div><div>CompTIA official exam objectives — comptia.org (always check you're studying 220-1201/1202, not the retired 1101/1102)</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Microsoft Learn — learn.microsoft.com — Windows Server, AD, Azure documentation</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>AWS Documentation — docs.aws.amazon.com</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Ubuntu Server Guide — ubuntu.com/server/docs</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>man pages — man chmod, man systemctl, man crontab</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">JOB BOARDS</div>
+    <div class="res-item"><div class="res-dot"></div><div>Jobberman — jobberman.com — Nigerian market primary board</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>LinkedIn — primary channel for both local and remote</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>WeWorkRemotely / RemoteOK — remote-only IT/support roles</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>MSP career pages — search "IT managed service provider Lagos" and apply directly</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">DAILY HABITS THROUGHOUT THE ROADMAP</div>
+    <div class="res-item"><div class="res-dot"></div><div>Log every lab task as a ticket — even a 5-minute fix — the queue is your proof of consistency</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Snapshot before every risky change, every time, no exceptions</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Check AWS/Azure billing dashboards weekly during Phase 3 without fail</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Type every command yourself — no copy-paste, ever</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Re-read your own SOPs a week after writing them — if you can't follow your own instructions, rewrite them</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="alert al-s">
+  <span class="ali">✓</span>
+  <span><strong>Four months, two certifications, three fully documented environments, and a real ticket queue.</strong> Most entry-level candidates in this field have a certificate and no proof they can actually operate a real environment under it. You'll have both — earned the way you wanted to learn it in the first place: by building, breaking, and fixing, not by watching.</span>
+</div>
+</div>
+
+</main>
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ top</button>
+
+<script>
+const SS=['s0','s1','s2','s3','s4','s5'];
+function go(n){
+  SS.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el)el.classList.toggle('on',i===n);
+  });
+  document.querySelectorAll('.tnav').forEach((el,i)=>el.classList.toggle('on',i===n));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function td(h){h.closest('.day').classList.toggle('open')}
+</script>
+</body>
+</html>

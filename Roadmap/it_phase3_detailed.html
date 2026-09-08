@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 3 — Cloud Support | IT/Cloud Support Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0e1015;--ink2:#2d3142;--ink3:#5a617d;--ink4:#8e96b0;
+  --paper:#f7f6f2;--paper2:#edecea;--paper3:#e4e2dd;--cream:#faf9f5;
+  --green:#0d6e4a;--green-bg:#d6f0e6;
+  --amber:#7a4700;--amber-bg:#fdefd4;
+  --red:#b91c1c;--red-bg:#fee2e2;
+  --purple:#5b21b6;--purple-bg:#ede9fe;
+  --teal:#0e6b70;--teal-bg:#ccfbf1;
+  --blue:#1e40af;--blue-bg:#dbeafe;
+  --ph3:#0369a1;--ph3-bg:#e0f2fe;--ph3-light:rgba(3,105,161,.15);
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Fraunces',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.site-header{background:var(--ink);padding:3.5rem 0 3rem}
+.hinner{max-width:900px;margin:0 auto;padding:0 2rem}
+.phase-badge{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ph3);margin-bottom:1rem;display:block}
+.site-header h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.15;letter-spacing:-.02em;margin-bottom:.75rem;color:#e8eaf0}
+.site-header h1 em{font-style:italic;color:#aab0c8}
+.header-desc{font-family:var(--mono);font-size:12px;color:#9ba3b8;max-width:620px;line-height:1.75}
+.header-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.5rem}
+.hbadge{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:3px;border:1px solid rgba(255,255,255,.12);color:#9ba3b8}
+.hbadge.p{border-color:rgba(3,105,161,.4);color:#7dd3fc}
+.hbadge.g{border-color:rgba(62,207,142,.3);color:#3ecf8e}
+.hbadge.a{border-color:rgba(245,163,71,.3);color:#f0a347}
+
+.toolbar{position:sticky;top:0;z-index:100;background:rgba(14,16,21,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);padding:.5rem 0}
+.tinner{max-width:900px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;gap:0}
+.tinner::-webkit-scrollbar{display:none}
+.tnav{font-family:var(--mono);font-size:10px;padding:8px 12px;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.35);cursor:pointer;background:transparent;white-space:nowrap;transition:all .15s;flex-shrink:0}
+.tnav:hover{color:rgba(255,255,255,.6)}
+.tnav.on{color:#fff;border-bottom-color:var(--ph3)}
+.tsep{width:1px;height:16px;background:rgba(255,255,255,.1);margin:0 6px;flex-shrink:0}
+.print-btn{font-family:var(--mono);font-size:10px;margin-left:auto;padding:5px 12px;border:1px solid rgba(255,255,255,.15);border-radius:3px;color:rgba(255,255,255,.4);background:transparent;cursor:pointer;flex-shrink:0;transition:all .15s;white-space:nowrap}
+.print-btn:hover{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.7)}
+
+.main{max-width:900px;margin:0 auto;padding:0 2rem 5rem}
+.section{display:none;padding:2.5rem 0}
+.section.on{display:block}
+.wh{padding:1.75rem 0 1.25rem;border-bottom:2px solid var(--ink);margin-bottom:1.75rem}
+.weyebrow{font-family:var(--mono);font-size:10px;color:var(--ph3);letter-spacing:.1em;margin-bottom:.4rem}
+.wtitle{font-size:1.6rem;font-weight:600;color:var(--ink);letter-spacing:-.02em;line-height:1.25}
+.wsub{font-size:.95rem;color:var(--ink3);margin-top:.4rem;line-height:1.65;max-width:680px}
+.wtags{display:flex;flex-wrap:wrap;gap:7px;margin-top:.9rem}
+.tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:3px;border:1.5px solid var(--paper3);color:var(--ink3);background:var(--paper2)}
+
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:2rem}
+.ov-card{background:var(--cream);border:1.5px solid var(--paper3);border-radius:8px;padding:1.1rem 1.25rem;cursor:pointer;transition:all .18s}
+.ov-card:hover{border-color:var(--ph3);transform:translateY(-2px);box-shadow:0 4px 20px var(--ph3-light)}
+.ov-week{font-family:var(--mono);font-size:10px;color:var(--ph3);letter-spacing:.08em;margin-bottom:.4rem}
+.ov-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.25rem}
+.ov-sub{font-family:var(--mono);font-size:10px;color:var(--ink3);line-height:1.5}
+.ov-days{font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--paper3)}
+
+.day{background:var(--cream);border:1.5px solid var(--paper3);border-radius:8px;margin-bottom:14px;overflow:hidden}
+.day-header{padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:10px;transition:background .12s}
+.day-header:hover{background:var(--paper2)}
+.dhl{display:flex;align-items:center;gap:10px}
+.dnum{font-family:var(--mono);font-size:10px;color:var(--ph3);width:60px;flex-shrink:0;letter-spacing:.06em}
+.dtitle{font-size:.92rem;font-weight:600;color:var(--ink)}
+.dtopic{font-family:var(--mono);font-size:10px;color:var(--ink4);margin-top:1px}
+.dhr{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.dtag{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:2px}
+.dt-t{background:var(--purple-bg);color:var(--purple)}
+.dt-l{background:var(--green-bg);color:var(--green)}
+.dt-b{background:var(--blue-bg);color:var(--blue)}
+.dt-c{background:var(--amber-bg);color:var(--amber)}
+.dt-d{background:var(--red-bg);color:var(--red)}
+.chev{font-size:10px;color:var(--ink4);transition:transform .18s}
+.day.open .chev{transform:rotate(180deg)}
+.day-body{display:none;border-top:1.5px solid var(--paper3)}
+.day.open .day-body{display:block}
+.db-s{padding:1.25rem 1.5rem;border-bottom:1px solid var(--paper2)}
+.db-s:last-child{border-bottom:none}
+.dbl{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+.dbl::after{content:'';flex:1;height:1px;background:var(--paper3)}
+
+.explain{font-size:.92rem;color:var(--ink2);line-height:1.8;margin-bottom:.8rem}
+.explain:last-child{margin-bottom:0}
+.explain strong{color:var(--ink);font-weight:600}
+.analogy{background:var(--amber-bg);border-left:3px solid var(--amber);border-radius:0 6px 6px 0;padding:.85rem 1rem;margin:.8rem 0;font-size:.88rem;color:var(--amber);line-height:1.65}
+.analogy .albl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;display:block;margin-bottom:.2rem;font-weight:600}
+
+.cb{background:var(--ink);border-radius:6px;overflow:hidden;margin-bottom:.65rem}
+.cb:last-child{margin-bottom:0}
+.cbh{padding:.45rem .85rem;background:rgba(255,255,255,.04);display:flex;align-items:center}
+.cbp{font-family:var(--mono);font-size:9px;color:var(--ph3);letter-spacing:.04em}
+.cbc{padding:.65rem .85rem;font-family:var(--mono);font-size:12px;color:#e0e4f0;line-height:1.8;overflow-x:auto;white-space:pre}
+.cbc .cm{color:#4a5168;font-style:italic}
+.cbc .hl{color:#3ecf8e}
+.cbc .kw{color:#9b7ef5}
+.cbc .st{color:#f0c040}
+.cbc .vr{color:#f57eb6}
+.cbc .fl{color:#f0a347}
+
+.steps{margin:.5rem 0}
+.step{display:flex;gap:12px;margin-bottom:.75rem;font-size:.9rem;color:var(--ink2);line-height:1.6}
+.sn{font-family:var(--mono);font-size:10px;color:var(--ph3);width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(3,105,161,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+
+.chklist{margin:.5rem 0}
+.chk{display:flex;gap:10px;font-size:.9rem;color:var(--ink2);margin-bottom:.55rem;line-height:1.5}
+.chk-box{width:16px;height:16px;border:1.5px solid var(--paper3);border-radius:3px;flex-shrink:0;margin-top:2px}
+
+.alert{border-radius:6px;padding:.85rem 1rem;margin:.8rem 0;font-size:.88rem;line-height:1.65;display:flex;gap:.75rem}
+.ali{font-size:14px;flex-shrink:0;margin-top:2px}
+.al-w{background:var(--amber-bg);border:1.5px solid rgba(122,71,0,.2);color:var(--amber)}
+.al-i{background:var(--blue-bg);border:1.5px solid rgba(30,64,175,.2);color:var(--blue)}
+.al-s{background:var(--green-bg);border:1.5px solid rgba(13,110,74,.2);color:var(--green)}
+.al-n{background:var(--purple-bg);border:1.5px solid rgba(91,33,182,.2);color:var(--purple)}
+.al-p{background:var(--ph3-bg);border:1.5px solid rgba(3,105,161,.25);color:var(--ph3)}
+
+.mistake{background:var(--red-bg);border:1.5px solid rgba(185,28,28,.2);border-radius:6px;padding:.85rem 1rem;margin:.8rem 0;font-size:.87rem;color:var(--red);line-height:1.6}
+.mistake .mlbl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;display:block;margin-bottom:.2rem;font-weight:600}
+
+.cap{background:linear-gradient(135deg,#0e1015 0%,#0a1420 100%);border-radius:10px;padding:1.75rem;margin:1.5rem 0;border:1.5px solid rgba(3,105,161,.4)}
+.capeye{font-family:var(--mono);font-size:10px;color:var(--ph3);letter-spacing:.1em;margin-bottom:.6rem}
+.captitle{font-size:1.15rem;font-weight:600;color:#e8eaf0;margin-bottom:.6rem}
+.capbody{font-size:.88rem;color:#9ba3b8;line-height:1.7;margin-bottom:1rem}
+.capreqs{border-top:1px solid rgba(255,255,255,.07);padding-top:.9rem}
+.capreq{display:flex;gap:8px;font-family:var(--mono);font-size:11px;color:#aab0c8;margin-bottom:.45rem;line-height:1.5}
+.capreq::before{content:'→';color:#7dd3fc;flex-shrink:0}
+
+.gate{background:var(--green-bg);border:1.5px solid rgba(13,110,74,.2);border-radius:8px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+.gate-title{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.08em;margin-bottom:.75rem}
+.gate-item{display:flex;gap:10px;font-size:.9rem;color:var(--ink2);margin-bottom:.45rem;line-height:1.5}
+.gate-item::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:1.5rem 0}
+.metric{background:var(--paper2);border:1.5px solid var(--paper3);border-radius:7px;padding:1rem 1.1rem}
+.mv{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:var(--ink);line-height:1}
+.ml{font-size:.8rem;color:var(--ink3);margin-top:.3rem;font-family:var(--mono)}
+
+.reftbl{width:100%;border-collapse:collapse;font-size:.85rem;margin:.75rem 0}
+.reftbl th{text-align:left;font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.08em;padding:6px 10px;border-bottom:2px solid var(--paper3)}
+.reftbl td{padding:7px 10px;border-bottom:1px solid var(--paper2);color:var(--ink2);vertical-align:top}
+.reftbl td:first-child{font-family:var(--mono);font-size:11px;color:var(--ph3)}
+
+code{font-family:var(--mono);font-size:.82em;background:var(--paper2);border:1px solid var(--paper3);padding:1px 5px;border-radius:3px;color:var(--ink2)}
+.divider{border:none;border-top:1.5px solid var(--paper3);margin:2rem 0}
+.back-top{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:#e8eaf0;border:none;border-radius:4px;padding:8px 13px;font-family:var(--mono);font-size:11px;cursor:pointer;z-index:200;opacity:.7;transition:all .15s}
+.back-top:hover{opacity:1}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:1rem 0}
+.res-card{background:var(--paper2);border:1.5px solid var(--paper3);border-radius:7px;padding:1rem 1.1rem}
+.res-cat{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.1em;margin-bottom:.7rem}
+.res-item{display:flex;gap:8px;font-size:.85rem;color:var(--ink2);margin-bottom:.5rem;line-height:1.45}
+.res-dot{width:4px;height:4px;border-radius:50%;background:var(--ph3);flex-shrink:0;margin-top:7px}
+
+@media print{
+  .toolbar,.back-top,.print-btn{display:none!important}
+  .section{display:block!important;page-break-before:always}
+  .section:first-child{page-break-before:avoid}
+  .day-body{display:block!important}
+  body{background:#fff;color:#111}
+}
+@media(max-width:640px){
+  .hinner,.tinner,.main{padding-left:1rem;padding-right:1rem}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+<div class="hinner">
+  <span class="phase-badge">it/cloud support roadmap · phase 3 of 4</span>
+  <h1>Cloud<br><em>Support.</em></h1>
+  <p class="header-desc">Month 3 · Days 61–90. On-prem AD taught you identity and access on your own network. This month moves the same concepts — users, permissions, monitoring, cost — into AWS, deep, and Azure, broad enough to speak to it confidently. AWS is your primary cloud; Azure is familiarity, not mastery.</p>
+  <div class="header-meta">
+    <span class="hbadge">Month 3 · Days 61–90</span>
+    <span class="hbadge p">AWS deep (Weeks 9–10, 12) · Azure broad (Week 11)</span>
+    <span class="hbadge g">CLF-C02 aligned</span>
+    <span class="hbadge a">Capstone: live AWS environment + 10 cloud tickets</span>
+  </div>
+</div>
+</header>
+
+<nav class="toolbar">
+<div class="tinner">
+  <button class="tnav on" onclick="go(0)">Overview</button>
+  <div class="tsep"></div>
+  <button class="tnav" onclick="go(1)">Week 9: AWS Foundations</button>
+  <button class="tnav" onclick="go(2)">Week 10: AWS Deep Dive</button>
+  <button class="tnav" onclick="go(3)">Week 11: Azure + Tickets</button>
+  <button class="tnav" onclick="go(4)">Week 12: Security + Capstone</button>
+  <div class="tsep"></div>
+  <button class="tnav" onclick="go(5)">Resources</button>
+  <button class="print-btn" onclick="window.print()">⬇ Save / Print</button>
+</div>
+</nav>
+
+<main class="main">
+
+<!-- ═══ OVERVIEW ═══ -->
+<div class="section on" id="s0">
+<div class="wh">
+  <div class="weyebrow">PHASE 3 OVERVIEW</div>
+  <div class="wtitle">Why AWS deep and Azure broad, not both equally</div>
+  <div class="wsub">You have one month, not two. Splitting it evenly between AWS and Azure would leave you shallow in both — good enough to recognize service names, not good enough to actually diagnose a problem in either. Going deep on one cloud and broad on the second means you can build real things in AWS, and speak credibly about Azure in an interview without pretending to expertise you don't have.</div>
+</div>
+
+<p class="explain">Phase 3 is 30 days across 4 weeks. Weeks 9 and 10 go deep on AWS — account setup, IAM, EC2, S3, VPC, security groups, CloudWatch, and cost management, each learned hands-on against a real free-tier account. Week 11 is Azure, compressed but real — a VM, a storage account, Entra ID connected back to the tenant you created in Phase 2 — plus the comparison document and your first cloud support tickets. Week 12 closes with the shared responsibility model, CLF-C02 exam prep, and the capstone: a documented AWS environment plus 10 resolved cloud support tickets.</p>
+
+<div class="alert al-p">
+  <span class="ali">→</span>
+  <span><strong>The habit that matters most this month, before any service:</strong> billing alerts and daily cost checks. Never assume "free tier" means "cannot be charged" — check eligibility before creating any resource, set budgets and alerts where available, and delete resources when finished, not just stop them. Storage and some allocated resources can keep generating cost even after compute is stopped.</span>
+</div>
+
+<div class="ov-grid">
+  <div class="ov-card" onclick="go(1)">
+    <div class="ov-week">WEEK 9 · DAYS 61–67</div>
+    <div class="ov-title">AWS Foundations</div>
+    <div class="ov-sub">Account, billing alarms, IAM least privilege, EC2, AWS CLI</div>
+    <div class="ov-days">Deliverable: least-privilege IAM policy, verified with a failed action</div>
+  </div>
+  <div class="ov-card" onclick="go(2)">
+    <div class="ov-week">WEEK 10 · DAYS 68–74</div>
+    <div class="ov-title">AWS Deep Dive</div>
+    <div class="ov-sub">S3, custom VPC, Security Groups, CloudWatch alarms, Cost Explorer</div>
+    <div class="ov-days">Deliverable: 2 resolved AWS tickets</div>
+  </div>
+  <div class="ov-card" onclick="go(3)">
+    <div class="ov-week">WEEK 11 · DAYS 75–81</div>
+    <div class="ov-title">Azure + Ticket Queue</div>
+    <div class="ov-sub">Azure VM, storage, Entra ID — broad familiarity, plus 5 cloud support tickets</div>
+    <div class="ov-days">Deliverable: AWS-vs-Azure comparison doc, 5 tickets</div>
+  </div>
+  <div class="ov-card" onclick="go(4)">
+    <div class="ov-week">WEEK 12 · DAYS 82–90</div>
+    <div class="ov-title">Security + Certification + Capstone</div>
+    <div class="ov-sub">Shared responsibility model, CLF-C02 exam prep, final environment build</div>
+    <div class="ov-days">Capstone: 10 total tickets, exam-ready</div>
+  </div>
+</div>
+
+<div class="alert al-i">
+  <span class="ali">i</span>
+  <span><strong>On certifications:</strong> CLF-C02 is worth sitting once your labs and 2 practice exams are solid — but skills and proof come first. If exam timing slips, that's fine; a live AWS environment and 10 well-reasoned tickets are the stronger portfolio signal regardless of whether the exam date lands inside this month or just after it.</span>
+</div>
+</div>
+
+<!-- ═══ WEEK 9: AWS FOUNDATIONS ═══ -->
+<div class="section" id="s1">
+<div class="wh">
+  <div class="weyebrow">WEEK 9 · DAYS 61–67</div>
+  <div class="wtitle">AWS Foundations — Account, IAM, EC2</div>
+  <div class="wsub">Every AWS habit you build this week — billing alerts first, least privilege always, verify don't assume — carries through the rest of this roadmap and into any real job.</div>
+  <div class="wtags">
+    <span class="tag">AWS Free Tier account</span><span class="tag">Billing alarms</span>
+    <span class="tag">IAM least privilege</span><span class="tag">EC2</span><span class="tag">AWS CLI</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D61</span><div><div class="dtitle">Account setup, billing alarm, root vs. IAM user — in that order</div><div class="dtopic">The single habit that prevents every "surprise bill" story from junior cloud learners</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Before touching a single service</div>
+  <p class="explain">Create an AWS Free Tier account. Before anything else, set a billing alarm at a low threshold — this single habit prevents the most common beginner mistake: an accidentally-running resource generating a surprise bill. Then create an IAM user for yourself with administrator access for daily work, instead of using the root account — root is for account-level tasks only, from day one, no exceptions.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">create your daily-use IAM user and a billing alarm — AWS CLI</span></div>
+    <div class="cbc"><span class="cm"># After installing and configuring the AWS CLI with root credentials once:</span>
+aws iam create-user --user-name daily-admin
+aws iam attach-user-policy --user-name daily-admin \
+  --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+aws iam create-access-key --user-name daily-admin
+
+<span class="cm"># Switch to using these credentials for everything from here on —</span>
+<span class="cm"># never use root access keys for daily work</span></div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Assuming "Free Tier eligible" means "cannot be charged, ever." Some resources have free-tier limits by hours-per-month or storage-per-month — exceed them and billing starts silently. Check each service's specific free-tier terms before creating it, not after.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D62–63</span><div><div class="dtitle">IAM deep dive — users, groups, policies, least privilege in practice</div><div class="dtopic">The exact same conceptual model as Active Directory, cloud-native</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this feels familiar</div>
+  <p class="explain">IAM controls who can do what in an AWS account — users, groups, and policies map almost directly onto the AD users, security groups, and GPOs you built in Phase 2. The mechanism is different; the thinking is the same: grant permissions to a group, not an individual, and grant only what's actually needed.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">create a least-privilege group and verify it actually restricts access</span></div>
+    <div class="cbc"><span class="cm"># Create a group with read-only access to EC2 and S3</span>
+aws iam create-group --group-name SupportTeam
+aws iam attach-group-policy --group-name SupportTeam \
+  --policy-arn arn:aws:iam::aws:policy/ReadOnlyAccess
+
+<span class="cm"># Create a user, add to the group</span>
+aws iam create-user --user-name support-tech1
+aws iam add-user-to-group --user-name support-tech1 --group-name SupportTeam
+aws iam create-access-key --user-name support-tech1
+
+<span class="cm"># Switch to support-tech1's credentials, then TRY a write action — it must fail</span>
+aws ec2 terminate-instances --instance-ids i-0123456789abcdef0
+<span class="cm"># Expected: AccessDenied — this failure is your proof the policy actually works</span></div>
+  </div>
+  <div class="analogy">
+    <span class="albl">ANALOGY — VERIFY, DON'T ASSUME</span>
+    A permission policy that looks correct on paper is a theory, not a fact. Just like testing a GPO with gpresult in Phase 2, the only real proof an IAM policy works is watching a denied action fail exactly where you expect it to. A policy you haven't tested against a should-fail case is a policy you don't actually understand.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D64–65</span><div><div class="dtitle">EC2 — launch, connect, and understand security groups</div><div class="dtopic">Your first real compute resource, and the cloud equivalent of the firewall rules from Phase 1</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Launching and connecting</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Launch a t2.micro EC2 instance (free tier eligible) running Amazon Linux, in the default VPC to start.</div></div>
+    <div class="step"><div class="sn">2</div><div>Generate or reuse a key pair, and SSH into the instance from your Ubuntu host — the same key-based auth pattern from Phase 2's Samba server.</div></div>
+    <div class="step"><div class="sn">3</div><div>Examine the security group attached by default — note it only allows SSH (port 22) from your IP if you configured it that way, or 0.0.0.0/0 if you didn't. Tighten it to your specific IP.</div></div>
+  </div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">launch and connect via AWS CLI</span></div>
+    <div class="cbc">aws ec2 run-instances --image-id ami-0abcdef1234567890 \
+  --instance-type t2.micro --key-name my-key \
+  --security-group-ids sg-0123456789abcdef0
+
+<span class="cm"># Once running, grab its public IP and connect</span>
+aws ec2 describe-instances --instance-ids i-0123456789abcdef0 \
+  --query <span class="st">'Reservations[0].Instances[0].PublicIpAddress'</span>
+ssh -i my-key.pem ec2-user@&lt;public-ip&gt;</div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Leaving free-tier resources running after the lab session ends. Stop or terminate every EC2 instance at the end of each study session — set this as a personal, non-negotiable rule.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D66</span><div><div class="dtitle">AWS CLI fluency — scripting the console, not clicking through it</div><div class="dtopic">The commands you'll use daily, chained together like the diagnostic sequences from earlier phases</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">A real script — start/stop automation, the AWS equivalent of your cron habit</div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">a Bash script that stops every running EC2 instance — your personal cost guardrail</span></div>
+    <div class="cbc"><span class="cm">#!/bin/bash</span>
+<span class="cm"># stop_all_ec2.sh — run this at the end of every AWS study session</span>
+INSTANCE_IDS=$(aws ec2 describe-instances \
+  --filters <span class="st">"Name=instance-state-name,Values=running"</span> \
+  --query <span class="st">'Reservations[*].Instances[*].InstanceId'</span> --output text)
+
+<span class="kw">if</span> [ -z <span class="st">"$INSTANCE_IDS"</span> ]; <span class="kw">then</span>
+  <span class="fl">echo</span> <span class="st">"No running instances found."</span>
+<span class="kw">else</span>
+  aws ec2 stop-instances --instance-ids <span class="fl">$INSTANCE_IDS</span>
+  <span class="fl">echo</span> <span class="st">"Stopped: $INSTANCE_IDS"</span>
+<span class="kw">fi</span></div>
+  </div>
+  <p class="explain">Commit this script to your GitHub repo today, and actually run it at the end of every session from here on — it's a small habit that directly protects your budget for the rest of the month.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D67</span><div><div class="dtitle">Week 9 checkpoint — first AWS ticket, commit</div><div class="dtopic">A new employee needs least-privilege access — resolved and documented</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Write up your first cloud support ticket</div>
+  <p class="explain">Scenario: "A new support technician needs read-only access to EC2 and S3, nothing else." Write this up in the full 7-step format using the SupportTeam group and policy you built on Day 62–63 — include the failed write-action test as your verification step. Commit it, plus stop_all_ec2.sh, to <code>aws-cloud-lab</code> in your GitHub repo.</p>
+</div>
+
+<div class="gate">
+  <div class="gate-title">WEEK 9 CHECKPOINT — before moving to Week 10:</div>
+  <div class="gate-item">Billing alarm is active and you've checked the AWS Cost Explorer at least once this week</div>
+  <div class="gate-item">You're using an IAM daily-admin user, never root, for all work</div>
+  <div class="gate-item">You can launch, SSH into, and terminate an EC2 instance via both console and CLI</div>
+  <div class="gate-item">You've written a least-privilege IAM policy and proven it works with a failed action</div>
+  <div class="gate-item">stop_all_ec2.sh is committed and you've actually used it to end a session</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ WEEK 10: AWS DEEP DIVE ═══ -->
+<div class="section" id="s2">
+<div class="wh">
+  <div class="weyebrow">WEEK 10 · DAYS 68–74</div>
+  <div class="wtitle">AWS Deep Dive — S3, VPC, Security Groups, Monitoring, Cost</div>
+  <div class="wsub">The 3 services every real cloud support ticket touches, plus the monitoring and cost visibility that separate someone who can click through the console from someone who can actually operate an account responsibly.</div>
+  <div class="wtags">
+    <span class="tag">S3 + bucket policies</span><span class="tag">Custom VPC</span>
+    <span class="tag">Security Groups deep dive</span><span class="tag">CloudWatch alarms</span><span class="tag">Cost Explorer</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D68</span><div><div class="dtitle">S3 — buckets, policies, and the accidental-exposure scenario</div><div class="dtopic">A deliberately misconfigured public bucket, caught and fixed — a real, frequently-tested support scenario</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Buckets, uploads, and policy misconfiguration</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Create an S3 bucket, upload a test file via console or CLI.</div></div>
+    <div class="step"><div class="sn">2</div><div>Deliberately misconfigure the bucket policy to allow public read access — observe AWS's warning banner in the console (it actively tries to stop you from doing this by accident, for good reason).</div></div>
+    <div class="step"><div class="sn">3</div><div>Confirm the exposure: try accessing the object's URL from a private/incognito browser window, unauthenticated.</div></div>
+    <div class="step"><div class="sn">4</div><div>Correct it: re-enable "Block all public access" at the bucket level, verify the object is no longer reachable.</div></div>
+  </div>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">the bucket policy that caused the exposure — study it, then remove it</span></div>
+    <div class="cbc">{
+  <span class="st">"Version"</span>: <span class="st">"2012-10-17"</span>,
+  <span class="st">"Statement"</span>: [{
+    <span class="st">"Effect"</span>: <span class="st">"Allow"</span>,
+    <span class="st">"Principal"</span>: <span class="st">"*"</span>,
+    <span class="st">"Action"</span>: <span class="st">"s3:GetObject"</span>,
+    <span class="st">"Resource"</span>: <span class="st">"arn:aws:s3:::your-bucket-name/*"</span>
+  }]
+}</div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Not understanding that <code>"Principal": "*"</code> means literally anyone on the internet, unauthenticated. This single line is behind a large share of real-world cloud data breaches — recognizing it on sight is a genuinely valuable interview and on-the-job skill.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D69</span><div><div class="dtitle">Custom VPC — the networking foundation every "can't reach the internet" ticket depends on</div><div class="dtopic">Public and private subnets, an internet gateway, route tables</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Building it from scratch, understanding each piece</div>
+  <table class="reftbl">
+    <thead><tr><th>Component</th><th>What it actually does</th></tr></thead>
+    <tbody>
+      <tr><td>VPC</td><td>Your isolated slice of AWS network — everything else lives inside it</td></tr>
+      <tr><td>Public subnet</td><td>Has a route to the internet gateway — resources here can be reached from (and reach) the internet</td></tr>
+      <tr><td>Private subnet</td><td>No direct internet route — resources here are isolated, reached only from inside the VPC</td></tr>
+      <tr><td>Internet Gateway</td><td>The door between your VPC and the public internet</td></tr>
+      <tr><td>Route table</td><td>The rules determining where traffic from a subnet is allowed to go</td></tr>
+    </tbody>
+  </table>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Create a custom VPC (e.g. 10.0.0.0/16), then a public subnet (10.0.1.0/24) and a private subnet (10.0.2.0/24).</div></div>
+    <div class="step"><div class="sn">2</div><div>Create and attach an Internet Gateway to the VPC.</div></div>
+    <div class="step"><div class="sn">3</div><div>Create a route table for the public subnet with a route to the Internet Gateway (0.0.0.0/0), and associate it with the public subnet only.</div></div>
+    <div class="step"><div class="sn">4</div><div>Launch an EC2 instance in the public subnet, confirm it can reach the internet. Launch one in the private subnet, confirm it can't — this is the exact "why can't this resource reach the internet" scenario you'll diagnose in real tickets.</div></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D70</span><div><div class="dtitle">Security Groups deep dive — diagnosing blocked legitimate traffic</div><div class="dtopic">Stateful rules, the difference from NACLs, and a real diagnosis exercise</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Security Groups vs. Network ACLs</div>
+  <p class="explain">Security Groups are stateful (allow the response to an allowed request automatically) and attach to instances; Network ACLs are stateless (you must explicitly allow both directions) and attach to subnets. Most day-to-day troubleshooting involves Security Groups — NACLs are usually left at their permissive defaults unless there's a specific reason to lock down at the subnet level.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">Day 70 lab: deliberately misconfigure a security group, then diagnose it blind</span></div>
+    <div class="cbc"><span class="cm"># Remove the inbound rule allowing HTTP (port 80) from a web server's security group</span>
+aws ec2 revoke-security-group-ingress --group-id sg-0123456789abcdef0 \
+  --protocol tcp --port <span class="hl">80</span> --cidr <span class="hl">0.0.0.0/0</span>
+
+<span class="cm"># Now diagnose as if a real ticket arrived: "users can't reach our web server"</span>
+<span class="cm"># Confirm the instance itself is running and the web service is up (SSH in, check the service)</span>
+<span class="cm"># Confirm DNS/IP is correct</span>
+<span class="cm"># Check the security group's inbound rules — this is where you'll find the gap</span>
+aws ec2 describe-security-groups --group-ids sg-0123456789abcdef0
+
+<span class="cm"># Fix: re-add the rule</span>
+aws ec2 authorize-security-group-ingress --group-id sg-0123456789abcdef0 \
+  --protocol tcp --port <span class="hl">80</span> --cidr <span class="hl">0.0.0.0/0</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D71</span><div><div class="dtitle">CloudWatch — monitoring that's actually verified to work</div><div class="dtopic">A CPU alarm, tested with a real stress event, not just configured and trusted</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Set it up, then break it on purpose to prove it works</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Create a CloudWatch alarm on your EC2 instance that triggers if CPU usage exceeds 80% for 5 minutes.</div></div>
+    <div class="step"><div class="sn">2</div><div>SSH into the instance and generate a real CPU spike: <code>yes > /dev/null &</code> run a few times, or use <code>stress</code> if installed.</div></div>
+    <div class="step"><div class="sn">3</div><div>Watch the alarm actually transition to ALARM state in the console — this is the same discipline as verifying a GPO with gpresult or a security group with a should-fail test.</div></div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Configuring an alarm and trusting it works without ever triggering it. An alarm nobody has verified actually fires is worse than no alarm at all — it creates false confidence.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D72</span><div><div class="dtitle">Cost management — Cost Explorer, budgets, and tagging</div><div class="dtopic">Investigating a cost anomaly like a real ticket, not just glancing at a dashboard</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Reading Cost Explorer like a diagnostic tool</div>
+  <p class="explain">Open Cost Explorer and filter your current month's spend by service — even at near-zero cost on the free tier, get comfortable with the interface now. Set up an AWS Budget with an alert threshold, separate from the billing alarm you created on Day 61 — Budgets can track spend against a specific limit over time, not just a single fixed dollar trigger.</p>
+  <p class="explain"><strong>Tagging discipline:</strong> tag every resource you create this month with a <code>Project: it-cloud-roadmap</code> tag. This is exactly how real cost anomaly investigations work — filtering spend by tag to find which project or team is responsible for an unexpected charge.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D73–74</span><div><div class="dtitle">Week 10 capstone — 2 resolved AWS tickets</div><div class="dtopic">The security group diagnosis and a cost investigation scenario, fully documented</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Write up and commit</div>
+  <p class="explain">Write up the Day 70 security group scenario in the full 7-step format. Then write a second ticket: "a storage cost anomaly needs investigating" — use Cost Explorer filtered by your Project tag to identify the source (even if simulated, walk through the exact steps you'd take). Commit both to <code>aws-cloud-lab</code>, along with your VPC diagram from Day 69.</p>
+</div>
+
+<div class="gate">
+  <div class="gate-title">WEEK 10 CHECKPOINT — before moving to Week 11:</div>
+  <div class="gate-item">You can explain why "Principal": "*" in a bucket policy is dangerous, on sight</div>
+  <div class="gate-item">Your custom VPC has a public subnet that reaches the internet and a private subnet that doesn't, proven not assumed</div>
+  <div class="gate-item">You can diagnose a security-group-blocking-legitimate-traffic scenario using only the CLI</div>
+  <div class="gate-item">You've triggered a CloudWatch alarm for real and watched it fire, not just configured it</div>
+  <div class="gate-item">Every resource you've created is tagged, and you've used Cost Explorer to filter spend by tag</div>
+  <div class="gate-item">2 more tickets committed — 4 cloud tickets total so far</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ WEEK 11: AZURE + TICKETS ═══ -->
+<div class="section" id="s3">
+<div class="wh">
+  <div class="weyebrow">WEEK 11 · DAYS 75–81</div>
+  <div class="wtitle">Azure — Broad Familiarity, Not Mastery — Plus the Ticket Queue</div>
+  <div class="wsub">The goal this week isn't Azure depth — it's "I understand the Microsoft cloud ecosystem and can compare it to AWS," compressed into 4 focused days, followed by 3 days building out your cloud support ticket queue.</div>
+  <div class="wtags">
+    <span class="tag">Azure free account</span><span class="tag">VM + Storage account</span>
+    <span class="tag">Entra ID (connects to Phase 2 tenant)</span><span class="tag">AWS-vs-Azure comparison</span><span class="tag">5 cloud tickets</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D75</span><div><div class="dtitle">Azure account, resource groups, and the portal tour</div><div class="dtopic">Why Azure matters as much as AWS specifically for support roles</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this week exists at all</div>
+  <p class="explain">AWS dominates cloud infrastructure market share, but most mid-size and enterprise companies — especially ones already running Windows Server and on-prem AD, exactly like the environment you built in Phase 2 — run heavily on Azure and Microsoft 365. A support technician who only knows AWS is locked out of a real share of job postings mentioning "Azure AD," "Intune," or "M365 admin."</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Create an Azure free account and a resource group — the Azure equivalent of a logical folder grouping related resources together.</div></div>
+    <div class="step"><div class="sn">2</div><div>Spend 30 minutes navigating the portal deliberately: find where compute, storage, networking, and identity each live, and note the layout differences from the AWS console.</div></div>
+  </div>
+  <div class="alert al-w">
+    <span class="ali">⚠</span>
+    <span><strong>If Azure account creation hits identity or payment verification friction:</strong> don't let it stall the week. Fall back to Microsoft Learn's free sandbox environments and hands-on labs, which don't require a full account, and keep your primary hands-on time focused on AWS. A blocked Azure signup shouldn't cost you real AWS practice time.</span>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D76</span><div><div class="dtitle">Azure VM and Storage Account — the direct AWS comparison</div><div class="dtopic">Deploy once, compare the experience against EC2 and S3 directly</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Hands-on, compared side by side as you go</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Deploy a small VM inside your resource group — connect to it, and note what felt familiar from EC2 (SSH access, sizing tiers) and what didn't (resource group as a container concept has no direct EC2 equivalent).</div></div>
+    <div class="step"><div class="sn">2</div><div>Create a storage account and a blob container, upload a test file, and compare its access-control model against the S3 bucket policy work from Week 10.</div></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D77</span><div><div class="dtitle">Entra ID — connecting back to your Phase 2 tenant</div><div class="dtopic">The identity layer behind every Azure resource, and the bridge from on-prem AD</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Making the connection explicit</div>
+  <p class="explain">Return to the Microsoft 365 developer tenant you created in Phase 2, Week 8. Add a test user through Entra ID, assign them a role, and connect the concept explicitly to what you already built: this is the identity layer behind every Azure resource, the same relationship AD DS has to a domain-joined Windows machine, just cloud-hosted instead of running on your own VM.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D78</span><div><div class="dtitle">The AWS-vs-Azure comparison document — in your own words</div><div class="dtopic">Written from your own hands-on experience, not copied from a reference table</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The comparison table, as a reference — write your own version from experience</div>
+  <table class="reftbl">
+    <thead><tr><th>Concept</th><th>AWS</th><th>Azure</th></tr></thead>
+    <tbody>
+      <tr><td>Compute</td><td>EC2</td><td>Virtual Machines</td></tr>
+      <tr><td>Object storage</td><td>S3</td><td>Blob Storage</td></tr>
+      <tr><td>Identity</td><td>IAM</td><td>Azure AD / Entra ID</td></tr>
+      <tr><td>Resource grouping</td><td>Tags / Organizations</td><td>Resource Groups</td></tr>
+      <tr><td>Cost tool</td><td>Cost Explorer</td><td>Cost Management + Billing</td></tr>
+    </tbody>
+  </table>
+  <p class="explain">Write a one-page document explaining each row in your own words, from what you actually experienced this week — where the concepts matched cleanly and where they didn't. This is a stronger interview and portfolio artifact than a copied table, because it proves you actually touched both, not just read about them.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D79–81</span><div><div class="dtitle">The cloud support ticket queue — 5 realistic tickets</div><div class="dtopic">Access requests, provisioning, and cross-cloud scenarios, in the full 7-step format</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The 5 scenarios to resolve and document</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>A new employee needs read-only S3 access to a specific bucket — resolved by writing a scoped IAM policy, verified with a failed write attempt.</div></div>
+    <div class="step"><div class="sn">2</div><div>A user is locked out of the Azure portal — resolved by resetting MFA in Entra ID.</div></div>
+    <div class="step"><div class="sn">3</div><div>A developer needs a new EC2 instance provisioned to a spec — resolved by launching and configuring it, then documenting the handoff.</div></div>
+    <div class="step"><div class="sn">4</div><div>A security group is blocking a legitimate connection — reuse and polish the Day 70 scenario into full ticket format if not already done.</div></div>
+    <div class="step"><div class="sn">5</div><div>A storage cost anomaly needs investigating — reuse and polish the Day 73–74 scenario if not already done.</div></div>
+  </div>
+  <p class="explain">Commit all 5 to <code>aws-cloud-lab</code> (or a new <code>cloud-support-tickets</code> folder), alongside the comparison document from Day 78.</p>
+</div>
+
+<div class="gate">
+  <div class="gate-title">WEEK 11 CHECKPOINT — before moving to Week 12:</div>
+  <div class="gate-item">You've deployed a VM and storage account in Azure and can compare the experience directly to EC2/S3</div>
+  <div class="gate-item">You've connected a test user through Entra ID back to your Phase 2 tenant</div>
+  <div class="gate-item">Your AWS-vs-Azure comparison document is written in your own words, from your own experience</div>
+  <div class="gate-item">5 cloud support tickets committed — 9 total so far, one short of the capstone target</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ WEEK 12: SECURITY + CAPSTONE ═══ -->
+<div class="section" id="s4">
+<div class="wh">
+  <div class="weyebrow">WEEK 12 · DAYS 82–90</div>
+  <div class="wtitle">Shared Responsibility, Certification Prep, and the Capstone</div>
+  <div class="wsub">The month closes with the security concept every cloud question tests, focused CLF-C02 exam prep built on hands-on labs rather than flashcards, and the capstone: a finalized, documented AWS environment plus a complete 10-ticket queue.</div>
+  <div class="wtags">
+    <span class="tag">Shared responsibility model</span><span class="tag">CLF-C02 domain review</span>
+    <span class="tag">Practice exams</span><span class="tag">Capstone: 10 tickets + live environment</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D82</span><div><div class="dtitle">The shared responsibility model — the concept every cloud security question tests</div><div class="dtopic">Where AWS/Azure's responsibility ends and yours begins, with concrete examples on each side</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The line, drawn precisely</div>
+  <p class="explain">AWS and Azure secure the underlying infrastructure — physical data centers, the hypervisor, network hardware. You are responsible for everything above that: data encryption, access management, security group/firewall rules, and OS-level patching on any VM you run. Almost every real-world cloud security incident traces back to someone misunderstanding where that line sits — usually an overly permissive security group or a public S3 bucket, exactly like the Week 10 exercise.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Write down one concrete example from your own labs on the provider's side: AWS ensuring the physical data center hosting your EC2 instance is secure.</div></div>
+    <div class="step"><div class="sn">2</div><div>Write down one concrete example on your side: the Week 10 public S3 bucket misconfiguration — entirely your responsibility to prevent, not AWS's.</div></div>
+  </div>
+  <p class="explain">Be able to explain this model clearly, with your own examples, without hesitation — it's one of the most frequently asked concept questions in cloud support interviews.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D83</span><div><div class="dtitle">CLF-C02 domain review — study time matched to exam weighting</div><div class="dtopic">65 questions, 90 minutes, 700/1000 to pass, scenario-based not pure recall</div></div></div>
+  <div class="dhr"><span class="dtag dt-l">Practice</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Domain weighting — spend your remaining time where it counts</div>
+  <table class="reftbl">
+    <thead><tr><th>Domain</th><th>Exam weight</th><th>Your labs that already cover it</th></tr></thead>
+    <tbody>
+      <tr><td>Cloud Technology & Services</td><td>34%</td><td>EC2, S3, VPC, IAM — Weeks 9–10</td></tr>
+      <tr><td>Security & Compliance</td><td>30%</td><td>IAM policies, MFA, shared responsibility, bucket exposure fix — Weeks 9–10, 12</td></tr>
+      <tr><td>Cloud Concepts</td><td>24%</td><td>Elasticity, availability, well-architected framework at a high level — review via Microsoft Learn / AWS docs</td></tr>
+      <tr><td>Billing, Pricing & Support</td><td>12%</td><td>Free tier, Cost Explorer, budgets, tagging — Day 72</td></tr>
+    </tbody>
+  </table>
+  <p class="explain">Notice that 64% of the exam (Cloud Technology + Security) is material your hands-on labs already cover well. Spend today reviewing Cloud Concepts and Billing/Pricing specifically — the 2 domains with the least direct lab coverage — rather than re-studying what you've already built.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D84–85</span><div><div class="dtitle">Practice exams — 2 full-length, review every miss</div><div class="dtopic">80%+ target before booking the real exam, per the Phase 3 exit gate</div></div></div>
+  <div class="dhr"><span class="dtag dt-l">Practice</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">How to actually use a practice exam</div>
+  <p class="explain">Take the first full-length practice exam under real time pressure — no pausing, no notes. Afterward, don't just check the score: for every question you got wrong, go back to the concept and connect it to a lab you did this month if possible, or a specific doc page if not. Take the second practice exam 1–2 days later, after reviewing weak areas — the improvement between the two tells you honestly whether you're ready.</p>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Memorizing practice exam answers instead of understanding why each one is correct. Real exam questions are scenario-based and reworded — memorized answers to specific practice questions won't transfer to the actual exam's phrasing.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D86–88</span><div><div class="dtitle">Capstone build — finalize the AWS environment</div><div class="dtopic">VPC + EC2 + S3 + IAM, all documented, tagged, and screenshot-verified</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Assembling the final environment</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Confirm your custom VPC (public + private subnets, Internet Gateway, route tables) from Week 10 is still correctly configured — re-verify the public subnet reaches the internet and the private one doesn't.</div></div>
+    <div class="step"><div class="sn">2</div><div>Confirm your S3 bucket has "Block all public access" enabled and the correct policy applied — this should never be left in the deliberately-exposed state from Day 68.</div></div>
+    <div class="step"><div class="sn">3</div><div>Confirm your IAM group structure (SupportTeam, least-privilege policy) is intact and documented.</div></div>
+    <div class="step"><div class="sn">4</div><div>Take final screenshots: the VPC diagram (console or draw.io), the IAM policy JSON, a triggered CloudWatch alarm, and the Cost Explorer view filtered by your Project tag.</div></div>
+  </div>
+</div>
+<div class="db-s">
+  <div class="dbl">Finalize the 10th ticket if you're one short</div>
+  <p class="explain">If you have 9 tickets from Weeks 9–11, write one final ticket now — a realistic scenario combining what you learned this week, such as diagnosing a security misconfiguration using the shared responsibility model framing from Day 82.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D89</span><div><div class="dtitle">Exam day — or final prep if timing has shifted</div><div class="dtopic">Sit CLF-C02 if your practice scores support it; otherwise, book it for just after Phase 3 closes</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Milestone</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">A calm decision, not a forced one</div>
+  <p class="explain">If your last 2 practice exams scored 80%+, book and sit CLF-C02 today or in the next couple of days. If timing or scores aren't quite there, that's genuinely fine — book it for a specific date shortly after Phase 3 closes rather than letting it drift indefinitely. The environment and ticket queue you've built this month are the stronger, more durable proof of your ability regardless of the exact exam date.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D90</span><div><div class="dtitle">Final review, commit, and Phase 3 close-out</div><div class="dtopic">Everything pushed to GitHub, README updated, ready for Phase 4</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The close-out checklist</div>
+  <div class="chklist">
+    <div class="chk"><div class="chk-box"></div><div>10 cloud support tickets finalized in the full 7-step format, spanning both AWS and Azure</div></div>
+    <div class="chk"><div class="chk-box"></div><div>AWS environment screenshots (VPC, IAM policy, CloudWatch alarm, Cost Explorer) committed</div></div>
+    <div class="chk"><div class="chk-box"></div><div>AWS-vs-Azure comparison document committed</div></div>
+    <div class="chk"><div class="chk-box"></div><div>stop_all_ec2.sh and any other scripts committed</div></div>
+    <div class="chk"><div class="chk-box"></div><div>README.md updated with a Phase 3 summary and links to key artifacts</div></div>
+    <div class="chk"><div class="chk-box"></div><div>Final cost check — confirm your actual spend this month matched expectations, near-zero on the free tier</div></div>
+  </div>
+</div>
+
+<div class="cap">
+  <div class="capeye">PHASE 3 CAPSTONE REQUIREMENTS</div>
+  <div class="captitle">A live AWS environment + 10 resolved cloud support tickets</div>
+  <div class="capbody">A documented AWS environment with correct IAM, networking, and storage configuration, 10 resolved cloud support tickets spanning both AWS and Azure, and exam-ready command of the CLF-C02 domains earned through hands-on practice — all committed to GitHub.</div>
+  <div class="capreqs">
+    <div class="capreq">AWS account with billing alarm active, daily-use IAM user (not root) for all work</div>
+    <div class="capreq">Custom VPC with public/private subnets, EC2 instance, S3 bucket with correct (not accidentally public) policies</div>
+    <div class="capreq">IAM group with a scoped least-privilege policy, verified by a failed write attempt as proof</div>
+    <div class="capreq">Azure resource group with a VM and storage account, compared directly against the AWS equivalents</div>
+    <div class="capreq">CloudWatch alarm verified to actually trigger under a real load test</div>
+    <div class="capreq">10 resolved cloud support tickets — access requests, provisioning, security groups, cost investigation</div>
+    <div class="capreq">Practice exam scores of 80%+ on at least 2 full-length CLF-C02 practice tests</div>
+  </div>
+</div>
+
+<div class="gate">
+  <div class="gate-title">PHASE 3 EXIT GATE — you're ready for Phase 4 when:</div>
+  <div class="gate-item">You can explain the shared responsibility model with one concrete example on each side, without hesitation</div>
+  <div class="gate-item">You can write a scoped IAM policy from scratch and verify it actually restricts access correctly</div>
+  <div class="gate-item">You can diagnose a security group misconfiguration blocking legitimate traffic, using only the CLI</div>
+  <div class="gate-item">You can explain AWS vs. Azure service equivalents from your own hands-on experience, not a memorized table</div>
+  <div class="gate-item">You're consistently scoring 80%+ on full-length CLF-C02 practice exams (or have already sat and passed)</div>
+  <div class="gate-item">Your GitHub repo shows 10 real, well-documented cloud support tickets</div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">10</div><div class="ml">cloud tickets resolved</div></div>
+  <div class="metric"><div class="mv">2</div><div class="ml">clouds — AWS deep, Azure broad</div></div>
+  <div class="metric"><div class="mv">80%+</div><div class="ml">practice exam scores</div></div>
+  <div class="metric"><div class="mv">24+</div><div class="ml">total tickets, Phases 1–3</div></div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ RESOURCES ═══ -->
+<div class="section" id="s5">
+<div class="wh">
+  <div class="weyebrow">PHASE 3 REFERENCE</div>
+  <div class="wtitle">Resources and Tools</div>
+  <div class="wsub">Everything below is free, aside from the optional CLF-C02 exam fee.</div>
+</div>
+
+<div class="res-grid">
+  <div class="res-card">
+    <div class="res-cat">CLOUD ACCOUNTS</div>
+    <div class="res-item"><div class="res-dot"></div><div>AWS Free Tier — aws.amazon.com/free</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Azure Free Account — azure.microsoft.com/free</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Microsoft Learn sandboxes — free hands-on labs without needing a full Azure account</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">EXAM COST</div>
+    <div class="res-item"><div class="res-dot"></div><div>AWS Certified Cloud Practitioner (CLF-C02) — $100</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">FREE COURSES + DOCS</div>
+    <div class="res-item"><div class="res-dot"></div><div>freeCodeCamp — AWS full course on YouTube</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Microsoft Learn — free official AZ-900 / Azure fundamentals learning path</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>AWS Documentation — docs.aws.amazon.com</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>AWS Well-Architected Framework — aws.amazon.com/architecture/well-architected</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">COMMAND REFERENCE</div>
+    <div class="res-item"><div class="res-dot"></div><div>aws help / aws &lt;service&gt; help — built-in CLI documentation</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>AWS CLI reference — docs.aws.amazon.com/cli</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">DAILY HABITS FOR PHASE 3</div>
+    <div class="res-item"><div class="res-dot"></div><div>Check the AWS billing dashboard every single day this month, without fail</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Run stop_all_ec2.sh at the end of every session</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Tag every resource you create — makes cost investigation and cleanup dramatically easier</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Verify every security/policy change with a should-fail test, never assume it works</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Commit to GitHub daily — tickets, scripts, screenshots, the comparison document</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="alert al-s">
+  <span class="ali">✓</span>
+  <span><strong>Phase 3 closes the loop on 3 months of hands-on infrastructure work.</strong> A real AWS environment you built and secured yourself, a working knowledge of Azure earned by actually touching it, and 10 more tickets that prove real diagnostic thinking — combined with Phases 1 and 2, that's 24+ documented, resolved cases spanning hardware, networking, Windows, Linux, and cloud. Phase 4 turns all of it into a portfolio and a job search.</span>
+</div>
+</div>
+
+</main>
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ top</button>
+
+<script>
+const SS=['s0','s1','s2','s3','s4','s5'];
+function go(n){
+  SS.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el)el.classList.toggle('on',i===n);
+  });
+  document.querySelectorAll('.tnav').forEach((el,i)=>el.classList.toggle('on',i===n));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function td(h){h.closest('.day').classList.toggle('open')}
+</script>
+</body>
+</html>

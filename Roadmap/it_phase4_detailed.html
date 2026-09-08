@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 4 — Certification + Portfolio + Job/PPA Hunt | IT/Cloud Support Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0e1015;--ink2:#2d3142;--ink3:#5a617d;--ink4:#8e96b0;
+  --paper:#f7f6f2;--paper2:#edecea;--paper3:#e4e2dd;--cream:#faf9f5;
+  --green:#0d6e4a;--green-bg:#d6f0e6;
+  --amber:#7a4700;--amber-bg:#fdefd4;
+  --red:#b91c1c;--red-bg:#fee2e2;
+  --purple:#5b21b6;--purple-bg:#ede9fe;
+  --teal:#0e6b70;--teal-bg:#ccfbf1;
+  --blue:#1e40af;--blue-bg:#dbeafe;
+  --ph4:#be123c;--ph4-bg:#ffe4e6;--ph4-light:rgba(190,18,60,.15);
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Fraunces',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.site-header{background:var(--ink);padding:3.5rem 0 3rem}
+.hinner{max-width:900px;margin:0 auto;padding:0 2rem}
+.phase-badge{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ph4);margin-bottom:1rem;display:block}
+.site-header h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.15;letter-spacing:-.02em;margin-bottom:.75rem;color:#e8eaf0}
+.site-header h1 em{font-style:italic;color:#aab0c8}
+.header-desc{font-family:var(--mono);font-size:12px;color:#9ba3b8;max-width:620px;line-height:1.75}
+.header-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.5rem}
+.hbadge{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:3px;border:1px solid rgba(255,255,255,.12);color:#9ba3b8}
+.hbadge.p{border-color:rgba(190,18,60,.4);color:#fda4af}
+.hbadge.g{border-color:rgba(62,207,142,.3);color:#3ecf8e}
+.hbadge.a{border-color:rgba(245,163,71,.3);color:#f0a347}
+
+.toolbar{position:sticky;top:0;z-index:100;background:rgba(14,16,21,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);padding:.5rem 0}
+.tinner{max-width:900px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;gap:0}
+.tinner::-webkit-scrollbar{display:none}
+.tnav{font-family:var(--mono);font-size:10px;padding:8px 12px;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.35);cursor:pointer;background:transparent;white-space:nowrap;transition:all .15s;flex-shrink:0}
+.tnav:hover{color:rgba(255,255,255,.6)}
+.tnav.on{color:#fff;border-bottom-color:var(--ph4)}
+.tsep{width:1px;height:16px;background:rgba(255,255,255,.1);margin:0 6px;flex-shrink:0}
+.print-btn{font-family:var(--mono);font-size:10px;margin-left:auto;padding:5px 12px;border:1px solid rgba(255,255,255,.15);border-radius:3px;color:rgba(255,255,255,.4);background:transparent;cursor:pointer;flex-shrink:0;transition:all .15s;white-space:nowrap}
+.print-btn:hover{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.7)}
+
+.main{max-width:900px;margin:0 auto;padding:0 2rem 5rem}
+.section{display:none;padding:2.5rem 0}
+.section.on{display:block}
+.wh{padding:1.75rem 0 1.25rem;border-bottom:2px solid var(--ink);margin-bottom:1.75rem}
+.weyebrow{font-family:var(--mono);font-size:10px;color:var(--ph4);letter-spacing:.1em;margin-bottom:.4rem}
+.wtitle{font-size:1.6rem;font-weight:600;color:var(--ink);letter-spacing:-.02em;line-height:1.25}
+.wsub{font-size:.95rem;color:var(--ink3);margin-top:.4rem;line-height:1.65;max-width:680px}
+.wtags{display:flex;flex-wrap:wrap;gap:7px;margin-top:.9rem}
+.tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:3px;border:1.5px solid var(--paper3);color:var(--ink3);background:var(--paper2)}
+
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:2rem}
+.ov-card{background:var(--cream);border:1.5px solid var(--paper3);border-radius:8px;padding:1.1rem 1.25rem;cursor:pointer;transition:all .18s}
+.ov-card:hover{border-color:var(--ph4);transform:translateY(-2px);box-shadow:0 4px 20px var(--ph4-light)}
+.ov-week{font-family:var(--mono);font-size:10px;color:var(--ph4);letter-spacing:.08em;margin-bottom:.4rem}
+.ov-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.25rem}
+.ov-sub{font-family:var(--mono);font-size:10px;color:var(--ink3);line-height:1.5}
+.ov-days{font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--paper3)}
+
+.day{background:var(--cream);border:1.5px solid var(--paper3);border-radius:8px;margin-bottom:14px;overflow:hidden}
+.day-header{padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:10px;transition:background .12s}
+.day-header:hover{background:var(--paper2)}
+.dhl{display:flex;align-items:center;gap:10px}
+.dnum{font-family:var(--mono);font-size:10px;color:var(--ph4);width:60px;flex-shrink:0;letter-spacing:.06em}
+.dtitle{font-size:.92rem;font-weight:600;color:var(--ink)}
+.dtopic{font-family:var(--mono);font-size:10px;color:var(--ink4);margin-top:1px}
+.dhr{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.dtag{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:2px}
+.dt-t{background:var(--purple-bg);color:var(--purple)}
+.dt-l{background:var(--green-bg);color:var(--green)}
+.dt-b{background:var(--blue-bg);color:var(--blue)}
+.dt-c{background:var(--amber-bg);color:var(--amber)}
+.dt-d{background:var(--red-bg);color:var(--red)}
+.chev{font-size:10px;color:var(--ink4);transition:transform .18s}
+.day.open .chev{transform:rotate(180deg)}
+.day-body{display:none;border-top:1.5px solid var(--paper3)}
+.day.open .day-body{display:block}
+.db-s{padding:1.25rem 1.5rem;border-bottom:1px solid var(--paper2)}
+.db-s:last-child{border-bottom:none}
+.dbl{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+.dbl::after{content:'';flex:1;height:1px;background:var(--paper3)}
+
+.explain{font-size:.92rem;color:var(--ink2);line-height:1.8;margin-bottom:.8rem}
+.explain:last-child{margin-bottom:0}
+.explain strong{color:var(--ink);font-weight:600}
+.analogy{background:var(--amber-bg);border-left:3px solid var(--amber);border-radius:0 6px 6px 0;padding:.85rem 1rem;margin:.8rem 0;font-size:.88rem;color:var(--amber);line-height:1.65}
+.analogy .albl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;display:block;margin-bottom:.2rem;font-weight:600}
+
+.cb{background:var(--ink);border-radius:6px;overflow:hidden;margin-bottom:.65rem}
+.cb:last-child{margin-bottom:0}
+.cbh{padding:.45rem .85rem;background:rgba(255,255,255,.04);display:flex;align-items:center}
+.cbp{font-family:var(--mono);font-size:9px;color:var(--ph4);letter-spacing:.04em}
+.cbc{padding:.65rem .85rem;font-family:var(--mono);font-size:12px;color:#e0e4f0;line-height:1.8;overflow-x:auto;white-space:pre}
+.cbc .cm{color:#4a5168;font-style:italic}
+.cbc .hl{color:#3ecf8e}
+.cbc .kw{color:#9b7ef5}
+.cbc .st{color:#f0c040}
+.cbc .vr{color:#f57eb6}
+.cbc .fl{color:#f0a347}
+
+.steps{margin:.5rem 0}
+.step{display:flex;gap:12px;margin-bottom:.75rem;font-size:.9rem;color:var(--ink2);line-height:1.6}
+.sn{font-family:var(--mono);font-size:10px;color:var(--ph4);width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(190,18,60,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+
+.chklist{margin:.5rem 0}
+.chk{display:flex;gap:10px;font-size:.9rem;color:var(--ink2);margin-bottom:.55rem;line-height:1.5}
+.chk-box{width:16px;height:16px;border:1.5px solid var(--paper3);border-radius:3px;flex-shrink:0;margin-top:2px}
+
+.alert{border-radius:6px;padding:.85rem 1rem;margin:.8rem 0;font-size:.88rem;line-height:1.65;display:flex;gap:.75rem}
+.ali{font-size:14px;flex-shrink:0;margin-top:2px}
+.al-w{background:var(--amber-bg);border:1.5px solid rgba(122,71,0,.2);color:var(--amber)}
+.al-i{background:var(--blue-bg);border:1.5px solid rgba(30,64,175,.2);color:var(--blue)}
+.al-s{background:var(--green-bg);border:1.5px solid rgba(13,110,74,.2);color:var(--green)}
+.al-n{background:var(--purple-bg);border:1.5px solid rgba(91,33,182,.2);color:var(--purple)}
+.al-p{background:var(--ph4-bg);border:1.5px solid rgba(190,18,60,.25);color:var(--ph4)}
+
+.mistake{background:var(--red-bg);border:1.5px solid rgba(185,28,28,.2);border-radius:6px;padding:.85rem 1rem;margin:.8rem 0;font-size:.87rem;color:var(--red);line-height:1.6}
+.mistake .mlbl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;display:block;margin-bottom:.2rem;font-weight:600}
+
+.cap{background:linear-gradient(135deg,#0e1015 0%,#1e0a11 100%);border-radius:10px;padding:1.75rem;margin:1.5rem 0;border:1.5px solid rgba(190,18,60,.4)}
+.capeye{font-family:var(--mono);font-size:10px;color:var(--ph4);letter-spacing:.1em;margin-bottom:.6rem}
+.captitle{font-size:1.15rem;font-weight:600;color:#e8eaf0;margin-bottom:.6rem}
+.capbody{font-size:.88rem;color:#9ba3b8;line-height:1.7;margin-bottom:1rem}
+.capreqs{border-top:1px solid rgba(255,255,255,.07);padding-top:.9rem}
+.capreq{display:flex;gap:8px;font-family:var(--mono);font-size:11px;color:#aab0c8;margin-bottom:.45rem;line-height:1.5}
+.capreq::before{content:'→';color:#fda4af;flex-shrink:0}
+
+.gate{background:var(--green-bg);border:1.5px solid rgba(13,110,74,.2);border-radius:8px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+.gate-title{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.08em;margin-bottom:.75rem}
+.gate-item{display:flex;gap:10px;font-size:.9rem;color:var(--ink2);margin-bottom:.45rem;line-height:1.5}
+.gate-item::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:1.5rem 0}
+.metric{background:var(--paper2);border:1.5px solid var(--paper3);border-radius:7px;padding:1rem 1.1rem}
+.mv{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:var(--ink);line-height:1}
+.ml{font-size:.8rem;color:var(--ink3);margin-top:.3rem;font-family:var(--mono)}
+
+.reftbl{width:100%;border-collapse:collapse;font-size:.85rem;margin:.75rem 0}
+.reftbl th{text-align:left;font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.08em;padding:6px 10px;border-bottom:2px solid var(--paper3)}
+.reftbl td{padding:7px 10px;border-bottom:1px solid var(--paper2);color:var(--ink2);vertical-align:top}
+.reftbl td:first-child{font-family:var(--mono);font-size:11px;color:var(--ph4)}
+
+code{font-family:var(--mono);font-size:.82em;background:var(--paper2);border:1px solid var(--paper3);padding:1px 5px;border-radius:3px;color:var(--ink2)}
+.divider{border:none;border-top:1.5px solid var(--paper3);margin:2rem 0}
+.back-top{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:#e8eaf0;border:none;border-radius:4px;padding:8px 13px;font-family:var(--mono);font-size:11px;cursor:pointer;z-index:200;opacity:.7;transition:all .15s}
+.back-top:hover{opacity:1}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:1rem 0}
+.res-card{background:var(--paper2);border:1.5px solid var(--paper3);border-radius:7px;padding:1rem 1.1rem}
+.res-cat{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.1em;margin-bottom:.7rem}
+.res-item{display:flex;gap:8px;font-size:.85rem;color:var(--ink2);margin-bottom:.5rem;line-height:1.45}
+.res-dot{width:4px;height:4px;border-radius:50%;background:var(--ph4);flex-shrink:0;margin-top:7px}
+
+@media print{
+  .toolbar,.back-top,.print-btn{display:none!important}
+  .section{display:block!important;page-break-before:always}
+  .section:first-child{page-break-before:avoid}
+  .day-body{display:block!important}
+  body{background:#fff;color:#111}
+}
+@media(max-width:640px){
+  .hinner,.tinner,.main{padding-left:1rem;padding-right:1rem}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+<div class="hinner">
+  <span class="phase-badge">it/cloud support roadmap · phase 4 of 4</span>
+  <h1>Certification +<br><em>Portfolio + the Hunt.</em></h1>
+  <p class="header-desc">Month 4 · Days 91–120. Three months of real, documented builds mean nothing until someone can see them. This month closes CompTIA A+, turns 24+ tickets and three live environments into a portfolio a hiring manager or a PPA-accepting company can be convinced by in minutes, then executes a disciplined outreach campaign — for NYSC placement and for jobs, at the same time.</p>
+  <div class="header-meta">
+    <span class="hbadge">Month 4 · Days 91–120</span>
+    <span class="hbadge p">CompTIA A+ Core 1 + Core 2</span>
+    <span class="hbadge g">Portfolio live, GitHub history since Day 1</span>
+    <span class="hbadge a">Target: PPA placement + 300+ tracked applications</span>
+  </div>
+</div>
+</header>
+
+<nav class="toolbar">
+<div class="tinner">
+  <button class="tnav on" onclick="go(0)">Overview</button>
+  <div class="tsep"></div>
+  <button class="tnav" onclick="go(1)">Week 13: A+ Exams</button>
+  <button class="tnav" onclick="go(2)">Week 14: Portfolio</button>
+  <button class="tnav" onclick="go(3)">Week 15: Interview Prep</button>
+  <button class="tnav" onclick="go(4)">Weeks 16–17: The Hunt</button>
+  <div class="tsep"></div>
+  <button class="tnav" onclick="go(5)">Resources</button>
+  <button class="print-btn" onclick="window.print()">⬇ Save / Print</button>
+</div>
+</nav>
+
+<main class="main">
+
+<!-- ═══ OVERVIEW ═══ -->
+<div class="section on" id="s0">
+<div class="wh">
+  <div class="weyebrow">PHASE 4 OVERVIEW</div>
+  <div class="wtitle">Two audiences, one body of proof</div>
+  <div class="wsub">You're building toward two outcomes at once this month: an NYSC PPA willing to accept you as a corps member in a real technical environment, and general job applications for after service or for remote work now. Both audiences want the same evidence — real environments, real problems solved, real documentation — just packaged slightly differently.</div>
+</div>
+
+<p class="explain">Phase 4 is 30 days across 4 blocks. Week 13 closes CompTIA A+ — Core 1 and Core 2, booked and sat now that the hands-on material from Phase 1 has had 3 months to solidify. Week 14 builds the portfolio: a live site, 3 project pages drawn from your 24+ tickets and 3 environments, a quantified resume, and a PPA-specific one-page technical brief. Week 15 is interview and outreach rehearsal — 5 technical scenarios plus the specific conversation you'll need for approaching a company about a PPA letter. Weeks 16–17 are execution: daily applications and PPA outreach, tracked with the same discipline you've applied to every ticket this roadmap.</p>
+
+<div class="alert al-p">
+  <span class="ali">→</span>
+  <span><strong>The single most important shift this month:</strong> for 90 days you've been the only audience for your own work — a ticket resolved for your own learning. Starting now, every artifact gets rewritten with a second person in mind: someone who's never seen your lab, has 90 seconds, and needs to understand fast why you're worth a reply.</span>
+</div>
+
+<div class="ov-grid">
+  <div class="ov-card" onclick="go(1)">
+    <div class="ov-week">WEEK 13 · DAYS 91–97</div>
+    <div class="ov-title">CompTIA A+ Exams</div>
+    <div class="ov-sub">Core 1 and Core 2, booked and sat, badges live</div>
+    <div class="ov-days">Milestone: both certifications earned</div>
+  </div>
+  <div class="ov-card" onclick="go(2)">
+    <div class="ov-week">WEEK 14 · DAYS 98–104</div>
+    <div class="ov-title">Portfolio Construction</div>
+    <div class="ov-sub">Site live, 3 project pages, resume, LinkedIn, PPA technical brief</div>
+    <div class="ov-days">Output: the entire public evidence trail for 4 months of work</div>
+  </div>
+  <div class="ov-card" onclick="go(3)">
+    <div class="ov-week">WEEK 15 · DAYS 105–111</div>
+    <div class="ov-title">Interview + Outreach Prep</div>
+    <div class="ov-sub">5 technical scenarios rehearsed, plus the PPA outreach conversation itself</div>
+    <div class="ov-days">Output: fluent, unscripted answers and a ready pitch</div>
+  </div>
+  <div class="ov-card" onclick="go(4)">
+    <div class="ov-week">WEEKS 16–17 · DAYS 112–120</div>
+    <div class="ov-title">The Hunt</div>
+    <div class="ov-sub">Daily applications, PPA outreach, LinkedIn, freelance gigs, follow-ups</div>
+    <div class="ov-days">Target: PPA secured + 300+ tracked applications</div>
+  </div>
+</div>
+
+<div class="alert al-i">
+  <span class="ali">i</span>
+  <span><strong>Why certifications come first this month, not last:</strong> A+ badges take days to arrive and look best sitting on a finished portfolio, not added to one already published. Sitting the exams before building the portfolio means Week 14's site launches complete, badges and all, instead of getting a follow-up edit later.</span>
+</div>
+</div>
+
+<!-- ═══ WEEK 13: A+ EXAMS ═══ -->
+<div class="section" id="s1">
+<div class="wh">
+  <div class="weyebrow">WEEK 13 · DAYS 91–97</div>
+  <div class="wtitle">CompTIA A+ — Core 1 and Core 2, Earned After 3 Months of Real Practice</div>
+  <div class="wsub">The material from Phase 1 has had 3 months to settle, reinforced by everything you built since — permissions in Phase 2, networking troubleshooting threaded through every phase. This week is about proving it under exam conditions, not learning it fresh.</div>
+  <div class="wtags">
+    <span class="tag">Core 1 (220-1201)</span><span class="tag">Core 2 (220-1202)</span>
+    <span class="tag">Targeted review, not re-learning</span><span class="tag">Badges live on LinkedIn/Credly</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D91</span><div><div class="dtitle">Book both exams, targeted review begins</div><div class="dtopic">Not re-learning — closing specific gaps you already know you have</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Booking with a real gap between Core 1 and Core 2</div>
+  <p class="explain">Book Core 1 for Day 92 and Core 2 for Day 95 — 3 days apart, enough gap to review Core 1's weak areas before Core 2, not so much that momentum is lost. Today, take one full-length Core 1 practice exam cold, no review beforehand, to find out honestly what's still shaky after 3 months.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Take a full Core 1 practice exam under real time pressure.</div></div>
+    <div class="step"><div class="sn">2</div><div>For every miss, don't just re-read the answer — trace it back to a specific lab from Phase 1 if one exists, or a specific Professor Messer video if not.</div></div>
+    <div class="step"><div class="sn">3</div><div>Build a short list of your genuinely weak topics — likely candidates: specific port numbers, laptop-specific hardware, or mobile device MDM concepts that got less hands-on time than networking or permissions did.</div></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D92</span><div><div class="dtitle">Sit Core 1 (220-1201)</div><div class="dtopic">675/900 minimum to pass</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Milestone</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Exam day</div>
+  <p class="explain">Arrive with your ID and confirmation ready, get there early enough to not feel rushed. Trust the diagnostic instincts you've built over 3 months of real labs — many questions are scenario-based, and your hands-on troubleshooting experience is a genuine advantage over someone who only memorized definitions.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D93–94</span><div><div class="dtitle">Core 2 focused review</div><div class="dtopic">OS troubleshooting, security fundamentals, the 6-step methodology — all material you've used constantly</div></div></div>
+  <div class="dhr"><span class="dtag dt-l">Practice</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Where Core 2 overlaps with what you've been doing for 3 months</div>
+  <p class="explain">Core 2 covers operating systems, security, software troubleshooting, and operational procedures — nearly all of it is material you've been actively using: the 6-step methodology from every ticket you've written, the permissions work from Phases 1 and 2, the security fundamentals from Week 4 of Phase 1. Take a full Core 2 practice exam today, review misses the same way you did for Core 1, and spend tomorrow closing any remaining gaps.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D95</span><div><div class="dtitle">Sit Core 2 (220-1202)</div><div class="dtopic">700/900 minimum to pass</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Milestone</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Exam day</div>
+  <p class="explain">Same approach as Core 1 — trust your hands-on experience over rote memorization where the two conflict.</p>
+  <div class="alert al-i">
+    <span class="ali">i</span>
+    <span>If either exam doesn't land on the first attempt, that's a normal part of the process. Retake within 2 weeks while the material is fresh, and keep moving on Week 14's portfolio work in parallel rather than pausing everything to wait — the portfolio doesn't need to wait for a retake to launch.</span>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D96–97</span><div><div class="dtitle">Badges live, week checkpoint</div><div class="dtopic">Credly, LinkedIn, and your GitHub README updated</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Close-out checklist</div>
+  <div class="chklist">
+    <div class="chk"><div class="chk-box"></div><div>Core 1 (220-1201) passed — 675/900 minimum</div></div>
+    <div class="chk"><div class="chk-box"></div><div>Core 2 (220-1202) passed — 700/900 minimum</div></div>
+    <div class="chk"><div class="chk-box"></div><div>Digital badges added to Credly and LinkedIn, ready to embed in the portfolio next week</div></div>
+    <div class="chk"><div class="chk-box"></div><div>Root README.md in your GitHub repo updated with both certifications listed</div></div>
+  </div>
+</div>
+
+<div class="gate">
+  <div class="gate-title">WEEK 13 CHECKPOINT — before moving to Week 14:</div>
+  <div class="gate-item">Both CompTIA A+ certifications are earned, or a specific retake date is booked</div>
+  <div class="gate-item">Badges are live and verifiable on Credly and LinkedIn</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ WEEK 14: PORTFOLIO ═══ -->
+<div class="section" id="s2">
+<div class="wh">
+  <div class="weyebrow">WEEK 14 · DAYS 98–104</div>
+  <div class="wtitle">Portfolio Construction — Turning 4 Months of Tickets into Evidence</div>
+  <div class="wsub">Everything you've committed to GitHub since Day 3 of Phase 1 gets assembled here, not created from scratch — this week is largely selection and packaging, because the raw material already exists.</div>
+  <div class="wtags">
+    <span class="tag">Hugo + GitHub Pages + Cloudflare</span><span class="tag">3 project pages</span>
+    <span class="tag">Resume, 2 versions</span><span class="tag">LinkedIn</span><span class="tag">PPA technical brief</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D98</span><div><div class="dtitle">Portfolio site — live within a day, same free stack you already know</div><div class="dtopic">Hugo + GitHub Pages + Cloudflare — the exact pattern from your DevOps roadmap, if you've seen it</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this exact stack</div>
+  <table class="reftbl">
+    <thead><tr><th>Tool</th><th>Why this one</th></tr></thead>
+    <tbody>
+      <tr><td>Hugo</td><td>Static site generator, builds in milliseconds, no server to run or secure.</td></tr>
+      <tr><td>GitHub Pages</td><td>Free hosting, deploys automatically on every push — the exact commit workflow you've used since Day 3.</td></tr>
+      <tr><td>Cloudflare</td><td>Free CDN, SSL, and DNS if you want a custom domain (~₦5,000/year, optional but reads more professionally).</td></tr>
+    </tbody>
+  </table>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">get a Hugo site live — the fastest path</span></div>
+    <div class="cbc">hugo new site portfolio && cd portfolio
+git init
+git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+echo <span class="st">'theme = "ananke"'</span> >> hugo.toml
+
+hugo server -D   <span class="cm"># preview locally</span>
+
+<span class="cm"># push to GitHub, enable Pages with GitHub Actions in repo settings</span>
+<span class="cm"># — GitHub provides an official Hugo deploy workflow template, use it directly</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D99–101</span><div><div class="dtitle">3 project pages — one per phase, selected and polished, not written fresh</div><div class="dtopic">Helpdesk Simulation, Small-Business SysAdmin Environment, Cloud Support Environment</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The structure that makes a reader stop scrolling</div>
+  <p class="explain">Each project page follows the same structure — this isn't new writing, it's selecting your strongest committed artifacts and framing them for someone who's never seen your GitHub history.</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div><strong>What it is:</strong> 2–3 sentences on the environment — a home lab simulating Tier 1 helpdesk work, a small-business AD domain, or a live AWS cloud support environment.</div></div>
+    <div class="step"><div class="sn">2</div><div><strong>Decision log:</strong> 3–5 real decisions with your reasoning, pulled from what you actually chose and why — "why a setgid bit on the Samba share," "why static IP and DNS role before AD DS." This is the highest-signal section — it proves you understand trade-offs, not just steps.</div></div>
+    <div class="step"><div class="sn">3</div><div><strong>Artifacts:</strong> your strongest 3–4 tickets from that phase (full 7-step format), the key scripts (bulk-create-users.ps1, backup scripts, stop_all_ec2.sh), and any diagrams (network diagram, VPC diagram).</div></div>
+    <div class="step"><div class="sn">4</div><div><strong>GitHub link:</strong> directly to the relevant folder in your repo.</div></div>
+    <div class="step"><div class="sn">5</div><div><strong>"What I'd do differently":</strong> 2–3 honest sentences — signals intellectual honesty, a trait employers explicitly look for and rarely see in junior candidates.</div></div>
+  </div>
+  <div class="dbl" style="margin-top:1rem">The 3 pages</div>
+  <table class="reftbl">
+    <thead><tr><th>Page</th><th>Draws from</th></tr></thead>
+    <tbody>
+      <tr><td>Tier 1 Helpdesk Simulation</td><td>Phase 1 — 10 tickets, hardware audit scripts, ticket-template.md, subnetting fluency</td></tr>
+      <tr><td>Small-Business IT Environment</td><td>Phase 2 — domain diagram, bulk-provisioning script, gpresult proof, onboarding runbook</td></tr>
+      <tr><td>Cloud Support Environment</td><td>Phase 3 — VPC diagram, IAM policy, CloudWatch alarm proof, AWS-vs-Azure comparison</td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D102</span><div><div class="dtitle">Resume — quantified, ATS-safe, certification-forward</div><div class="dtopic">2 tailored versions: support-focused and cloud-focused</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why ATS optimization matters, and how to quantify honestly</div>
+  <p class="explain">Many companies run resumes through an Applicant Tracking System before a human sees them — a single-column, plain-text-friendly layout parses far more reliably than a visually elaborate one. Lead with certifications since they're often the first filter, and quantify project work using your own real numbers, not invented ones.</p>
+  <table class="reftbl">
+    <thead><tr><th>Vague (avoid)</th><th>Quantified (use)</th></tr></thead>
+    <tbody>
+      <tr><td>"Familiar with troubleshooting"</td><td>"Resolved 24+ documented Tier 1–2 support tickets across hardware, networking, Windows, Linux, and AWS/Azure cloud domains"</td></tr>
+      <tr><td>"Set up a domain"</td><td>"Built and administered an Active Directory domain with 20 scripted users, 3 verified Group Policy Objects, and a Linux Samba file server"</td></tr>
+      <tr><td>"Worked with AWS"</td><td>"Deployed and secured a custom AWS VPC with least-privilege IAM, verified security controls against failed-action tests"</td></tr>
+    </tbody>
+  </table>
+  <p class="explain"><strong>List your lab work as real experience, not "personal projects"</strong> — a title like "IT Support & Cloud Infrastructure (self-directed technical program)" with the actual months you built it accurately represents 4 months of sustained, hands-on engineering work.</p>
+  <div class="dbl" style="margin-top:1rem">ATS keyword bank</div>
+  <p class="explain">CompTIA A+, AWS Certified Cloud Practitioner, Active Directory, Group Policy, Windows Server, Linux (Ubuntu), PowerShell, Bash, IAM, VPC, DNS/DHCP, VPN, MFA, ticketing, SLA, Tier 1/Tier 2 support, patch management.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D103</span><div><div class="dtitle">LinkedIn — optimized for both audiences at once</div><div class="dtopic">Headline, About, Featured — written to work whether the reader is a recruiter or a PPA-considering manager</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Build</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The 3 sections that matter most</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div><strong>Headline:</strong> "IT Support / Cloud Support Technician | CompTIA A+ | AWS Certified Cloud Practitioner | Active Directory · Azure · Linux | NYSC Corps Member seeking a technical PPA."</div></div>
+    <div class="step"><div class="sn">2</div><div><strong>About section:</strong> 5 sentences — what you built (a full simulated 4-month technical program, not a course certificate), your certifications, what makes you different (24+ documented, ticket-driven, hands-on cases), what you're looking for (both a technical PPA and remote/local opportunities), and your portfolio link.</div></div>
+    <div class="step"><div class="sn">3</div><div><strong>Featured section:</strong> portfolio site, one strong screenshot from each of the 3 projects, both certification badges.</div></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D104</span><div><div class="dtitle">The PPA technical brief — a one-page document built specifically for NYSC outreach</div><div class="dtopic">What a company deciding whether to accept a corps member actually wants to see, fast</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this is a separate document from your resume</div>
+  <p class="explain">A resume is written for a hiring process with a job description to match against. A PPA request is different — you're asking a company to take a chance on hosting you as a corps member, often with a shorter, more informal decision process, sometimes through a direct conversation or a single forwarded document. A one-page brief, purpose-built for that moment, converts better than a resume repurposed for it.</p>
+  <div class="dbl" style="margin-top:1rem">The structure — one page, scannable in 90 seconds</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div><strong>Who you are, in 2 lines:</strong> name, NYSC batch/call-up details, CompTIA A+ and AWS Cloud Practitioner certified.</div></div>
+    <div class="step"><div class="sn">2</div><div><strong>What you can actually do, in 3 bullet points:</strong> the single strongest, most concrete claim from each of your 3 environments — e.g. "administered a Windows Server Active Directory domain with scripted user provisioning," "secured a live AWS environment with least-privilege IAM," "resolved 24+ documented Tier 1–2 support tickets."</div></div>
+    <div class="step"><div class="sn">3</div><div><strong>Portfolio link, prominent</strong> — a QR code if this will ever be printed, since the reader may not be at a keyboard when they see it.</div></div>
+    <div class="step"><div class="sn">4</div><div><strong>What you're asking for, plainly:</strong> a PPA placement in their IT/technical team for your NYSC service year, with your availability dates.</div></div>
+  </div>
+  <p class="explain">Commit this to your GitHub repo and export it as a clean PDF — you'll use it constantly during Weeks 16–17's outreach.</p>
+</div>
+
+<div class="gate">
+  <div class="gate-title">WEEK 14 CHECKPOINT — before moving to Week 15:</div>
+  <div class="gate-item">Portfolio site is live, loads fast, all 3 project pages complete with decision logs</div>
+  <div class="gate-item">Resume exists in 2 tailored versions, and reads cleanly when pasted into a plain text editor (an ATS sanity check)</div>
+  <div class="gate-item">LinkedIn headline, About, and Featured sections are live — verified by viewing your profile logged out</div>
+  <div class="gate-item">PPA technical brief is a polished, one-page PDF, ready to send</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ WEEK 15: INTERVIEW + OUTREACH PREP ═══ -->
+<div class="section" id="s3">
+<div class="wh">
+  <div class="weyebrow">WEEK 15 · DAYS 105–111</div>
+  <div class="wtitle">Interview Preparation + the PPA Outreach Conversation</div>
+  <div class="wsub">Two different kinds of fluency this week: 5 technical scenarios you can answer under interview pressure, and the specific, slightly less formal conversation you'll need when approaching a company directly about a PPA placement.</div>
+  <div class="wtags">
+    <span class="tag">5 technical scenarios</span><span class="tag">Pramp mock interviews</span>
+    <span class="tag">PPA outreach script</span><span class="tag">Cold email/DM templates</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D105</span><div><div class="dtitle">Draft the 5 technical scenarios — from your own labs, not a script</div><div class="dtopic">Every answer grounded in something you actually built and can point to</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The 5 scenarios and where each answer comes from</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div><strong>"Walk me through how you'd troubleshoot a user who can't connect to the network."</strong> Recite the 6-step methodology, then walk the exact diagnostic sequence from Phase 1's DNS break/fix lab.</div></div>
+    <div class="step"><div class="sn">2</div><div><strong>"How would you onboard a new employee?"</strong> Walk through your own Phase 2 onboarding runbook — AD account via your provisioning script, OU placement, GPO-driven drive mapping.</div></div>
+    <div class="step"><div class="sn">3</div><div><strong>"A user says they can't access a shared file, but a coworker in the same role can."</strong> Diagnose live: group membership first, then NTFS vs. share permissions — the exact conflict you deliberately created and resolved in Phase 2, Day 42.</div></div>
+    <div class="step"><div class="sn">4</div><div><strong>"How do you handle a request for access to a cloud resource?"</strong> Walk through the least-privilege IAM policy from Phase 3 — least privilege by default, verified by a failed-action test, not assumed correct.</div></div>
+    <div class="step"><div class="sn">5</div><div><strong>"Tell me about a time you had to explain something technical to a non-technical person."</strong> Use one of your own SOPs or the onboarding runbook as the concrete example — you wrote these to be followed by a stranger, which is exactly this skill in practice.</div></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D106–107</span><div><div class="dtitle">Rehearse out loud until fluent, then Pramp mock interviews</div><div class="dtopic">Under 3 minutes per answer, no notes — practiced against a real person, not just a mirror</div></div></div>
+  <div class="dhr"><span class="dtag dt-l">Practice</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The practice protocol</div>
+  <p class="explain">Record yourself answering each scenario out loud, without notes, watch the playback critically, and redo it. Then use Pramp.com for free peer mock interviews — a real conversational partner surfaces gaps a solo run-through never will, especially around follow-up questions you didn't anticipate.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D108</span><div><div class="dtitle">The PPA outreach conversation — a different skill from interviewing</div><div class="dtopic">Cold-reaching a company to ask them to accept you as a corps member, not respond to a job posting</div></div></div>
+  <div class="dhr"><span class="dtag dt-t">Foundation</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Why this needs its own preparation</div>
+  <p class="explain">A job interview responds to a posting where the company already wants to hire someone. A PPA request is you initiating — reaching a company that wasn't necessarily planning to take a corps member this cycle, asking them to say yes to a specific decision with real (if modest) administrative cost to them. The pitch needs to make that "yes" as easy and low-risk as possible.</p>
+  <div class="cb">
+    <div class="cbh"><span class="cbp">a cold outreach email/message template — adapt, don't send verbatim</span></div>
+    <div class="cbc">Subject: NYSC PPA request — IT Support / Cloud Support (CompTIA A+, AWS Certified)
+
+Hi [Name],
+
+I'm an NYSC corps member with hands-on experience in IT support, systems
+administration, and AWS cloud infrastructure — CompTIA A+ and AWS Cloud
+Practitioner certified, with a documented portfolio of real environments
+I built and secured myself (link below).
+
+I'm reaching out to ask whether [Company] would be willing to host me as
+a corps member for my service year, working within your IT/technical team.
+
+A quick look at what I can bring:
+- Active Directory administration, Group Policy, and Windows/Linux
+  server management
+- AWS cloud support: IAM, VPC networking, security, cost management
+- 24+ documented technical support cases, from hardware to cloud
+
+Portfolio: [link]
+PPA brief attached (1 page)
+
+I'd welcome a short call to discuss further. Thank you for considering it.
+
+[Name] · [Phone] · [Email]</div>
+  </div>
+  <div class="mistake">
+    <span class="mlbl">COMMON MISTAKE</span>
+    Sending the same generic message to every company without naming a specific person or role. A message addressed to "the IT Manager" found via LinkedIn or the company site, even briefly personalized, gets a materially better response rate than one addressed to a general info@ inbox.
+  </div>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D109–110</span><div><div class="dtitle">Mock PPA pitch + the phone/video follow-up conversation</div><div class="dtopic">What to say if a company actually responds and wants to talk</div></div></div>
+  <div class="dhr"><span class="dtag dt-l">Practice</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The conversation structure if they say yes to a call</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>A 60-second version of your background and what you built — shorter than an interview answer, since this is a first informal conversation, not a technical screen.</div></div>
+    <div class="step"><div class="sn">2</div><div>Be ready to answer plainly: what would you actually be doing day to day, and are you asking for a paid role or specifically a PPA hosting arrangement — be clear about which, since companies think about these differently.</div></div>
+    <div class="step"><div class="sn">3</div><div>Have your NYSC call-up letter details, service dates, and redeployment/relocation process understanding ready — a company saying yes will often ask practical logistics questions, not just technical ones.</div></div>
+  </div>
+  <p class="explain">Practice this out loud too, the same way you rehearsed the 5 technical scenarios — a confident, clear 60-second pitch matters as much here as a polished technical answer does in a formal interview.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D111</span><div><div class="dtitle">Week 15 checkpoint</div><div class="dtopic">Both audiences prepared for — technical fluency and outreach fluency</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="gate">
+  <div class="gate-title">WEEK 15 CHECKPOINT — before moving to Weeks 16–17:</div>
+  <div class="gate-item">You can answer any of the 5 technical scenarios fluently, under 3 minutes, without notes</div>
+  <div class="gate-item">You've completed at least one real Pramp mock interview and incorporated the feedback</div>
+  <div class="gate-item">Your PPA outreach email template is written, personalized-ready, and your 1-page brief is attached and tested (opens cleanly, reads well on mobile)</div>
+  <div class="gate-item">You can deliver the 60-second PPA pitch out loud, confidently, without reading from notes</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ WEEKS 16-17: THE HUNT ═══ -->
+<div class="section" id="s4">
+<div class="wh">
+  <div class="weyebrow">WEEKS 16–17 · DAYS 112–120</div>
+  <div class="wtitle">The Hunt — Daily Discipline, Tracked, Toward Both Goals at Once</div>
+  <div class="wsub">The materials are ready. The evidence is live. This final stretch is pure disciplined execution — applications and PPA outreach, run in parallel, tracked with the same rigor you applied to every ticket over the last 4 months.</div>
+  <div class="wtags">
+    <span class="tag">Daily applications + PPA outreach</span><span class="tag">LinkedIn engagement</span>
+    <span class="tag">Freelance gigs</span><span class="tag">7-day follow-up rule</span>
+  </div>
+</div>
+
+<div class="day open">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">DAILY</span><div><div class="dtitle">The daily routine — split between PPA outreach and job applications</div><div class="dtopic">A repeatable schedule for 9 days, tracked in a spreadsheet every single day</div></div></div>
+  <div class="dhr"><span class="dtag dt-b">Routine</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The schedule</div>
+  <div class="chklist">
+    <div class="chk"><div class="chk-box"></div><div><strong>Morning — PPA outreach (5–8 companies/day):</strong> personalized emails/LinkedIn messages using your Week 15 template, targeting named IT managers or technical leads, not general inboxes.</div></div>
+    <div class="chk"><div class="chk-box"></div><div><strong>Mid-day — job applications (10–15/day):</strong> LinkedIn Easy Apply, Jobberman, company career pages directly — tailor the resume version per role using your 10-minute process from Week 14.</div></div>
+    <div class="chk"><div class="chk-box"></div><div><strong>Evening — LinkedIn engagement:</strong> 10–15 connection requests to IT managers and technical leads at target companies, each personalized, plus meaningful engagement on 5 posts in your feed.</div></div>
+    <div class="chk"><div class="chk-box"></div><div><strong>Ongoing — 2–3 freelance applications/day</strong> on Upwork/Fiverr: "IT support setup," "Active Directory configuration," "AWS environment review" — builds testimonials and cash flow alongside the main hunt.</div></div>
+    <div class="chk"><div class="chk-box"></div><div><strong>After 7 days silence:</strong> one short, professional follow-up — for both PPA outreach and job applications. Persistence without repetition.</div></div>
+  </div>
+</div>
+<div class="db-s">
+  <div class="dbl">The tracking spreadsheet — separate PPA and job columns, same discipline</div>
+  <p class="explain">Two tabs: one for PPA outreach (company, contact name, date reached out, channel, status, follow-up date), one for job applications (company, role, date, channel, status, follow-up date). Update the moment you act, not from memory at day's end — this is the same discipline as logging a ticket the moment you resolve it.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">TARGETS</span><div><div class="dtitle">Target companies for PPA — IT-heavy Nigerian organizations</div><div class="dtopic">Companies with real technical teams, likely to see value in hosting a corps member</div></div></div>
+  <div class="dhr"><span class="dtag dt-l">Reference</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Where to focus PPA outreach</div>
+  <p class="explain">IT managed service providers (MSPs) are especially strong PPA targets — smaller, technical teams that often welcome extra hands and expose you to varied client environments quickly. Also worth targeting: banks and fintech with in-house IT/infrastructure teams (GTBank, Zenith, Access, Interswitch, Paystack, Flutterwave, Moniepoint), telecoms (MTN, Airtel, Glo — large IT departments), and university/polytechnic IT departments, which frequently host corps members and value the CompTIA A+ and AWS credentials directly.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">TARGETS</span><div><div class="dtitle">Target companies and salary ranges — job applications</div><div class="dtopic">Realistic entry-level ranges, local and remote</div></div></div>
+  <div class="dhr"><span class="dtag dt-l">Reference</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">Nigerian market</div>
+  <p class="explain">Small companies and MSPs typically pay ₦80,000–₦150,000/month for Tier 1 support; banks and larger multinationals pay ₦150,000–₦300,000/month; oil & gas and telecoms pay the highest, often ₦250,000–₦450,000+/month for candidates with strong certifications.</p>
+  <div class="dbl" style="margin-top:1rem">International remote</div>
+  <p class="explain">Remote entry-level IT/cloud support roles for candidates outside the US or UK commonly land in the $2,000–$4,000/month range. Prioritize companies explicitly built around distributed support teams — BPOs with a tech focus, MSPs with remote desks, SaaS companies with global support coverage.</p>
+  <p class="explain"><strong>Job boards to work daily:</strong> LinkedIn (primary), Jobberman (Nigerian market), WeWorkRemotely and RemoteOK (remote-only IT/support roles), and direct MSP career pages.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D112–119</span><div><div class="dtitle">Execute — 8 days of the daily routine</div><div class="dtopic">Consistency over intensity — the same discipline that carried 24+ tickets over 3 months</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone piece</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">What "done" looks like each day</div>
+  <p class="explain">By the end of Day 119, you should have reached out to 40–60 companies for PPA consideration and sent 80–120 job applications, all tracked. A PPA response — even a "not this cycle, but try us next round" — is progress, not a dead end; log it and move to the next target.</p>
+</div>
+</div>
+</div>
+
+<div class="day">
+<div class="day-header" onclick="td(this)">
+  <div class="dhl"><span class="dnum">D120</span><div><div class="dtitle">Final review — the full roadmap, closed out</div><div class="dtopic">Every artifact live, every tracker current, and a clear view of what's next</div></div></div>
+  <div class="dhr"><span class="dtag dt-c">Capstone</span><span class="chev">▼</span></div>
+</div>
+<div class="day-body">
+<div class="db-s">
+  <div class="dbl">The final walkthrough — do this cold, as if you'd never seen it before</div>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div>Open your portfolio URL in a private browser window. Does it load fast and make it obvious within 5 seconds what you do?</div></div>
+    <div class="step"><div class="sn">2</div><div>Click into each project page — do the GitHub links resolve, do the screenshots load?</div></div>
+    <div class="step"><div class="sn">3</div><div>Open your LinkedIn profile logged out — headline, About, and Featured sections as intended?</div></div>
+    <div class="step"><div class="sn">4</div><div>Review both tracking spreadsheets — PPA outreach and job applications — and note any pending follow-ups still owed.</div></div>
+  </div>
+  <p class="explain">If a PPA hasn't landed yet by Day 120, that's not a roadmap failure — PPA acceptance timelines vary and can extend past this structured 4-month window. Keep the outreach cadence going at a lighter pace while continuing job applications, using the exact same materials and tracker you built this month.</p>
+</div>
+
+<div class="cap">
+  <div class="capeye">PHASE 4 CAPSTONE REQUIREMENTS</div>
+  <div class="captitle">Certifications earned, portfolio live, dual-track outreach executed</div>
+  <div class="capbody">CompTIA A+ in hand, a live portfolio site with all 3 phase projects documented, resume and LinkedIn fully optimized, a PPA technical brief actively in use, and both tracking spreadsheets showing real, disciplined outreach.</div>
+  <div class="capreqs">
+    <div class="capreq">CompTIA A+ (Core 1 + Core 2) passed and badges live on LinkedIn/Credly</div>
+    <div class="capreq">Portfolio site live with 3 fully documented project pages, custom domain optional</div>
+    <div class="capreq">Resume tailored across 2 versions (support-focused, cloud-focused), ATS-clean</div>
+    <div class="capreq">LinkedIn headline, About, and Featured sections fully optimized</div>
+    <div class="capreq">PPA technical brief — a polished, one-page PDF, actively sent</div>
+    <div class="capreq">5 technical interview scenarios rehearsed fluently, under 3 minutes each</div>
+    <div class="capreq">40–60 PPA outreach contacts tracked, 80–120+ job applications tracked</div>
+  </div>
+</div>
+
+<div class="gate">
+  <div class="gate-title">ROADMAP COMPLETE — the 4 months are done when:</div>
+  <div class="gate-item">Both CompTIA A+ certifications are earned and visible on your portfolio and LinkedIn</div>
+  <div class="gate-item">A stranger opening your portfolio can see, within 2 minutes, that you built real environments — not just watched tutorials about them</div>
+  <div class="gate-item">You can answer any of the 5 interview scenarios fluently, grounded in your own labs, without notes</div>
+  <div class="gate-item">You can deliver the 60-second PPA pitch confidently, and your outreach tracker shows real, sustained activity</div>
+  <div class="gate-item">Your GitHub repo shows 24+ documented, resolved tickets and a consistent commit history spanning all 4 months</div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">2</div><div class="ml">certifications earned</div></div>
+  <div class="metric"><div class="mv">3</div><div class="ml">portfolio projects live</div></div>
+  <div class="metric"><div class="mv">24+</div><div class="ml">documented tickets</div></div>
+  <div class="metric"><div class="mv">40–60 + 80–120</div><div class="ml">PPA contacts + applications</div></div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ═══ RESOURCES ═══ -->
+<div class="section" id="s5">
+<div class="wh">
+  <div class="weyebrow">PHASE 4 REFERENCE</div>
+  <div class="wtitle">Resources, Tools, and What's Next</div>
+  <div class="wsub">Everything below is free unless marked.</div>
+</div>
+
+<div class="res-grid">
+  <div class="res-card">
+    <div class="res-cat">EXAM COSTS</div>
+    <div class="res-item"><div class="res-dot"></div><div>CompTIA A+ Core 1 (220-1201) — $246</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>CompTIA A+ Core 2 (220-1202) — $246</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Optional custom domain for portfolio — ~₦5,000/year</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">PORTFOLIO + CONTENT TOOLS</div>
+    <div class="res-item"><div class="res-dot"></div><div>Hugo — gohugo.io — static site generator</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>GitHub Pages — pages.github.com — free hosting</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Cloudflare — cloudflare.com — free CDN, SSL, DNS</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Canva — free tier, useful for a clean PPA brief layout with a QR code</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">JOB BOARDS + OUTREACH</div>
+    <div class="res-item"><div class="res-dot"></div><div>LinkedIn — primary channel for both PPA outreach and job applications</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Jobberman — jobberman.com — Nigerian market</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>WeWorkRemotely / RemoteOK — remote-only IT/support roles</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Upwork / Fiverr — freelance gigs for testimonials and cash flow</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Pramp — pramp.com — free peer mock interviews</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">RESUME + ATS TOOLS</div>
+    <div class="res-item"><div class="res-dot"></div><div>Jobscan — jobscan.co — free-tier ATS match scoring</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Overleaf — overleaf.com — clean, ATS-safe resume templates</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">DAILY HABITS FOR PHASE 4</div>
+    <div class="res-item"><div class="res-dot"></div><div>Update both trackers the moment you act, never from memory at day's end</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Personalize every PPA outreach message and every tailored resume — generic sends waste the effort</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Rehearse one interview scenario or the PPA pitch out loud every morning, even on quiet days</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Follow up once after 7 days of silence — persistence without repetition</div></div>
+  </div>
+  <div class="res-card">
+    <div class="res-cat">WHAT'S NEXT</div>
+    <div class="res-item"><div class="res-dot"></div><div>This roadmap is a foundation, not an endpoint — Python, deeper cloud architecture, and DevOps practices (CI/CD, IaC, containers) are natural next steps once a PPA or role is secured</div></div>
+    <div class="res-item"><div class="res-dot"></div><div>Keep committing to GitHub during your PPA/role — real production experience becomes the next portfolio layer</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="alert al-s">
+  <span class="ali">✓</span>
+  <span><strong>Four months, two certifications, three fully documented environments, 24+ real tickets, and a dual-track outreach campaign.</strong> Most candidates in this position have a certificate and no proof they can actually operate a real environment under it. You have both — earned the way you wanted to learn it in the first place: by building, breaking, and fixing, not by watching.</span>
+</div>
+</div>
+
+</main>
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ top</button>
+
+<script>
+const SS=['s0','s1','s2','s3','s4','s5'];
+function go(n){
+  SS.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el)el.classList.toggle('on',i===n);
+  });
+  document.querySelectorAll('.tnav').forEach((el,i)=>el.classList.toggle('on',i===n));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function td(h){h.closest('.day').classList.toggle('open')}
+</script>
+</body>
+</html>
