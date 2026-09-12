@@ -267,3 +267,30 @@ After completing this SOP, the technician should have a documented picture of:
 * Any findings that require further investigation
 
 The procedure should be repeatable by another technician without needing to ask how the audit was performed.
+
+
+
+## Windows Client VM — Audit Results
+
+### System
+- Manufacturer: innotek GmbH
+- Model: VirtualBox
+- Windows Product: Windows 10 Enterprise Evaluation
+- Windows Version: 2009
+
+### CPU
+- Name: Intel Core i7-6600U CPU @ 2.60GHz
+- Cores: 2
+- Max Clock Speed: 2808 MHz
+
+### Memory
+- Total Physical Memory: 4,274,917,376 bytes (~4.0 GiB)
+- Note: `Win32_PhysicalMemory` returned no data in this VM. A second query using `Win32_ComputerSystem` successfully confirmed the installed memory.
+
+### Storage
+- Model: VBOX HARDDISK
+- Size: 64,420,392,960 bytes (~60 GB)
+- Interface Type: IDE
+
+### Interpretation
+The Windows client VM successfully exposes the expected virtual CPU, approximately 4 GiB of RAM, and approximately 60 GB of virtual storage. The empty `Win32_PhysicalMemory` result was not interpreted as missing RAM; additional evidence was gathered using `Win32_ComputerSystem`.
